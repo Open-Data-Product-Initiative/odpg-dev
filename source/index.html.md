@@ -18,7 +18,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: The Open Data Product Specification (Linux Foundation project) is a vendor-neutral, open-source machine-readable data product metadata model. It defines the objects and attributes as well as the structure of digital data products. 
+    content: The Data Product Graphs Specification is a vendor-neutral, machine-readable graph model for managing data products, use cases, business objectives, KPIs, and their relationships. It defines the nodes, edges, attributes, and structures needed to connect data product lifecycle management with measurable business value.
 ---
 
 # OPEN DATA PRODUCT GRAPHS - The Linux Foundation
