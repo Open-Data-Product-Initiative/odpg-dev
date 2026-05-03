@@ -1,5 +1,5 @@
 ---
-title: Open (source) Data Product Graphs 1.0 | Linux Foundation 
+title: Open (source) Data Product Graphs 1.0 | Linux Foundation  
 
 language_tabs: # must be one of https://git.io/vQNgJ
 - yaml
