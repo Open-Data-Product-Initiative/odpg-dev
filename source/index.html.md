@@ -1,5 +1,5 @@
 ---
-title: Open (source) Data Product Graphs 1.0 | Linux Foundation  
+title: Open (source) Data Product Graphs DRAFT | Linux Foundation  
 
 language_tabs: # must be one of https://git.io/vQNgJ
 - yaml
@@ -23,7 +23,7 @@ meta:
 
 # OPEN DATA PRODUCT GRAPHS - The Linux Foundation
 
-## Version 1.0 
+## Version DRAFT
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 ([RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) and [RFC 8174](https://datatracker.ietf.org/doc/html/rfc8174)) when, and only when, they appear in all capitals, as shown here.
 
