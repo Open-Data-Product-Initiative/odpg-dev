@@ -366,6 +366,23 @@
               </ul>
           </li>
           <li>
+            <a href="#edges" class="toc-h1 toc-link" data-title="Edges">Edges</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#edge-properties" class="toc-h2 toc-link" data-title="Edge Properties">Edge Properties</a>
+                  </li>
+                  <li>
+                    <a href="#supported-edge-types" class="toc-h2 toc-link" data-title="Supported Edge Types">Supported Edge Types</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#confidence" class="toc-h1 toc-link" data-title="Confidence">Confidence</a>
+          </li>
+          <li>
+            <a href="#graph-catalog" class="toc-h1 toc-link" data-title="Graph Catalog">Graph Catalog</a>
+          </li>
+          <li>
             <a href="#editors-and-contributors" class="toc-h1 toc-link" data-title="Editors and contributors">Editors and contributors</a>
           </li>
       </ul>
@@ -646,7 +663,198 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 </tbody></table>
 
 <p>The node model is intentionally extensible so that organizations can expand graph structures with additional node types while preserving interoperability with the core ODPG structure.</p>
-<h1 id='editors-and-contributors'>Editors and contributors</h1>
+<h1 id='edges'>Edges</h1>
+<p>The edges section defines the relationships between nodes, where each edge establishes a directional connection that represents strategic alignment, operational dependency, semantic association, governance propagation, usage patterns, contribution paths, ownership relationships, or interoperability mappings between entities.</p>
+
+<p>An edge always connects a source node to a target node using the from and to properties.
+```yml
+edges:
+  - from: UC-AVIATION-001
+    to: DP-AVIATION-001
+    type: USES
+    confidence: high</p>
+
+<ul>
+<li><p>from: UC-AVIATION-001
+to: OBJ-AVIATION-001
+type: SUPPORTS
+confidence: high</p></li>
+<li><p>from: DP-AVIATION-001
+to: OBJ-AVIATION-001
+type: CONTRIBUTES_TO
+confidence: medium
+```
+Through edges, ODPG enables organizations to construct connected value graphs capable of supporting strategic analysis, governance reasoning, graph traversal, semantic interoperability, dependency analysis, and AI-driven contextual reasoning.</p></li>
+</ul>
+<h2 id='edge-properties'>Edge Properties</h2>
+<p>Each edge within an ODPG graph contains properties that describe the relationship connecting two nodes.
+| Property   | Description                          |
+| ---------- | ------------------------------------ |
+| from       | Source node identifier               |
+| to         | Target node identifier               |
+| type       | Relationship type                    |
+| confidence | Confidence level of the relationship |</p>
+
+<p>The <strong>from</strong> property identifies the source node from which the relationship originates.</p>
+
+<p>The <strong>to</strong> property identifies the destination node receiving the relationship.</p>
+
+<p>The <strong>type</strong> property defines the semantic meaning of the relationship.</p>
+
+<p>The <strong>confidence</strong> property defines the certainty level associated with the relationship, thereby enabling organizations and AI systems to distinguish between explicitly declared relationships and inferred or partially validated relationships.</p>
+<h2 id='supported-edge-types'>Supported Edge Types</h2>
+<p>ODPG supports multiple relationship types capable of representing operational, strategic, governance, semantic, and AI-related connections between graph entities.
+| Edge Type      | Description                                                   |
+| -------------- | ------------------------------------------------------------- |
+| USES           | A node uses another node as part of execution or operation    |
+| SUPPORTS       | A node supports a business objective                          |
+| CONTRIBUTES_TO | A node contributes toward an outcome or objective             |
+| MEASURES       | A KPI measures an objective or outcome                        |
+| TRACKS         | A node tracks or provides KPI-related information             |
+| DEPENDS_ON     | A node depends on another node                                |
+| PRODUCES       | A node produces data, outputs, or services                    |
+| CONSUMES       | A node consumes data, APIs, or outputs                        |
+| GOVERNED_BY    | A node is governed by a policy or control                     |
+| OWNED_BY       | A node is owned by a person, team, or domain                  |
+| ALIGNS_WITH    | A node aligns strategically or semantically with another node |
+| RELATED_TO     | A generic semantic relationship                               |
+| IMPACTS        | A node impacts another node                                   |
+| DERIVED_FROM   | A node originates from another node                           |
+| EXPOSES        | A node exposes an API or interface                            |
+| MONITORS       | A node monitors another node                                  |
+| IDENTIFIES     | A node identifies an opportunity or condition                 |</p>
+
+<p>The relationship model is designed to remain extensible so that organizations can introduce domain-specific relationship types while maintaining compatibility with the core ODPG graph structure.</p>
+<h1 id='confidence'>Confidence</h1>
+<p>The confidence property represents the certainty level associated with a graph relationship and allows organizations to distinguish between relationships that are explicitly declared, relationships that are inferred through analysis, and relationships that require additional validation or human review.</p>
+
+<p>Recommended confidence values are defined below.
+| Value  | Description                                                             |
+| ------ | ----------------------------------------------------------------------- |
+| high   | Relationship is explicitly declared or confirmed                        |
+| medium | Relationship is partially validated or inferred with moderate certainty |
+| low    | Relationship is inferred and requires additional validation             |</p>
+
+<blockquote>
+<p>Example of YAML formated:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+</code></pre></div><h1 id='graph-catalog'>Graph Catalog</h1>
+<p>The following example demonstrates a complete ODPG document connecting use cases, business objectives, KPIs, data products, governance policies, APIs, AI agents, and strategic opportunities into a unified value graph.</p>
+
+<blockquote>
+<p>Example of the catalog object usage:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/graphs/v1/schema/graph.yaml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">DataProductGraph</span>
+<span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
+<span class="na">name</span><span class="pi">:</span>
+  <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
+
+<span class="na">nodes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">UseCase</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../usecases/predictive-maintenance-aircraft.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">BusinessObjective</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../objectives/increase-fleet-availability.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">KPI</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../kpis/fleet-availability-rate.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-sensor-events.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">API</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../apis/maintenance-risk-score-api.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Policy</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../policies/aviation-data-quality-policy.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Agent</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../agents/maintenance-recommendation-agent.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">StrategicOpportunity</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../opportunities/reduce-unscheduled-maintenance.yaml</span>
+
+<span class="na">edges</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">USES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">USES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">SUPPORTS</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">CONTRIBUTES_TO</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">CONTRIBUTES_TO</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">MEASURES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">TRACKS</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">EXPOSES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">GOVERNED_BY</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">USES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">USES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">IDENTIFIES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">ALIGNS_WITH</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+</code></pre></div><h1 id='editors-and-contributors'>Editors and contributors</h1>
 <p>This specification is openly developed and a lot of the work comes from community. We list all community contributors as a sign of appreciation. Maintainers process the feedback and draft new candidate releases, which may become the versions of the specification. </p>
 
 <p><strong>Maintainers:</strong></p>
