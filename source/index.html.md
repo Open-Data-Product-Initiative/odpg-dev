@@ -11,7 +11,7 @@ toc_footers:
   - <br/>Linux Foundation
 
 includes:
-  - schemas
+  - contibutors
 
 search: true
 
