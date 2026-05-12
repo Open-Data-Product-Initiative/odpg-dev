@@ -1,4 +1,4 @@
-FROM ruby:2.6-slim
+FROM ruby:2.7-slim
 
 WORKDIR /srv/slate
 
@@ -15,7 +15,7 @@ RUN apt-get update \
         build-essential \
         git \
         nodejs \
-    && gem install bundler \
+    && gem install bundler -v 2.2.20 \
     && bundle install \
     && apt-get remove -y build-essential git \
     && apt-get autoremove -y \
@@ -23,7 +23,8 @@ RUN apt-get update \
 
 COPY . /srv/slate
 
-RUN chmod +x /srv/slate/slate.sh
+RUN sed -i 's/\r$//' /srv/slate/slate.sh \
+    && chmod +x /srv/slate/slate.sh
 
 ENTRYPOINT ["/srv/slate/slate.sh"]
 CMD ["build"]
