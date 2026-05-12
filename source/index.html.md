@@ -13,7 +13,7 @@ toc_footers:
 includes:
   - structure
   - nodes
-  - contibutors
+  - contributors
 
 search: true
 
