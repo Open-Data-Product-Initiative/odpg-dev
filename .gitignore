@@ -29,3 +29,7 @@ ubuntu-*-console.log
 Gemfile
 Gemfile
 *.lock
+
+vendor/bundle/
+Gemfile
+Gemfile.lock

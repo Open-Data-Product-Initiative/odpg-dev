@@ -51,22 +51,22 @@ ODPG supports multiple relationship types capable of representing operational, s
 
 | Edge Type      | Description                                                   |
 | -------------- | ------------------------------------------------------------- |
-| USES           | A node uses another node as part of execution or operation    |
-| SUPPORTS       | A node supports a business objective                          |
-| CONTRIBUTES_TO | A node contributes toward an outcome or objective             |
-| MEASURES       | A KPI measures an objective or outcome                        |
-| TRACKS         | A node tracks or provides KPI-related information             |
-| DEPENDS_ON     | A node depends on another node                                |
-| PRODUCES       | A node produces data, outputs, or services                    |
-| CONSUMES       | A node consumes data, APIs, or outputs                        |
-| GOVERNED_BY    | A node is governed by a policy or control                     |
-| OWNED_BY       | A node is owned by a person, team, or domain                  |
-| ALIGNS_WITH    | A node aligns strategically or semantically with another node |
-| RELATED_TO     | A generic semantic relationship                               |
-| IMPACTS        | A node impacts another node                                   |
-| DERIVED_FROM   | A node originates from another node                           |
-| EXPOSES        | A node exposes an API or interface                            |
-| MONITORS       | A node monitors another node                                  |
-| IDENTIFIES     | A node identifies an opportunity or condition                 |
+| uses           | A node uses another node as part of execution or operation    |
+| supports       | A node supports a business objective                          |
+| contributesTo | A node contributes toward an outcome or objective             |
+| measures       | A KPI measures an objective or outcome                        |
+| tracks         | A node tracks or provides KPI-related information             |
+| dependsOn     | A node depends on another node                                |
+| produce       | A node produces data, outputs, or services                    |
+| Consumes       | A node consumes data, APIs, or outputs                        |
+| governedBy    | A node is governed by a policy or control                     |
+| ownedBy       | A node is owned by a person, team, or domain                  |
+| alignsWith    | A node aligns strategically or semantically with another node |
+| relatedTo     | A generic semantic relationship                               |
+| impacts        | A node impacts another node                                   |
+| derivedFrom   | A node originates from another node                           |
+| exposes        | A node exposes an API or interface                            |
+| monitors       | A node monitors another node                                  |
+| identifies     | A node identifies an opportunity or condition                 |
 
 The relationship model is designed to remain extensible so that organizations can introduce domain-specific relationship types while maintaining compatibility with the core ODPG graph structure.

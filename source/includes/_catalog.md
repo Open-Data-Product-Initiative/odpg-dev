@@ -15,103 +15,103 @@ name:
 nodes:
   - id: UC-AVIATION-001
     type: UseCase
-    ref: ../usecases/predictive-maintenance-aircraft.yaml
+    $ref: ../usecases/predictive-maintenance-aircraft.yaml
 
   - id: OBJ-AVIATION-001
     type: BusinessObjective
-    ref: ../objectives/increase-fleet-availability.yaml
+    $ref: ../objectives/increase-fleet-availability.yaml
 
   - id: KPI-AVIATION-001
     type: KPI
-    ref: ../kpis/fleet-availability-rate.yaml
+    $ref: ../kpis/fleet-availability-rate.yaml
 
   - id: DP-AVIATION-001
     type: DataProduct
-    ref: ../products/aircraft-maintenance-history.yaml
+    $ref: ../products/aircraft-maintenance-history.yaml
 
   - id: DP-AVIATION-002
     type: DataProduct
-    ref: ../products/aircraft-sensor-events.yaml
+    $ref: ../products/aircraft-sensor-events.yaml
 
   - id: API-AVIATION-001
     type: API
-    ref: ../apis/maintenance-risk-score-api.yaml
+    $ref: ../apis/maintenance-risk-score-api.yaml
 
   - id: POL-AVIATION-001
     type: Policy
-    ref: ../policies/aviation-data-quality-policy.yaml
+    $ref: ../policies/aviation-data-quality-policy.yaml
 
   - id: AGENT-AVIATION-001
     type: Agent
-    ref: ../agents/maintenance-recommendation-agent.yaml
+    $ref: ../agents/maintenance-recommendation-agent.yaml
 
   - id: OPP-AVIATION-001
     type: StrategicOpportunity
-    ref: ../opportunities/reduce-unscheduled-maintenance.yaml
+    $ref: ../opportunities/reduce-unscheduled-maintenance.yaml
 
 edges:
   - from: UC-AVIATION-001
     to: DP-AVIATION-001
-    type: USES
+    type: uses
     confidence: high
 
   - from: UC-AVIATION-001
     to: DP-AVIATION-002
-    type: USES
+    type: uses
     confidence: high
 
   - from: UC-AVIATION-001
     to: OBJ-AVIATION-001
-    type: SUPPORTS
+    type: supports
     confidence: high
 
   - from: DP-AVIATION-001
     to: OBJ-AVIATION-001
-    type: CONTRIBUTES_TO
+    type: contributesTo
     confidence: medium
 
   - from: DP-AVIATION-002
     to: OBJ-AVIATION-001
-    type: CONTRIBUTES_TO
+    type: contributesTo
     confidence: medium
 
   - from: KPI-AVIATION-001
     to: OBJ-AVIATION-001
-    type: MEASURES
+    type: mesures
     confidence: high
 
   - from: DP-AVIATION-001
     to: KPI-AVIATION-001
-    type: TRACKS
+    type: tracks
     confidence: medium
 
   - from: DP-AVIATION-001
     to: API-AVIATION-001
-    type: EXPOSES
+    type: exposes
     confidence: high
 
   - from: DP-AVIATION-001
     to: POL-AVIATION-001
-    type: GOVERNED_BY
+    type: governedBy
     confidence: high
 
   - from: AGENT-AVIATION-001
     to: DP-AVIATION-001
-    type: USES
+    type: uses
     confidence: high
 
   - from: AGENT-AVIATION-001
     to: API-AVIATION-001
-    type: USES
+    type: uses
     confidence: high
 
   - from: UC-AVIATION-001
     to: OPP-AVIATION-001
-    type: IDENTIFIES
+    type: identifies
     confidence: medium
 
   - from: OPP-AVIATION-001
     to: OBJ-AVIATION-001
-    type: ALIGNS_WITH
+    type: alignWith
     confidence: medium
 ```
