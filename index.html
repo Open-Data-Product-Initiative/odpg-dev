@@ -341,15 +341,32 @@
                   <li>
                     <a href="#introduction" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
                   </li>
+                  <li>
+                    <a href="#relationship-to-the-open-data-products-specification-family" class="toc-h2 toc-link" data-title="Relationship to the Open Data Products Specification Family">Relationship to the Open Data Products Specification Family</a>
+                  </li>
+                  <li>
+                    <a href="#purpose" class="toc-h2 toc-link" data-title="Purpose">Purpose</a>
+                  </li>
               </ul>
           </li>
           <li>
-            <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
+            <a href="#specification-structure" class="toc-h1 toc-link" data-title="Specification Structure">Specification Structure</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#properties-of-schemas" class="toc-h2 toc-link" data-title="Properties of schemas">Properties of schemas</a>
+                    <a href="#root-properties" class="toc-h2 toc-link" data-title="Root Properties">Root Properties</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#nodes" class="toc-h1 toc-link" data-title="Nodes">Nodes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#supported-node-types" class="toc-h2 toc-link" data-title="Supported Node Types">Supported Node Types</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#editors-and-contributors" class="toc-h1 toc-link" data-title="Editors and contributors">Editors and contributors</a>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -416,67 +433,227 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 </ul>
 
 <p>By enabling organizations to describe these relationships using a standardized graph structure, ODPG provides the foundation for graph-native enterprise intelligence ecosystems.</p>
-<h1 id='schemas'>Schemas</h1>
-<p>The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. For more information about the properties, see <a href="https://tools.ietf.org/html/draft-wright-json-schema-00">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-00">JSON Schema Validation</a>. Unless stated otherwise, the property definitions follow the JSON Schema.</p>
+<h2 id='relationship-to-the-open-data-products-specification-family'>Relationship to the Open Data Products Specification Family</h2>
+<p>The Open Data Products specification family consists of interoperable standards that collectively support the lifecycle, governance, semantics, discovery, interoperability, and intelligence of data ecosystems, where each specification focuses on a specific responsibility while remaining interoperable with the others.</p>
 
-<p>The schemas can be defined as referenced (URL or local file systen path). In the future versions specification it is likely that support for inline schemas is added. This object is intended to be used with API accessed data products. The Schemas contain elements for payload and query separately.</p>
+<table><thead>
+<tr>
+<th>Specification</th>
+<th>Role</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ODPS</td>
+<td>Defines the structure and specification of a data product</td>
+</tr>
+<tr>
+<td>ODPV</td>
+<td>Defines shared vocabulary and semantic meaning</td>
+</tr>
+<tr>
+<td>ODPC</td>
+<td>Defines catalog interoperability and discovery structures</td>
+</tr>
+<tr>
+<td>ODPG</td>
+<td>Defines graph relationships between data products, use cases, objectives, policies, and related entities</td>
+</tr>
+</tbody></table>
+
+<p>Within this ecosystem, ODPS defines the product structure itself, ODPV defines semantic consistency and shared meaning, ODPC defines discovery and catalog interoperability, while ODPG defines the graph relationships that connect those specifications into an interconnected enterprise ecosystem capable of supporting strategic intelligence and machine reasoning.</p>
+
+<p>As a result, ODPG should be understood as the relationship and intelligence layer of the Open Data Products ecosystem because it provides the contextual structure necessary for understanding how different enterprise assets connect to each other operationally, strategically, semantically, and organizationally.</p>
+<h2 id='purpose'>Purpose</h2>
+<p>The purpose of ODPG is to provide organizations with a standardized machine-readable graph specification that enables them to model relationships between data products, business objectives, operational use cases, governance structures, APIs, workflows, AI systems, and strategic capabilities in a consistent and interoperable manner.</p>
+
+<p>Through this graph model, organizations can establish visibility into how data products contribute to business outcomes, how governance policies propagate across interconnected assets, how AI agents interact with enterprise systems, how KPIs align with strategic goals, and how operational dependencies affect downstream capabilities.</p>
+
+<p>ODPG therefore enables organizations to:</p>
+
+<ul>
+<li>connect use cases to data products</li>
+<li>connect data products to business objectives</li>
+<li>represent strategic contribution paths</li>
+<li>model governance relationships</li>
+<li>support impact analysis</li>
+<li>identify strategic gaps and overlaps</li>
+<li>support semantic traversal</li>
+<li>enable AI reasoning across enterprise ecosystems</li>
+<li>support graph-native interoperability</li>
+<li>provide reusable relationship intelligence structures</li>
+</ul>
+<h1 id='specification-structure'>Specification Structure</h1>
+<p>An ODPG document consists of a standardized graph structure composed of metadata, graph nodes, and graph edges, where the graph itself represents a connected ecosystem of business, operational, technical, governance, and AI-related entities.</p>
+
+<p>The root structure of an ODPG document is defined as follows:</p>
 
 <blockquote>
-<p>Example of Schemas object usage:</p>
+<p>Example of details object usage:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code>   <span class="dl">"</span><span class="s2">schemas</span><span class="dl">"</span><span class="p">:{</span>
-      <span class="dl">"</span><span class="s2">group</span><span class="dl">"</span><span class="p">:{</span>
-         <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span><span class="p">,</span>
-         <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span><span class="p">,</span>
-         <span class="dl">"</span><span class="s2">query</span><span class="dl">"</span><span class="p">:{</span>
-            <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">ref</span><span class="dl">"</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">schemaURL</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">https://myschemas.org/objects/query.json</span><span class="dl">"</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">documentation</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span>
-         <span class="p">}</span>
-         <span class="dl">"</span><span class="s2">responsePayload</span><span class="dl">"</span><span class="p">:{</span>
-            <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">ref</span><span class="dl">"</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">schemaURL</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">https://myschemas.org/objects/payload.json</span><span class="dl">"</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">documentation</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span>
-         <span class="p">}</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">DataProductGraph</span>
+<span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
+<span class="na">name</span><span class="pi">:</span>
+  <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
+<span class="na">nodes</span><span class="pi">:</span> <span class="pi">[]</span>
+<span class="na">edges</span><span class="pi">:</span> <span class="pi">[]</span>
+</code></pre></div><h2 id='root-properties'>Root Properties</h2>
+<p>The following root properties are defined within an ODPG document.</p>
 
-</code></pre></div><h3 id='properties-of-schemas'>Properties of schemas</h3>
-<p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>schema</strong></td>
+<td>URL of the ODPG schema used for validation</td>
+</tr>
+<tr>
+<td><strong>version</strong></td>
+<td>Version of the ODPG specification</td>
+</tr>
+<tr>
+<td><strong>kind</strong></td>
+<td>Type of graph specification document</td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td>Unique identifier of the graph</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Human-readable graph name</td>
+</tr>
+<tr>
+<td><strong>nodes</strong></td>
+<td>Collection of graph nodes</td>
+</tr>
+<tr>
+<td><strong>edges</strong></td>
+<td>Collection of graph edges</td>
+</tr>
+</tbody></table>
+<h1 id='nodes'>Nodes</h1>
+<p>The nodes section defines the entities included within the graph, where each node represents a resource, capability, objective, policy, product, workflow, dataset, or system participating in the ecosystem being modeled.</p>
+
+<p>A node may represent an internal resource defined directly within the organization or an external specification referenced through another machine-readable file.</p>
+
+<p>Instead of embedding full resource definitions directly into the graph, ODPG encourages interoperability through references using the ref property, thereby enabling organizations to connect graph structures with ODPS documents, ODPV vocabularies, governance artifacts, APIs, workflows, use cases, or external specifications.</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">UseCase</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../usecases/predictive-maintenance-aircraft.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">BusinessObjective</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../objectives/increase-fleet-availability.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+</code></pre></div>
+<p>## Node Properties</p>
+
+<p>Each node within an ODPG document represents a distinct entity participating in the graph ecosystem, where the node itself serves as the graph reference point that enables relationships, dependencies, semantic mappings, governance propagation, strategic alignment, and interoperability across connected specifications and platforms.</p>
+
+<p>The following properties are defined for graph nodes.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Unique identifier of the node</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Type of graph entity represented by the node</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>Path or URI to the referenced specification or resource</td>
+</tr>
+</tbody></table>
+
+<p>The id property uniquely identifies the node within the graph and allows edges to establish relationships between connected entities.</p>
+
+<p>The type property identifies the category of entity represented by the node, thereby enabling graph consumers, validation systems, governance engines, AI agents, and traversal engines to interpret the role of the entity correctly.</p>
+
+<p>The ref property provides a path or URI reference to the underlying specification, thereby allowing ODPG to function as a lightweight relationship layer that interoperates with external specifications such as ODPS documents, governance definitions, API specifications, vocabulary definitions, use case files, or objective specifications.</p>
+<h2 id='supported-node-types'>Supported Node Types</h2>
+<p>ODPG supports multiple node types capable of representing strategic, operational, governance, semantic, and AI-related entities across enterprise ecosystems.</p>
+
+<table><thead>
+<tr>
+<th>Node Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DataProduct</td>
+<td>A data product defined using ODPS or compatible structures</td>
+</tr>
+<tr>
+<td>UseCase</td>
+<td>A business, analytical, operational, or AI-related use case</td>
+</tr>
+<tr>
+<td>BusinessObjective</td>
+<td>A strategic business objective or organizational goal</td>
+</tr>
+<tr>
+<td>KPI</td>
+<td>A measurable business or operational indicator</td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>A business, organizational, technical, or data domain</td>
+</tr>
+<tr>
+<td>Dataset</td>
+<td>A structured or unstructured dataset</td>
+</tr>
+<tr>
+<td>API</td>
+<td>A service interface exposed or consumed by a data product</td>
+</tr>
+<tr>
+<td>Policy</td>
+<td>A governance, compliance, security, or quality policy</td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>A business or technical workflow</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>An AI agent or automation actor</td>
+</tr>
+<tr>
+<td>Capability</td>
+<td>A business or technical capability</td>
+</tr>
+<tr>
+<td>StrategicOpportunity</td>
+<td>An inferred or declared strategic opportunity</td>
+</tr>
+</tbody></table>
+
+<p>The node model is intentionally extensible so that organizations can expand graph structures with additional node types while preserving interoperability with the core ODPG structure.</p>
+<h1 id='editors-and-contributors'>Editors and contributors</h1>
+<p>This specification is openly developed and a lot of the work comes from community. We list all community contributors as a sign of appreciation. Maintainers process the feedback and draft new candidate releases, which may become the versions of the specification. </p>
+
+<p><strong>Maintainers:</strong></p>
 
 <ul>
-<li>title</li>
-<li>multipleOf</li>
-<li>maximum</li>
-<li>exclusiveMaximum</li>
-<li>minimum</li>
-<li>exclusiveMinimum</li>
-<li>maxLength</li>
-<li>minLength</li>
-<li>pattern (This string SHOULD be a valid regular expression, according to the Ecma-262 Edition 5.1 regular expression dialect)</li>
-<li>maxItems</li>
-<li>minItems</li>
-<li>uniqueItems</li>
-<li>maxProperties</li>
-<li>minProperties</li>
-<li>required</li>
-<li>enum</li>
-</ul>
-
-<p>The following properties are taken from the JSON Schema definition but their definitions were adjusted to the Open Data Pooduct Specification.</p>
-
-<ul>
-<li>type - Value MUST be a string. Multiple types via an array are not supported.</li>
-<li>allOf - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
-<li>oneOf - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
-<li>anyOf - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
-<li>not - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
-<li>items - Value MUST be an object and not an array. Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema. items MUST be present if the type is array.</li>
-<li>properties - Property definitions MUST be a Schema Object and not a standard JSON Schema (inline or referenced).</li>
-<li>additionalProperties - Value can be boolean or object. Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema. Consistent with JSON Schema, additionalProperties defaults to true.</li>
-<li>description - CommonMark syntax MAY be used for rich text representation.</li>
-<li>format - See Data Type Formats for further details. While relying on JSON Schema&#39;s defined formats, the Open Data Product Specification offers a few additional predefined formats.</li>
-<li>default - The default value represents what would be assumed by the consumer of the input as the value of the schema if one is not provided. Unlike JSON Schema, the value MUST conform to the defined type for the Schema Object defined at the same level. For example, if type is string, then default can be &quot;foo&quot; but cannot be 1.</li>
+<li><a href="https://www.linkedin.com/in/zaher-abou-shakra/">Zaher Abou Shakra (Lead)</a></li>
+<li><a href="https://www.linkedin.com/in/jarkkomoilanen/">Jarkko Moilanen</a></li>
 </ul>
 
       </div>
