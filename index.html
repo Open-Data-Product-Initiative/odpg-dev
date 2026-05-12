@@ -9,7 +9,7 @@
     <meta property=”og:type” content=”website” />
     <meta property="og:image" content="https://opendataproducts.org/images/social.png" />
     <meta property="og:description" 
-    content="TThe Data Product Graphs Specification is a vendor-neutral, machine-readable graph model for managing data products, use cases, business objectives, KPIs, and their relationships. It defines the nodes, edges, attributes, and structures needed to connect data product lifecycle management with measurable business value." />
+    content="The Data Product Graphs Specification is a vendor-neutral, machine-readable graph model for managing data products, use cases, business objectives, KPIs, and their relationships. It defines the nodes, edges, attributes, and structures needed to connect data product lifecycle management with measurable business value." />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
@@ -344,13 +344,18 @@
               </ul>
           </li>
           <li>
-            <a href="#editors-and-contributors" class="toc-h1 toc-link" data-title="Editors and contributors">Editors and contributors</a>
+            <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#properties-of-schemas" class="toc-h2 toc-link" data-title="Properties of schemas">Properties of schemas</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li>License <a href='https://www.apache.org/licenses/LICENSE-2.0'>Apache 2.0</a></li>
-            <li><br/><a href='https://opendataproducts.org'>Specification home</a></li>
-            <li><br/>Linux Foundation</a></li>
+            <li>License [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)</li>
+            <li><br/><a href="https://opendataproducts.org">Specification home</a></li>
+            <li><br/>Linux Foundation</li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -359,8 +364,8 @@
         <h1 id='open-data-product-graphs-the-linux-foundation'>OPEN DATA PRODUCT GRAPHS - The Linux Foundation</h1><h2 id='version-draft'>Version DRAFT</h2>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 (<a href="https://datatracker.ietf.org/doc/html/rfc2119">RFC 2119</a> and <a href="https://datatracker.ietf.org/doc/html/rfc8174">RFC 8174</a>) when, and only when, they appear in all capitals, as shown here.</p>
 
-<p>The specification is shared under <a href='https://www.apache.org/licenses/LICENSE-2.0'>Apache 2.0</a> license. 
-Development of the specification is under the umbrella of the Linux Foundation. </p>
+<p>The specification is shared under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.
+Development of the specification is under the umbrella of the Linux Foundation.</p>
 
 <table><thead>
 <tr>
@@ -375,19 +380,103 @@ Development of the specification is under the umbrella of the Linux Foundation. 
 <td>Official source repository for the ODPG 1.0 specification</td>
 </tr>
 <tr>
-<td>Open-Data-Product-Initiative/odpg-1.0/issues)</td>
+<td>ODPG YAML schema</td>
+<td><a href="https://opendataproducts.org/odpg-v1.0/odpg.yaml">YAML Schema</a></td>
+<td>Machine-readable schema definition in YAML format</td>
+</tr>
+<tr>
+<td>ODPG JSON schema</td>
+<td><a href="https://opendataproducts.org/odpg-v1.0/odpg.json">JSON Schema</a></td>
+<td>Machine-readable schema definition in JSON format</td>
+</tr>
+<tr>
+<td>Contribute</td>
+<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues">Raise an issue in GitHub</a></td>
 <td>Submit issues or suggestions to the specification maintainers</td>
-<td></td>
 </tr>
 </tbody></table>
-<h2 id='introduction'>Introduction</h2><h1 id='editors-and-contributors'>Editors and contributors</h1>
-<p>This specification is openly developed and a lot of the work comes from community. We list all community contributors as a sign of appreciation. Maintainers process the feedback and draft new candidate releases, which may become the versions of the specification. </p>
+<h2 id='introduction'>Introduction</h2>
+<p>Modern organizations increasingly operate across highly distributed ecosystems composed of data products, APIs, workflows, governance controls, AI systems, analytical capabilities, business domains, and operational processes that collectively contribute to strategic business execution. Despite significant investments in data platforms and governance programs, many organizations still struggle to understand how technical assets connect to business value because metadata, governance, strategy, and operational context are often managed independently from one another.</p>
 
-<p><strong>Maintainers:</strong></p>
+<p>Traditional metadata catalogs primarily focus on technical discovery, indexing, and lineage management, which makes them valuable for inventory and governance use cases but insufficient for understanding the broader strategic relationships that exist between business objectives, operational capabilities, AI systems, data products, and measurable outcomes.</p>
+
+<p><strong>Open Data Product Graphs ODPG-v1.0</strong> addresses this challenge by introducing a machine-readable graph specification that enables organizations to describe and manage the relationships between interconnected entities across the enterprise ecosystem, thereby transforming isolated specifications into connected intelligence structures capable of supporting governance reasoning, strategic alignment, semantic interoperability, AI traversal, impact analysis, and reusable data ecosystems.</p>
+
+<p>Through ODPG, organizations can represent questions such as:</p>
 
 <ul>
-<li><a href="https://www.linkedin.com/in/zaher-abou-shakra/">Zaher Abou Shakra (Lead)</a></li>
-<li><a href="https://www.linkedin.com/in/jarkkomoilanen/">Jarkko Moilanen</a></li>
+<li>Which use cases depend on this data product?</li>
+<li>Which business objectives are supported by this use case?</li>
+<li>Which KPIs are measured through these data products?</li>
+<li>Which data products contribute to the same strategic objective?</li>
+<li>Which AI agents are consuming these APIs?</li>
+<li>Which policies govern this workflow or domain?</li>
+<li>Which business areas contain unsupported strategic objectives?</li>
+<li>Which strategic opportunities emerge from multiple related use cases?</li>
+</ul>
+
+<p>By enabling organizations to describe these relationships using a standardized graph structure, ODPG provides the foundation for graph-native enterprise intelligence ecosystems.</p>
+<h1 id='schemas'>Schemas</h1>
+<p>The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. For more information about the properties, see <a href="https://tools.ietf.org/html/draft-wright-json-schema-00">JSON Schema Core</a> and <a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-00">JSON Schema Validation</a>. Unless stated otherwise, the property definitions follow the JSON Schema.</p>
+
+<p>The schemas can be defined as referenced (URL or local file systen path). In the future versions specification it is likely that support for inline schemas is added. This object is intended to be used with API accessed data products. The Schemas contain elements for payload and query separately.</p>
+
+<blockquote>
+<p>Example of Schemas object usage:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code>   <span class="dl">"</span><span class="s2">schemas</span><span class="dl">"</span><span class="p">:{</span>
+      <span class="dl">"</span><span class="s2">group</span><span class="dl">"</span><span class="p">:{</span>
+         <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span><span class="p">,</span>
+         <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span><span class="p">,</span>
+         <span class="dl">"</span><span class="s2">query</span><span class="dl">"</span><span class="p">:{</span>
+            <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">ref</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">schemaURL</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">https://myschemas.org/objects/query.json</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">documentation</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span>
+         <span class="p">}</span>
+         <span class="dl">"</span><span class="s2">responsePayload</span><span class="dl">"</span><span class="p">:{</span>
+            <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">ref</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">schemaURL</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">https://myschemas.org/objects/payload.json</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">documentation</span><span class="dl">"</span><span class="p">:</span><span class="dl">""</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+
+</code></pre></div><h3 id='properties-of-schemas'>Properties of schemas</h3>
+<p>The following properties are taken directly from the JSON Schema definition and follow the same specifications:</p>
+
+<ul>
+<li>title</li>
+<li>multipleOf</li>
+<li>maximum</li>
+<li>exclusiveMaximum</li>
+<li>minimum</li>
+<li>exclusiveMinimum</li>
+<li>maxLength</li>
+<li>minLength</li>
+<li>pattern (This string SHOULD be a valid regular expression, according to the Ecma-262 Edition 5.1 regular expression dialect)</li>
+<li>maxItems</li>
+<li>minItems</li>
+<li>uniqueItems</li>
+<li>maxProperties</li>
+<li>minProperties</li>
+<li>required</li>
+<li>enum</li>
+</ul>
+
+<p>The following properties are taken from the JSON Schema definition but their definitions were adjusted to the Open Data Pooduct Specification.</p>
+
+<ul>
+<li>type - Value MUST be a string. Multiple types via an array are not supported.</li>
+<li>allOf - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
+<li>oneOf - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
+<li>anyOf - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
+<li>not - Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema.</li>
+<li>items - Value MUST be an object and not an array. Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema. items MUST be present if the type is array.</li>
+<li>properties - Property definitions MUST be a Schema Object and not a standard JSON Schema (inline or referenced).</li>
+<li>additionalProperties - Value can be boolean or object. Inline or referenced schema MUST be of a Schema Object and not a standard JSON Schema. Consistent with JSON Schema, additionalProperties defaults to true.</li>
+<li>description - CommonMark syntax MAY be used for rich text representation.</li>
+<li>format - See Data Type Formats for further details. While relying on JSON Schema&#39;s defined formats, the Open Data Product Specification offers a few additional predefined formats.</li>
+<li>default - The default value represents what would be assumed by the consumer of the input as the value of the schema if one is not provided. Unlike JSON Schema, the value MUST conform to the defined type for the Schema Object defined at the same level. For example, if type is string, then default can be &quot;foo&quot; but cannot be 1.</li>
 </ul>
 
       </div>
