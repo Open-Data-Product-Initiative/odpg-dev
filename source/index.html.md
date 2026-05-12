@@ -1,43 +1,37 @@
 ---
-
-title: Open (source) Data Product Graphs 1.0 | Linux Foundation  
+title: Open (source) Data Product Graphs DRAFT | Linux Foundation
 
 language_tabs: # must be one of [https://git.io/vQNgJ](https://git.io/vQNgJ)
 
-- yaml
+  - yaml
 
 toc_footers:
-
-- License [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-- 
-
-## [Specification home](https://opendataproducts.org)
-
-Linux Foundation
+  - License [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+  - <br/><a href="https://opendataproducts.org">Specification home</a>
+  - <br/>Linux Foundation
 
 includes:
-
-- schemas
+  - schemas
 
 search: true
 
 code_clipboard: true
 
 meta:
-
-- name: description
-content: The Data Product Graphs Specification is a vendor-neutral, machine-readable graph model for managing data products, use cases, business objectives, KPIs, and their relationships. It defines the nodes, edges, attributes, and structures needed to connect data product lifecycle management with measurable business value.
+  - name: description
+    content: The Data Product Graphs Specification is a vendor-neutral, machine-readable graph model for managing data products, use cases, business objectives, KPIs, and their relationships. It defines the nodes, edges, attributes, and structures needed to connect data product lifecycle management with measurable business value.
 
 ---
 
 # OPEN DATA PRODUCT GRAPHS - The Linux Foundation
 
-## Version 1.0
+
+## Version DRAFT
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 ([RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) and [RFC 8174](https://datatracker.ietf.org/doc/html/rfc8174)) when, and only when, they appear in all capitals, as shown here.
 
-The specification is shared under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license. 
-Development of the specification is under the umbrella of the Linux Foundation. 
+The specification is shared under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license.
+Development of the specification is under the umbrella of the Linux Foundation.
 
 
 | Topic            | Link                                                                                                | Description                                                   |
