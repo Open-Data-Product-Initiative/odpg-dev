@@ -6,7 +6,6 @@ For machine-readable lookup of vocabulary entries, use the ODPV term records at 
 
 The tables below list **ODPV-aligned terms this repo actually uses** in the sample graph, the generator, and the explorer UI—plus short notes where ODPG gives them a concrete graph shape.
 
----
 
 ## Shared terms from ODPV (graph document and nodes)
 
@@ -26,7 +25,6 @@ The tables below list **ODPV-aligned terms this repo actually uses** in the samp
 
 ODPG defines **additional** supported node types (e.g. `Domain`, `Dataset`, `Workflow`, `Capability`) that are valid in the standard but **do not appear** in the current sample `graph.yaml` or in the explorer’s fixed legend palette; you can still use them in your own graphs if your schema and tooling allow.
 
----
 
 ## Shared relationship terms from ODPV (edges)
 
@@ -53,7 +51,7 @@ Edge **`type`** values in YAML are spelled **exactly** as in ODPG (camelCase whe
 
 Domain-specific **`type`** strings are allowed by ODPG for extension; the explorer will still render them, with legend coloring falling back to a neutral default when no explicit color is defined.
 
----
+
 
 ## ODPG- and project-specific usage notes
 
