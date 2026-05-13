@@ -594,6 +594,8 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
     <span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
     <span class="na">name</span><span class="pi">:</span>
       <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
+    <span class="na">description</span><span class="pi">:</span>
+      <span class="na">en</span><span class="pi">:</span> <span class="s">Graph describing how aviation data products, use cases, policies, agents, opportunities, and business objectives are connected.</span>
   <span class="na">nodes</span><span class="pi">:</span> <span class="pi">[]</span>
   <span class="na">edges</span><span class="pi">:</span> <span class="pi">[]</span>
 </code></pre></div><h2 id='mandatory-attributes'>Mandatory attributes</h2>
@@ -623,19 +625,37 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td><strong>kind</strong></td>
 <td>String</td>
 <td>Yes</td>
-<td>Type of graph specification document. Must be <code>DataProductGraph</code></td>
+<td>Type of graph specification document. Must be <code>Graph</code></td>
 </tr>
 <tr>
 <td><strong>graph</strong></td>
 <td>Object</td>
 <td>Yes</td>
-<td>Unique identifier of the graph</td>
+<td>Container for graph metadata, nodes, and edges</td>
 </tr>
 <tr>
 <td><strong>metadata</strong></td>
 <td>Object</td>
 <td>Yes</td>
+<td>Metadata describing the graph</td>
+</tr>
+<tr>
+<td><strong>metadata.id</strong></td>
+<td>String</td>
+<td>Yes</td>
+<td>Unique identifier of the graph</td>
+</tr>
+<tr>
+<td><strong>metadata.name</strong></td>
+<td>Object</td>
+<td>Yes</td>
 <td>Human-readable graph name using language-specific values</td>
+</tr>
+<tr>
+<td><strong>metadata.description</strong></td>
+<td>Object</td>
+<td>Yes</td>
+<td>Human-readable graph description using language-specific values</td>
 </tr>
 <tr>
 <td><strong>nodes</strong></td>
