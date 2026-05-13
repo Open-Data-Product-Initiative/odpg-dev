@@ -383,6 +383,17 @@
             <a href="#graph-catalog" class="toc-h1 toc-link" data-title="Graph Catalog">Graph Catalog</a>
           </li>
           <li>
+            <a href="#strategic-intelligence" class="toc-h1 toc-link" data-title="Strategic Intelligence">Strategic Intelligence</a>
+          </li>
+          <li>
+            <a href="#ai-agent-interoperability" class="toc-h1 toc-link" data-title="AI Agent Interoperability">AI Agent Interoperability</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#interoperability" class="toc-h2 toc-link" data-title="Interoperability">Interoperability</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#editors-and-contributors" class="toc-h1 toc-link" data-title="Editors and contributors">Editors and contributors</a>
           </li>
       </ul>
@@ -674,17 +685,17 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <div class="highlight"><pre class="highlight yaml"><code><span class="na">edges</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
     <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">USES</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
 
   <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
     <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">SUPPORTS</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">supports</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
 
   <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
     <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">CONTRIBUTES_TO</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
 </code></pre></div>
 <p>Through edges, ODPG enables organizations to construct connected value graphs capable of supporting strategic analysis, governance reasoning, graph traversal, semantic interoperability, dependency analysis, and AI-driven contextual reasoning.</p>
@@ -805,12 +816,27 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <h1 id='confidence'>Confidence</h1>
 <p>The confidence property represents the certainty level associated with a graph relationship and allows organizations to distinguish between relationships that are explicitly declared, relationships that are inferred through analysis, and relationships that require additional validation or human review.</p>
 
-<p>Recommended confidence values are defined below.
-| Value  | Description                                                             |
-| ------ | ----------------------------------------------------------------------- |
-| high   | Relationship is explicitly declared or confirmed                        |
-| medium | Relationship is partially validated or inferred with moderate certainty |
-| low    | Relationship is inferred and requires additional validation             |</p>
+<p>Recommended confidence values are defined below.</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>high</td>
+<td>Relationship is explicitly declared or confirmed</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>Relationship is partially validated or inferred with moderate certainty</td>
+</tr>
+<tr>
+<td>low</td>
+<td>Relationship is inferred and requires additional validation</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Example of YAML formated:</p>
@@ -931,7 +957,121 @@ Development of the specification is under the umbrella of the Linux Foundation.<
     <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">alignWith</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-</code></pre></div><h1 id='editors-and-contributors'>Editors and contributors</h1>
+</code></pre></div><h1 id='strategic-intelligence'>Strategic Intelligence</h1>
+<p>ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.</p>
+
+<p>Through graph relationships, organizations can identify:</p>
+
+<p>unlinked high-priority use cases
+unsupported strategic objectives
+duplicated operational initiatives
+overlapping capabilities
+orphan KPIs
+governance gaps
+reusable product ecosystems
+strategic opportunities emerging across multiple connected entities</p>
+
+<p>Strategic opportunities may emerge when several use cases, KPIs, domains, or data products collectively indicate an unmet organizational need or a common optimization target.</p>
+
+<blockquote>
+<p>Example of Strategic opportunities type:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">StrategicOpportunity</span>
+    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../opportunities/reduce-unscheduled-maintenance.yaml</span>
+
+<span class="na">edges</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">identifies</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">alignsWith</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+</code></pre></div>
+<p>Through this structure, ODPG enables organizations to move from isolated metadata management toward interconnected strategic intelligence ecosystems.</p>
+<p># Governance and Trust</p>
+
+<p>ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.</p>
+
+<p>This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Policy</span>
+    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../policies/aviation-data-quality-policy.yaml</span>
+
+<span class="na">edges</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">governedBy</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+</code></pre></div>
+<p>This governance structure supports:</p>
+
+<ul>
+<li>policy traceability</li>
+<li>governance impact analysis</li>
+<li>stewardship visibility</li>
+<li>trust scoring</li>
+<li>lifecycle governance</li>
+<li>AI-safe access management</li>
+<li>explainable governance reasoning</li>
+<li>compliance auditing</li>
+</ul>
+<h1 id='ai-agent-interoperability'>AI Agent Interoperability</h1>
+<p>ODPG provides structured graph context that can be consumed by AI agents, automation systems, semantic search engines, orchestration platforms, and reasoning systems operating across enterprise ecosystems.</p>
+
+<p>Through graph traversal, AI agents can identify:</p>
+
+<ul>
+<li>which data products are relevant to a task</li>
+<li>which APIs are available</li>
+<li>which objectives are being supported</li>
+<li>which policies apply</li>
+<li>which governance boundaries exist</li>
+<li>which dependencies affect execution</li>
+<li>which relationships are inferred versus confirmed</li>
+</ul>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Agent</span>
+    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../agents/maintenance-recommendation-agent.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">API</span>
+    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../apis/maintenance-risk-score-api.yaml</span>
+
+<span class="na">edges</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+</code></pre></div>
+<p>This capability establishes the foundation for graph-native AI ecosystems where agents can navigate enterprise knowledge structures using trusted semantic relationships and governance-aware graph traversal.</p>
+<h2 id='interoperability'>Interoperability</h2>
+<p>ODPG is designed to operate as an interoperable relationship layer across the broader Open Data Products ecosystem, where graph nodes may reference ODPS data products, ODPV vocabulary definitions, ODPC catalog entries, governance specifications, APIs, workflows, use cases, KPI definitions, or external organizational assets.</p>
+
+<p>The ref property enables ODPG to link graph entities to external specifications while maintaining lightweight graph portability and reusable interoperability structures.</p>
+<div class="highlight"><pre class="highlight yaml"><code><span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+</code></pre></div>
+<p>Through this interoperability model, ODPG enables organizations to federate graph ecosystems across teams, domains, platforms, and organizations while maintaining semantic consistency and reusable relationship intelligence.</p>
+<h1 id='editors-and-contributors'>Editors and contributors</h1>
 <p>This specification is openly developed and a lot of the work comes from community. We list all community contributors as a sign of appreciation. Maintainers process the feedback and draft new candidate releases, which may become the versions of the specification. </p>
 
 <p><strong>Maintainers:</strong></p>
