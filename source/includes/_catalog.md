@@ -162,3 +162,115 @@ metadata:
 | `metadata.owner`          | Object           | Party responsible for the graph.                                                                                 |
 | `metadata.owner.name`     | String           | Name of the owning person, team, or organization.                                                                |
 | `metadata.owner.email`    | String           | Contact email for the owning party.                                                                              |
+
+
+## Graph Explorer Example
+
+The following YAML example can also be used as the input for a lightweight Graph Explorer generator capable of transforming an ODPG document into an interactive HTML-based visualization. This allows organizations to convert machine-readable graph specifications into human-readable graph catalogs that can be explored visually through a browser without requiring a dedicated graph database or enterprise catalog platform.
+
+The Graph Explorer concept is intended to demonstrate how ODPG files can serve as portable relationship intelligence structures that support governance review, strategic planning, semantic exploration, AI-agent traversal, and operational dependency analysis through standard graph visualization techniques.
+
+A Graph Explorer implementation typically performs the following sequence of operations:
+
+Reads the ODPG YAML file.
+Validates the graph structure against the ODPG schema.
+Extracts graph nodes and graph edges.
+Converts the graph into a visualization-friendly structure.
+Generates an interactive HTML page capable of displaying graph relationships.
+Enables users to inspect node metadata, edge relationships, confidence levels, and referenced specifications.
+
+The Graph Explorer may display:
+
+* Data Products
+* Use Cases
+* Business Objectives
+* KPIs
+* Policies
+* APIs
+* Workflows
+* Agents
+* Strategic Opportunities
+
+as graph nodes, while relationships such as:
+
+* uses
+* supports
+* contributes_to
+* governed_by
+* tracks
+* exposes
+* identifies
+
+can be rendered as directional graph edges.
+
+## Python Graph Explorer Generator
+
+A lightweight Python utility can be used to transform an ODPG YAML document into a standalone HTML Graph Explorer.
+
+The purpose of the script is not to redefine the ODPG structure, but rather to consume the existing specification and render it visually.
+
+The script should:
+
+* read the ODPG YAML file
+* validate required graph properties
+* validate node and edge integrity
+* transform graph entities into visualization structures
+* generate an HTML explorer
+* render the graph interactively in a browser
+
+The script should use the standard ODPG structure exactly as defined in this specification.
+
+> Example graph input:
+
+```yml 
+schema: https://opendataproducts.org/odpg-v1.0/schema/graph.yaml
+version: 1.0
+kind: DataProductGraph
+id: GRAPH-AVIATION-001
+name:
+  en: Aviation Data Product Value Graph
+
+nodes:
+  - id: UC-AVIATION-001
+    type: UseCase
+    $ref: ../usecases/predictive-maintenance-aircraft.yaml
+
+edges:
+  - from: UC-AVIATION-001
+    to: DP-AVIATION-001
+    type: uses
+    confidence: high
+```
+
+## Required Dependencies & Execution
+
+The Python implementation requires PyYAML for parsing ODPG YAML files.
+
+```
+pip install pyyaml
+generate_graph_explorer.py
+```
+
+| Script | Purpose |
+|---|---|
+| [`generate_graph_explorer.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/generate_graph_explorer.py) | Transform the graph yaml file into HTML file |
+
+The script read the **graph.yaml** file and generates **graph-explorer.html** file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.
+
+## Graph Explorer Capabilities
+
+A generated Graph Explorer implementation may support:
+
+* node visualization
+* edge visualization
+* relationship labels
+* confidence display
+* node grouping by type
+* graph zooming and panning
+* graph traversal
+* dependency inspection
+* governance inspection
+* AI-agent relationship visualization
+* clickable specification references
+
+The Graph Explorer demonstrates how ODPG specifications can become both machine-readable and human-navigable while preserving interoperability with the broader Open Data Products ecosystem.
