@@ -20,7 +20,8 @@ nodes:
     type: DataProduct
     ref: ../products/aircraft-maintenance-history.yaml
 ```
- ## Node Properties
+
+## Node Properties
 
 Each node within an ODPG document represents a distinct entity participating in the graph ecosystem, where the node itself serves as the graph reference point that enables relationships, dependencies, semantic mappings, governance propagation, strategic alignment, and interoperability across connected specifications and platforms.
 
@@ -30,7 +31,7 @@ The following properties are defined for graph nodes.
 |---|---|
 | id	| Unique identifier of the node |
 | type	| Type of graph entity represented by the node |
-| ref	| Path or URI to the referenced specification or resource |
+| $ref	| Path or URI to the referenced specification or resource |
 
 The id property uniquely identifies the node within the graph and allows edges to establish relationships between connected entities.
 
