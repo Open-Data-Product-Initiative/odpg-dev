@@ -114,7 +114,7 @@ edges:
 
   - from: OPP-AVIATION-001
     to: OBJ-AVIATION-001
-    type: alignsWith
+    type: alignWith
     confidence: medium
 ```
 
@@ -145,23 +145,23 @@ metadata:
     email: aviation-data-products@example.com
 ```
 
-| Attribute | Type | Required | Description |
-| --- | --- | --- | --- |
-| `metadata` | Object | No | Optional metadata block for describing the graph, its purpose, ownership, visibility, and discovery information. |
-| `metadata.name` | Object | No | Human-readable name of the graph. Supports language-specific values. |
-| `metadata.name.en` | String | No | English name of the graph. |
-| `metadata.description` | Object | No | Human-readable description of what the graph represents. Supports language-specific values. |
-| `metadata.description.en` | String | No | English description of the graph. |
-| `metadata.domain` | Object | No | Business, industry, or subject domain covered by the graph. Supports language-specific values. |
-| `metadata.domain.en` | String | No | English domain name. |
-| `metadata.purpose` | Object | No | Explanation of why the graph exists and how it should be used. Supports language-specific values. |
-| `metadata.purpose.en` | String | No | English purpose statement. |
-| `metadata.tags` | Array of strings | No | Keywords used for discovery, filtering, grouping, and search. |
-| `metadata.status` | String | No | Current status of the graph. Recommended values include `draft`, `active`, `deprecated`, and `archived`. |
-| `metadata.visibility` | String | No | Intended visibility of the graph. Recommended values include `public`, `internal`, `restricted`, and `private`. |
-| `metadata.owner` | Object | No | Party responsible for the graph. |
-| `metadata.owner.name` | String | Yes, when `metadata.owner` is present | Name of the owning person, team, or organization. |
-| `metadata.owner.email` | String | No | Contact email for the owning party. |
+| Attribute                 | Type             | Description                                                                                                      |
+| ------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `metadata`                | Object           | Optional metadata block for describing the graph, its purpose, ownership, visibility, and discovery information. |
+| `metadata.name`           | Object           | Human-readable name of the graph. Supports language-specific values.                                             |
+| `metadata.name.en`        | String           | English name of the graph.                                                                                       |
+| `metadata.description`    | Object           | Human-readable description of what the graph represents. Supports language-specific values.                      |
+| `metadata.description.en` | String           | English description of the graph.                                                                                |
+| `metadata.domain`         | Object           | Business, industry, or subject domain covered by the graph. Supports language-specific values.                   |
+| `metadata.domain.en`      | String           | English domain name.                                                                                             |
+| `metadata.purpose`        | Object           | Explanation of why the graph exists and how it should be used. Supports language-specific values.                |
+| `metadata.purpose.en`     | String           | English purpose statement.                                                                                       |
+| `metadata.tags`           | Array of strings | Keywords used for discovery, filtering, grouping, and search.                                                    |
+| `metadata.status`         | String           | Current status of the graph. Recommended values include `draft`, `active`, `deprecated`, and `archived`.         |
+| `metadata.visibility`     | String           | Intended visibility of the graph. Recommended values include `public`, `internal`, `restricted`, and `private`.  |
+| `metadata.owner`          | Object           | Party responsible for the graph.                                                                                 |
+| `metadata.owner.name`     | String           | Name of the owning person, team, or organization.                                                                |
+| `metadata.owner.email`    | String           | Contact email for the owning party.                                                                              |
 
 
 ## Graph Explorer Example
@@ -247,6 +247,8 @@ edges:
 The Python implementation requires PyYAML for parsing ODPG YAML files.
 
 ```
+# Run these 2 lines 
+
 pip install pyyaml
 generate_graph_explorer.py
 ```
