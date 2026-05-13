@@ -9,10 +9,6 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 -->
 # Specification Structure
 
-An ODPG document consists of a standardized graph structure composed of metadata, graph nodes, and graph edges, where the graph itself represents a connected ecosystem of business, operational, technical, governance, and AI-related entities.
-
-The root structure of an ODPG document is defined as follows:
-
 > Example of details object usage:
 
 ```yml
@@ -29,7 +25,9 @@ graph:
   nodes: []
   edges: []
 ```
+An ODPG document consists of a standardized graph structure composed of metadata, graph nodes, and graph edges, where the graph itself represents a connected ecosystem of business, operational, technical, governance, and AI-related entities.
 
+The root structure of an ODPG document is defined as follows:
 
 ## Mandatory attributes
 
