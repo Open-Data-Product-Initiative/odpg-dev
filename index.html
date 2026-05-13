@@ -1018,7 +1018,7 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 
   <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
     <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">alignsWith</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">alignWith</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
 </code></pre></div><h2 id='optional-attributes-and-options'>Optional attributes and options</h2>
 <blockquote>
@@ -1047,98 +1047,82 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <tr>
 <th>Attribute</th>
 <th>Type</th>
-<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>metadata</code></td>
 <td>Object</td>
-<td>No</td>
 <td>Optional metadata block for describing the graph, its purpose, ownership, visibility, and discovery information.</td>
 </tr>
 <tr>
 <td><code>metadata.name</code></td>
 <td>Object</td>
-<td>No</td>
 <td>Human-readable name of the graph. Supports language-specific values.</td>
 </tr>
 <tr>
 <td><code>metadata.name.en</code></td>
 <td>String</td>
-<td>No</td>
 <td>English name of the graph.</td>
 </tr>
 <tr>
 <td><code>metadata.description</code></td>
 <td>Object</td>
-<td>No</td>
 <td>Human-readable description of what the graph represents. Supports language-specific values.</td>
 </tr>
 <tr>
 <td><code>metadata.description.en</code></td>
 <td>String</td>
-<td>No</td>
 <td>English description of the graph.</td>
 </tr>
 <tr>
 <td><code>metadata.domain</code></td>
 <td>Object</td>
-<td>No</td>
 <td>Business, industry, or subject domain covered by the graph. Supports language-specific values.</td>
 </tr>
 <tr>
 <td><code>metadata.domain.en</code></td>
 <td>String</td>
-<td>No</td>
 <td>English domain name.</td>
 </tr>
 <tr>
 <td><code>metadata.purpose</code></td>
 <td>Object</td>
-<td>No</td>
 <td>Explanation of why the graph exists and how it should be used. Supports language-specific values.</td>
 </tr>
 <tr>
 <td><code>metadata.purpose.en</code></td>
 <td>String</td>
-<td>No</td>
 <td>English purpose statement.</td>
 </tr>
 <tr>
 <td><code>metadata.tags</code></td>
 <td>Array of strings</td>
-<td>No</td>
 <td>Keywords used for discovery, filtering, grouping, and search.</td>
 </tr>
 <tr>
 <td><code>metadata.status</code></td>
 <td>String</td>
-<td>No</td>
 <td>Current status of the graph. Recommended values include <code>draft</code>, <code>active</code>, <code>deprecated</code>, and <code>archived</code>.</td>
 </tr>
 <tr>
 <td><code>metadata.visibility</code></td>
 <td>String</td>
-<td>No</td>
 <td>Intended visibility of the graph. Recommended values include <code>public</code>, <code>internal</code>, <code>restricted</code>, and <code>private</code>.</td>
 </tr>
 <tr>
 <td><code>metadata.owner</code></td>
 <td>Object</td>
-<td>No</td>
 <td>Party responsible for the graph.</td>
 </tr>
 <tr>
 <td><code>metadata.owner.name</code></td>
 <td>String</td>
-<td>Yes, when <code>metadata.owner</code> is present</td>
 <td>Name of the owning person, team, or organization.</td>
 </tr>
 <tr>
 <td><code>metadata.owner.email</code></td>
 <td>String</td>
-<td>No</td>
 <td>Contact email for the owning party.</td>
 </tr>
 </tbody></table>
@@ -1223,7 +1207,9 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
 </code></pre></div><h2 id='required-dependencies-amp-execution'>Required Dependencies &amp; Execution</h2>
 <p>The Python implementation requires PyYAML for parsing ODPG YAML files.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>pip install pyyaml
+<div class="highlight"><pre class="highlight plaintext"><code># Run these 2 lines 
+
+pip install pyyaml
 generate_graph_explorer.py
 </code></pre></div>
 <table><thead>
