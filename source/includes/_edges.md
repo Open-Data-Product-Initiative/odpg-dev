@@ -66,8 +66,8 @@ ODPG supports multiple relationship types capable of representing operational, s
 | measures       | A KPI measures an objective or outcome                        |
 | tracks         | A node tracks or provides KPI-related information             |
 | dependsOn      | A node depends on another node                                |
-| produces      | A node produces data, outputs, or services                    |
-| consumes      | A node consumes data, APIs, or outputs                        |
+| produces       | A node produces data, outputs, or services                    |
+| consumes       | A node consumes data, APIs, or outputs                        |
 | governedBy     | A node is governed by a policy or control                     |
 | ownedBy        | A node is owned by a person, team, or domain                  |
 | alignsWith     | A node aligns strategically or semantically with another node |

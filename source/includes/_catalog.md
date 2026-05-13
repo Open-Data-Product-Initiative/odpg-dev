@@ -1,12 +1,3 @@
-<!-- AI_AGENT_GUIDANCE:
-Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
-Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
-Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
-Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
-Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
-Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
--->
 # Graph Catalog
 
 The following example demonstrates a complete ODPG document connecting use cases, business objectives, KPIs, data products, governance policies, APIs, AI agents, and strategic opportunities into a unified value graph.
@@ -18,10 +9,26 @@ The following example demonstrates a complete ODPG document connecting use cases
 ```yml 
 schema: https://opendataproducts.org/odpg-v1.0/schema/graph.yaml
 version: 1.0
-kind: DataProductGraph
-id: GRAPH-AVIATION-001
-name:
-  en: Aviation Data Product Value Graph
+kind: Graph
+metadata:
+  id: GRAPH-AVIATION-001
+  name:
+    en: Aviation Data Product Value Graph
+  description:
+    en: Graph describing how aviation data products, use cases, policies, agents, opportunities, and business objectives are connected.
+  domain:
+    en: Aviation
+  purpose:
+    en: Support portfolio analysis, value mapping, governance review, and AI-assisted reasoning.
+  tags:
+    - aviation
+    - predictive-maintenance
+    - fleet-availability
+  status: draft
+  visibility: public
+  owner:
+    name: Aviation Data Product Team
+    email: aviation-data-products@example.com
 
 nodes:
   - id: UC-AVIATION-001
@@ -135,6 +142,7 @@ edges:
 
 ```yml
 metadata:
+  id: GRAPH-AVIATION-001
   name:
     en: Aviation Data Product Value Graph
   description:
@@ -157,6 +165,7 @@ metadata:
 | Attribute                 | Type             | Description                                                                                                      |
 | ------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `metadata`                | Object           | Optional metadata block for describing the graph, its purpose, ownership, visibility, and discovery information. |
+| `metadata.id`             | Object           | Unique identifier of the graph.                                                                                  |
 | `metadata.name`           | Object           | Human-readable name of the graph. Supports language-specific values.                                             |
 | `metadata.name.en`        | String           | English name of the graph.                                                                                       |
 | `metadata.description`    | Object           | Human-readable description of what the graph represents. Supports language-specific values.                      |

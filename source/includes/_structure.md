@@ -18,10 +18,10 @@ The root structure of an ODPG document is defined as follows:
 ```yml
 schema: https://opendataproducts.org/odpg-v1.0/schema/graph.yaml
 version: 1.0
-kind: DataProductGraph
-id: GRAPH-AVIATION-001
-name:
-  en: Aviation Data Product Value Graph
+metadata:
+  id: GRAPH-AVIATION-001
+  name:
+    en: Aviation Data Product Value Graph
 nodes: []
 edges: []
 ```
