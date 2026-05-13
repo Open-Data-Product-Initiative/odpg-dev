@@ -569,6 +569,15 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <li>support graph-native interoperability</li>
 <li>provide reusable relationship intelligence structures</li>
 </ul>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='specification-structure'>Specification Structure</h1>
 <p>An ODPG document consists of a standardized graph structure composed of metadata, graph nodes, and graph edges, where the graph itself represents a connected ecosystem of business, operational, technical, governance, and AI-related entities.</p>
 
@@ -639,6 +648,15 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <td>Collection of graph edges</td>
 </tr>
 </tbody></table>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='nodes'>Nodes</h1>
 <p>The nodes section defines the entities included within the graph, where each node represents a resource, capability, objective, policy, product, workflow, dataset, or system participating in the ecosystem being modeled.</p>
 
@@ -759,6 +777,15 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 </tbody></table>
 
 <p>The node model is intentionally extensible so that organizations can expand graph structures with additional node types while preserving interoperability with the core ODPG structure.</p>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='edges'>Edges</h1>
 <p>The edges section defines the relationships between nodes, where each edge establishes a directional connection that represents strategic alignment, operational dependency, semantic association, governance propagation, usage patterns, contribution paths, ownership relationships, or interoperability mappings between entities.</p>
 
@@ -908,6 +935,15 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 </tbody></table>
 
 <p>The relationship model is designed to remain extensible so that organizations can introduce domain-specific relationship types while maintaining compatibility with the core ODPG graph structure.</p>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='confidence'>Confidence</h1>
 <p>The confidence property represents the certainty level associated with a graph relationship and allows organizations to distinguish between relationships that are explicitly declared, relationships that are inferred through analysis, and relationships that require additional validation or human review.</p>
 
@@ -937,7 +973,16 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <p>Example of YAML formated:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight yaml"><code><span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-</code></pre></div><h1 id='graph-catalog'>Graph Catalog</h1>
+</code></pre></div><!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
+<h1 id='graph-catalog'>Graph Catalog</h1>
 <p>The following example demonstrates a complete ODPG document connecting use cases, business objectives, KPIs, data products, governance policies, APIs, AI agents, and strategic opportunities into a unified value graph.</p>
 
 <p><img src="images/dpvg_aviation-907830d1.jpeg" alt="Aviation Data Product Value Graph" /></p>
@@ -1291,6 +1336,15 @@ You should see `-i` / `--input` and `-o` / `--output` with their defaults.
 <p>The Graph Explorer demonstrates how ODPG specifications can become both machine-readable and human-navigable while preserving interoperability with the broader Open Data Products ecosystem.</p>
 
 <p><img src="images/graph_example-86e039c3.png" alt="Aviation Data Product Graph Explorer" /></p>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='strategic-intelligence'>Strategic Intelligence</h1>
 <p>ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.</p>
 
@@ -1327,6 +1381,15 @@ strategic opportunities emerging across multiple connected entities</p>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
 </code></pre></div>
 <p>Through this structure, ODPG enables organizations to move from isolated metadata management toward interconnected strategic intelligence ecosystems.</p>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='governance-and-trust'>Governance and Trust</h1>
 <p>ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.</p>
 
@@ -1358,6 +1421,15 @@ strategic opportunities emerging across multiple connected entities</p>
 <li>explainable governance reasoning</li>
 <li>compliance auditing</li>
 </ul>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='ai-agent-interoperability'>AI Agent Interoperability</h1>
 <p>ODPG provides structured graph context that can be consumed by AI agents, automation systems, semantic search engines, orchestration platforms, and reasoning systems operating across enterprise ecosystems.</p>
 
@@ -1404,6 +1476,15 @@ strategic opportunities emerging across multiple connected entities</p>
 <div class="highlight"><pre class="highlight yaml"><code><span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
 </code></pre></div>
 <p>Through this interoperability model, ODPG enables organizations to federate graph ecosystems across teams, domains, platforms, and organizations while maintaining semantic consistency and reusable relationship intelligence.</p>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='odpg-toolkit'>ODPG Toolkit</h1>
 <p>The ODPG Toolkit provides a collection of interoperable tooling capabilities that support graph creation, validation, traversal, governance reasoning, semantic interoperability, strategic intelligence analysis, and AI-agent interaction across Open Data Product ecosystems.</p>
 
@@ -1446,6 +1527,8 @@ strategic opportunities emerging across multiple connected entities</p>
 <p>The ODPG Toolkit describes interoperable capabilities rather than a single required software implementation. A tool MAY implement one or more toolkit components, provided that it preserves the ODPG graph model, validates against the official schema where applicable, and does not redefine core node, edge, confidence, or reference semantics.</p>
 
 <p>Toolkit implementations SHOULD expose clear inputs and outputs so that graph validators, traversal engines, catalogs, governance systems, and AI-agent runtimes can interoperate consistently.</p>
+
+<p>ODPG MAY provide an agent-friendly JSONL resource at <code>/graph/objects.jsonl</code>. This one-object-per-line file is intended for retrieval, relationship classification, traversal planning, graph reasoning, validation hints, and lightweight AI-agent tool calls. Unlike ODPC catalog JSONL resources, which focus on discovery and object selection, the ODPG JSONL resource focuses on graph reasoning and traversal semantics.</p>
 
 <table><thead>
 <tr>
@@ -1576,6 +1659,15 @@ strategic opportunities emerging across multiple connected entities</p>
 <li>distributed governance</li>
 <li>multi-organization graph interoperability</li>
 </ul>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='specification-extensions'>Specification extensions</h1>
 <p>While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.</p>
 
@@ -1635,6 +1727,15 @@ strategic opportunities emerging across multiple connected entities</p>
 <td>Allows extensions to the Open Data Product Graphs Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be null, a primitive, an array, or an object.</td>
 </tr>
 </tbody></table>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='terms-used'>Terms used</h1>
 <p>This project works with <strong><a href="https://opendataproducts.org/odpg-v1.0/">Open Data Product Graphs (ODPG) 1.0</a></strong> documents and a small HTML generator for exploration. ODPG uses the <strong><a href="https://opendataproducts.org/odpv-v1.0/">Open Data Product Vocabulary (ODPV)</a></strong> as the shared vocabulary across the OpenDataProducts.org standards family: stable identifiers, labels, definitions, aliases, and <strong>relationship names</strong> should stay aligned with ODPV so graphs stay interoperable with ODPS, ODPC, and other tools.</p>
 
@@ -1823,6 +1924,15 @@ strategic opportunities emerging across multiple connected entities</p>
 <p><strong>Reference field name:</strong> Published ODPG examples sometimes show <strong><code>$ref</code></strong> on nodes; this repository’s sample graph uses <strong><code>ref</code></strong>, which matches the generator’s validator. Align field naming with whichever ODPG JSON/YAML schema you validate against.</p>
 
 <p><strong>Relationship vocabulary:</strong> Prefer ODPV-defined relationship identifiers for <code>edges[].type</code> so the same edge semantics can be shared with ODPC (<code>Catalog.meta.graph</code>), other ODPG tools, and downstream AI or governance pipelines—as described in the <a href="https://opendataproducts.org/odpg-v1.0/">ODPG 1.0</a> specification and the ODPC–ODPG integration patterns in the Open Data Products family.</p>
+<!-- AI_AGENT_GUIDANCE:
+Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
+Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
+Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
+Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
+Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
+Use confidence values high, medium, or low for edges.
+Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+-->
 <h1 id='editors-and-contributors'>Editors and contributors</h1>
 <p>This specification is openly developed and a lot of the work comes from community. We list all community contributors as a sign of appreciation. Maintainers process the feedback and draft new candidate releases, which may become the versions of the specification. </p>
 
