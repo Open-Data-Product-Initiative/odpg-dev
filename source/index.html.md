@@ -58,7 +58,6 @@ Traditional metadata catalogs primarily focus on technical discovery, indexing, 
 
 **Open Data Product Graphs ODPG-v1.0** addresses this challenge by introducing a machine-readable graph specification that enables organizations to describe and manage the relationships between interconnected entities across the enterprise ecosystem, thereby transforming isolated specifications into connected intelligence structures capable of supporting governance reasoning, strategic alignment, semantic interoperability, AI traversal, impact analysis, and reusable data ecosystems.
 
-![Open Data Product Graphs overview diagram](/images/odpg.jpeg)
 
 Through ODPG, organizations can represent questions such as:
 
@@ -76,6 +75,8 @@ By enabling organizations to describe these relationships using a standardized g
 ## Relationship to the Open Data Products Specification Family
 
 The Open Data Products specification family consists of interoperable standards that collectively support the lifecycle, governance, semantics, discovery, interoperability, and intelligence of data ecosystems, where each specification focuses on a specific responsibility while remaining interoperable with the others.
+
+![Open Data Product Graphs overview diagram](/images/odpg.jpeg)
 
 | Specification	| Role |
 |---|---| 
