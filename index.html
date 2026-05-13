@@ -392,6 +392,9 @@
                     <a href="#graph-explorer-example" class="toc-h2 toc-link" data-title="Graph Explorer Example">Graph Explorer Example</a>
                   </li>
                   <li>
+                    <a href="#purpose-of-the-graph-explorer" class="toc-h2 toc-link" data-title="Purpose of the Graph Explorer">Purpose of the Graph Explorer</a>
+                  </li>
+                  <li>
                     <a href="#python-graph-explorer-generator" class="toc-h2 toc-link" data-title="Python Graph Explorer Generator">Python Graph Explorer Generator</a>
                   </li>
                   <li>
@@ -413,6 +416,20 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#interoperability" class="toc-h2 toc-link" data-title="Interoperability">Interoperability</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#odpg-toolkit" class="toc-h1 toc-link" data-title="ODPG Toolkit">ODPG Toolkit</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#odpg-agent-toolkit" class="toc-h2 toc-link" data-title="ODPG Agent Toolkit">ODPG Agent Toolkit</a>
+                  </li>
+                  <li>
+                    <a href="#toolkit-components" class="toc-h2 toc-link" data-title="Toolkit Components">Toolkit Components</a>
+                  </li>
+                  <li>
+                    <a href="#toolkit-conformance" class="toc-h2 toc-link" data-title="Toolkit Conformance">Toolkit Conformance</a>
                   </li>
               </ul>
           </li>
@@ -1170,6 +1187,10 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 </ul>
 
 <p>can be rendered as directional graph edges.</p>
+<h2 id='purpose-of-the-graph-explorer'>Purpose of the Graph Explorer</h2>
+<p>The purpose of the Graph Explorer is to provide a simple and portable way to inspect ODPG files visually. While ODPG is designed as a machine-readable specification, humans also need a practical way to understand how use cases, data products, objectives, policies, APIs, agents, and strategic opportunities are connected.</p>
+
+<p>The Graph Explorer supports this need by converting the ODPG YAML structure into an interactive HTML page where users can inspect graph relationships, understand dependency paths, review contribution chains, and validate whether the graph communicates the intended business and governance context.</p>
 <h2 id='python-graph-explorer-generator'>Python Graph Explorer Generator</h2>
 <p>A lightweight Python utility can be used to transform an ODPG YAML document into a standalone HTML Graph Explorer.</p>
 
@@ -1190,12 +1211,16 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 <h2 id='required-dependencies-amp-execution'>Required Dependencies &amp; Execution</h2>
 <p>The Python implementation requires PyYAML for parsing ODPG YAML files.</p>
 
+<blockquote>
 <p>1- See all options (built-in help)</p>
+</blockquote>
 <div class="highlight"><pre class="highlight plaintext"><code>python generate_graph_explorer.py --help
 </code></pre></div>
 <p>You should see <code>-i</code> / <code>--input</code> and <code>-o</code> / <code>--output</code> with their defaults.</p>
 
+<blockquote>
 <p>2- Run this </p>
+</blockquote>
 <div class="highlight"><pre class="highlight plaintext"><code>python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.html"
 </code></pre></div>
 <table><thead>
@@ -1366,6 +1391,178 @@ strategic opportunities emerging across multiple connected entities</p>
 <div class="highlight"><pre class="highlight yaml"><code><span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
 </code></pre></div>
 <p>Through this interoperability model, ODPG enables organizations to federate graph ecosystems across teams, domains, platforms, and organizations while maintaining semantic consistency and reusable relationship intelligence.</p>
+<h1 id='odpg-toolkit'>ODPG Toolkit</h1>
+<p>The ODPG Toolkit provides a collection of interoperable tooling capabilities that support graph creation, validation, traversal, governance reasoning, semantic interoperability, strategic intelligence analysis, and AI-agent interaction across Open Data Product ecosystems.</p>
+
+<p>The toolkit may include:</p>
+
+<ul>
+<li>graph validators</li>
+<li>graph builders</li>
+<li>graph traversal engines</li>
+<li>graph visualization tools</li>
+<li>governance analyzers</li>
+<li>semantic enrichment engines</li>
+<li>strategic reasoning services</li>
+<li>AI-agent graph interfaces</li>
+<li>graph federation services</li>
+<li>interoperability adapters</li>
+</ul>
+<h2 id='odpg-agent-toolkit'>ODPG Agent Toolkit</h2>
+<p>The ODPG Agent Toolkit extends the graph ecosystem with agent-compatible interfaces that allow AI systems to navigate, reason over, and interact with interconnected enterprise data ecosystems using trusted graph relationships and governance-aware traversal.</p>
+
+<p>The Agent Toolkit may support:</p>
+
+<ul>
+<li>semantic graph traversal</li>
+<li>context retrieval</li>
+<li>objective discovery</li>
+<li>governance-aware execution</li>
+<li>relationship reasoning</li>
+<li>dependency analysis</li>
+<li>strategic opportunity detection</li>
+<li>graph-based memory</li>
+<li>explainable AI navigation</li>
+<li>trusted context grounding</li>
+</ul>
+
+<p>This section is strategically important because ODPC focuses on discovery, while ODPG focuses on reasoning. That is the critical distinction.</p>
+<h2 id='toolkit-components'>Toolkit Components</h2>
+<p>Toolkit components describe common tooling capabilities that may be implemented by platforms, governance systems, graph services, catalog systems, data product portals, AI-agent runtimes, or other interoperable software.</p>
+<h2 id='toolkit-conformance'>Toolkit Conformance</h2>
+<p>The ODPG Toolkit describes interoperable capabilities rather than a single required software implementation. A tool MAY implement one or more toolkit components, provided that it preserves the ODPG graph model, validates against the official schema where applicable, and does not redefine core node, edge, confidence, or reference semantics.</p>
+
+<p>Toolkit implementations SHOULD expose clear inputs and outputs so that graph validators, traversal engines, catalogs, governance systems, and AI-agent runtimes can interoperate consistently.</p>
+
+<table><thead>
+<tr>
+<th>Toolkit Component</th>
+<th>Typical Input</th>
+<th>Typical Output</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Graph Validation Toolkit</td>
+<td>ODPG YAML or JSON</td>
+<td>Validation report</td>
+</tr>
+<tr>
+<td>Graph Traversal Toolkit</td>
+<td>ODPG graph and traversal query</td>
+<td>Paths, dependencies, impacted nodes</td>
+</tr>
+<tr>
+<td>Strategic Intelligence Toolkit</td>
+<td>ODPG graph and objectives</td>
+<td>Gaps, overlaps, opportunities</td>
+</tr>
+<tr>
+<td>AI Agent Toolkit</td>
+<td>ODPG graph and agent task context</td>
+<td>Trusted graph context and reasoning paths</td>
+</tr>
+<tr>
+<td>Federation Toolkit</td>
+<td>Multiple ODPG graphs</td>
+<td>Federated graph view or cross-domain mappings</td>
+</tr>
+</tbody></table>
+<h3 id='graph-validation-toolkit'>Graph Validation Toolkit</h3>
+<p>The Graph Validation Toolkit validates ODPG documents against the official schema and verifies structural consistency, node integrity, edge validity, confidence values, and interoperability requirements.</p>
+
+<p>Capabilities may include:</p>
+
+<ul>
+<li>schema validation</li>
+<li>node validation</li>
+<li>edge validation</li>
+<li>reference validation</li>
+<li>semantic consistency checks</li>
+<li>confidence validation</li>
+</ul>
+<h3 id='graph-traversal-toolkit'>Graph Traversal Toolkit</h3>
+<p>The Graph Traversal Toolkit enables traversal across interconnected graph entities using semantic, strategic, operational, and governance relationships.</p>
+
+<p>Capabilities may include:</p>
+
+<ul>
+<li>path discovery</li>
+<li>dependency traversal</li>
+<li>governance propagation</li>
+<li>impact analysis</li>
+<li>semantic navigation</li>
+<li>strategic alignment analysis</li>
+</ul>
+<h3 id='strategic-intelligence-toolkit'>Strategic Intelligence Toolkit</h3>
+<p>The Strategic Intelligence Toolkit analyzes graph relationships to identify organizational gaps, overlapping initiatives, unsupported objectives, and emerging strategic opportunities.</p>
+
+<p>Capabilities may include:</p>
+
+<ul>
+<li>orphan KPI detection</li>
+<li>strategic gap analysis</li>
+<li>thematic clustering</li>
+<li>opportunity inference</li>
+<li>duplicate use case detection</li>
+<li>capability alignment analysis</li>
+</ul>
+<h3 id='ai-agent-toolkit'>AI Agent Toolkit</h3>
+<p>The AI Agent Toolkit enables AI agents and automation systems to interact with ODPG ecosystems through graph-native semantic interfaces and governance-aware traversal mechanisms.</p>
+
+<p>The toolkit may support:</p>
+
+<ul>
+<li>graph retrieval APIs</li>
+<li>semantic context injection</li>
+<li>governance-aware graph traversal</li>
+<li>trusted relationship discovery</li>
+<li>explainable reasoning paths</li>
+<li>graph-based memory systems</li>
+<li>objective-aware planning</li>
+<li>policy-aware execution</li>
+<li>dependency reasoning</li>
+<li>graph-native orchestration</li>
+</ul>
+
+<blockquote>
+<p>Example of AI agent graph interaction:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">AGENT-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Agent</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../agents/enterprise-analytics-agent.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/customer-360.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">API-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">API</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../apis/customer-insights-api.yaml</span>
+
+<span class="na">edges</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">USES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">API-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">USES</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+</code></pre></div><h3 id='federation-toolkit'>Federation Toolkit</h3>
+<p>The Federation Toolkit enables organizations to connect multiple ODPG ecosystems into federated graph environments capable of supporting cross-domain interoperability, distributed governance, and enterprise-scale graph reasoning.</p>
+
+<p>Capabilities may include:</p>
+
+<ul>
+<li>federated graph discovery</li>
+<li>cross-domain traversal</li>
+<li>graph synchronization</li>
+<li>semantic mapping</li>
+<li>distributed governance</li>
+<li>multi-organization graph interoperability</li>
+</ul>
 <h1 id='specification-extensions'>Specification extensions</h1>
 <p>While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.</p>
 
