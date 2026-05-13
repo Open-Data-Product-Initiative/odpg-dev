@@ -9,12 +9,6 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 -->
 # Nodes
 
-The nodes section defines the entities included within the graph, where each node represents a resource, capability, objective, policy, product, workflow, dataset, or system participating in the ecosystem being modeled.
-
-A node may represent an internal resource defined directly within the organization or an external specification referenced through another machine-readable file.
-
-Instead of embedding full resource definitions directly into the graph, ODPG encourages interoperability through references using the ref property, thereby enabling organizations to connect graph structures with ODPS documents, ODPV vocabularies, governance artifacts, APIs, workflows, use cases, or external specifications.
-
 > Example of nodes object format:
 
 ```yml 
@@ -31,6 +25,13 @@ nodes:
     type: DataProduct
     $ref: ../products/aircraft-maintenance-history.yaml
 ```
+
+
+The nodes section defines the entities included within the graph, where each node represents a resource, capability, objective, policy, product, workflow, dataset, or system participating in the ecosystem being modeled.
+
+A node may represent an internal resource defined directly within the organization or an external specification referenced through another machine-readable file.
+
+Instead of embedding full resource definitions directly into the graph, ODPG encourages interoperability through references using the ref property, thereby enabling organizations to connect graph structures with ODPS documents, ODPV vocabularies, governance artifacts, APIs, workflows, use cases, or external specifications.
 
 ## Node Properties
 

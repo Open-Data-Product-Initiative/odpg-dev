@@ -104,21 +104,6 @@ Capabilities may include:
 
 ### AI Agent Toolkit
 
-The AI Agent Toolkit enables AI agents and automation systems to interact with ODPG ecosystems through graph-native semantic interfaces and governance-aware traversal mechanisms.
-
-The toolkit may support:
-
-* graph retrieval APIs
-* semantic context injection
-* governance-aware graph traversal
-* trusted relationship discovery
-* explainable reasoning paths
-* graph-based memory systems
-* objective-aware planning
-* policy-aware execution
-* dependency reasoning
-* graph-native orchestration
-
 > Example of AI agent graph interaction:
 
 ```yml
@@ -146,6 +131,21 @@ edges:
     type: uses
     confidence: high
 ```
+
+The AI Agent Toolkit enables AI agents and automation systems to interact with ODPG ecosystems through graph-native semantic interfaces and governance-aware traversal mechanisms.
+
+The toolkit may support:
+
+* graph retrieval APIs
+* semantic context injection
+* governance-aware graph traversal
+* trusted relationship discovery
+* explainable reasoning paths
+* graph-based memory systems
+* objective-aware planning
+* policy-aware execution
+* dependency reasoning
+* graph-native orchestration
 
 ### Federation Toolkit
 

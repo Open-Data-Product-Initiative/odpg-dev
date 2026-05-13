@@ -8,22 +8,6 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 # Strategic Intelligence
-
-ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.
-
-Through graph relationships, organizations can identify:
-
-unlinked high-priority use cases
-unsupported strategic objectives
-duplicated operational initiatives
-overlapping capabilities
-orphan KPIs
-governance gaps
-reusable product ecosystems
-strategic opportunities emerging across multiple connected entities
-
-Strategic opportunities may emerge when several use cases, KPIs, domains, or data products collectively indicate an unmet organizational need or a common optimization target.
-
 > Example of Strategic opportunities type:
 
 ```yml
@@ -43,5 +27,20 @@ edges:
     type: alignsWith
     confidence: medium
 ```
+
+ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.
+
+Through graph relationships, organizations can identify:
+
+unlinked high-priority use cases
+unsupported strategic objectives
+duplicated operational initiatives
+overlapping capabilities
+orphan KPIs
+governance gaps
+reusable product ecosystems
+strategic opportunities emerging across multiple connected entities
+
+Strategic opportunities may emerge when several use cases, KPIs, domains, or data products collectively indicate an unmet organizational need or a common optimization target.
 
 Through this structure, ODPG enables organizations to move from isolated metadata management toward interconnected strategic intelligence ecosystems.

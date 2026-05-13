@@ -9,10 +9,6 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 -->
 # Governance and Trust
 
-ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.
-
-This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.
-
 ```yml 
 nodes:
   - id: DP-AVIATION-001
@@ -29,6 +25,11 @@ edges:
     type: governedBy
     confidence: high
 ```
+
+
+ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.
+
+This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.
 
 This governance structure supports:
 
