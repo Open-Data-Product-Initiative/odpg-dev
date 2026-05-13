@@ -18,9 +18,17 @@ def validate_graph(graph):
     node_ids = set()
 
     for node in graph["nodes"]:
+        for field in ["id", "type", "$ref"]:
+            if field not in node:
+                raise ValueError(f"Missing required node field: {field}")
+
         node_ids.add(node["id"])
 
     for edge in graph["edges"]:
+        for field in ["from", "to", "type", "confidence"]:
+            if field not in edge:
+                raise ValueError(f"Missing required edge field: {field}")
+
         if edge["from"] not in node_ids:
             raise ValueError(f"Invalid edge source: {edge['from']}")
 
@@ -31,13 +39,14 @@ def validate_graph(graph):
 
 
 def build_html(graph):
+    graph_name = graph["name"].get("en") or next(iter(graph["name"].values()))
 
     nodes = [
         {
             "id": node["id"],
             "label": node["id"],
             "group": node["type"],
-            "title": f"{node['type']}<br>{node['ref']}"
+            "title": f"{node['type']}<br>{node['$ref']}"
         }
         for node in graph["nodes"]
     ]
@@ -56,7 +65,7 @@ def build_html(graph):
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{graph['name']['en']}</title>
+  <title>{graph_name}</title>
 
   <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
