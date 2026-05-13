@@ -355,14 +355,14 @@
                   <li>
                     <a href="#mandatory-attributes" class="toc-h2 toc-link" data-title="Mandatory attributes">Mandatory attributes</a>
                   </li>
+                  <li>
+                    <a href="#optional-attributes-and-options" class="toc-h2 toc-link" data-title="Optional attributes and options">Optional attributes and options</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#graph-catalog" class="toc-h1 toc-link" data-title="Graph Catalog">Graph Catalog</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#optional-attributes-and-options" class="toc-h2 toc-link" data-title="Optional attributes and options">Optional attributes and options</a>
-                  </li>
                   <li>
                     <a href="#graph-explorer-example" class="toc-h2 toc-link" data-title="Graph Explorer Example">Graph Explorer Example</a>
                   </li>
@@ -610,64 +610,164 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>schema</strong></td>
+<td><code>schema</code></td>
 <td>URL</td>
 <td>Yes</td>
 <td>URL of the ODPG schema used for validation</td>
 </tr>
 <tr>
-<td><strong>version</strong></td>
+<td><code>version</code></td>
 <td>String or number</td>
 <td>Yes</td>
 <td>Version of the ODPG specification</td>
 </tr>
 <tr>
-<td><strong>kind</strong></td>
+<td><code>kind</code></td>
 <td>String</td>
 <td>Yes</td>
 <td>Type of graph specification document. Must be <code>Graph</code></td>
 </tr>
 <tr>
-<td><strong>graph</strong></td>
+<td><code>graph</code></td>
 <td>Object</td>
 <td>Yes</td>
 <td>Container for graph metadata, nodes, and edges</td>
 </tr>
 <tr>
-<td><strong>metadata</strong></td>
+<td><code>metadata</code></td>
 <td>Object</td>
 <td>Yes</td>
 <td>Metadata describing the graph</td>
 </tr>
 <tr>
-<td><strong>metadata.id</strong></td>
+<td><code>metadata.id</code></td>
 <td>String</td>
 <td>Yes</td>
 <td>Unique identifier of the graph</td>
 </tr>
 <tr>
-<td><strong>metadata.name</strong></td>
+<td><code>metadata.name</code></td>
 <td>Object</td>
 <td>Yes</td>
 <td>Human-readable graph name using language-specific values</td>
 </tr>
 <tr>
-<td><strong>metadata.description</strong></td>
+<td><code>metadata.name.en</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>English name of the graph.</td>
+</tr>
+<tr>
+<td><code>metadata.description</code></td>
 <td>Object</td>
 <td>Yes</td>
 <td>Human-readable graph description using language-specific values</td>
 </tr>
 <tr>
-<td><strong>nodes</strong></td>
+<td><code>metadata.description.en</code></td>
+<td>String</td>
+<td>Yes</td>
+<td>English description of the graph.</td>
+</tr>
+<tr>
+<td><code>nodes</code></td>
 <td>Array</td>
 <td>Yes</td>
 <td>Collection of graph nodes</td>
 </tr>
 <tr>
-<td><strong>edges</strong></td>
+<td><code>edges</code></td>
 <td>Array</td>
 <td>Yes</td>
 <td>Collection of graph edges</td>
+</tr>
+</tbody></table>
+<h2 id='optional-attributes-and-options'>Optional attributes and options</h2>
+<blockquote>
+<p>Example of catalog metadata usage:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Graph</span>
+<span class="na">graph</span><span class="pi">:</span>
+  <span class="na">metadata</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
+    <span class="na">name</span><span class="pi">:</span>
+      <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
+    <span class="na">description</span><span class="pi">:</span>
+      <span class="na">en</span><span class="pi">:</span> <span class="s">Graph describing how aviation data products, use cases, policies, agents, opportunities, and business objectives are connected.</span>
+    <span class="na">domain</span><span class="pi">:</span>
+      <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation</span>
+    <span class="na">purpose</span><span class="pi">:</span>
+      <span class="na">en</span><span class="pi">:</span> <span class="s">Support portfolio analysis, value mapping, governance review, and AI-assisted reasoning.</span>
+    <span class="na">tags</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">aviation</span>
+      <span class="pi">-</span> <span class="s">predictive-maintenance</span>
+      <span class="pi">-</span> <span class="s">fleet-availability</span>
+    <span class="na">status</span><span class="pi">:</span> <span class="s">draft</span>
+    <span class="na">visibility</span><span class="pi">:</span> <span class="s">public</span>
+    <span class="na">owner</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">Aviation Data Product Team</span>
+      <span class="na">email</span><span class="pi">:</span> <span class="s">aviation-data-products@example.com</span>
+  <span class="na">nodes</span><span class="pi">:</span> <span class="pi">[]</span>
+  <span class="na">edges</span><span class="pi">:</span> <span class="pi">[]</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>metadata.domain</code></td>
+<td>Object</td>
+<td>Business, industry, or subject domain covered by the graph. Supports language-specific values.</td>
+</tr>
+<tr>
+<td><code>metadata.domain.en</code></td>
+<td>String</td>
+<td>English domain name.</td>
+</tr>
+<tr>
+<td><code>metadata.purpose</code></td>
+<td>Object</td>
+<td>Explanation of why the graph exists and how it should be used. Supports language-specific values.</td>
+</tr>
+<tr>
+<td><code>metadata.purpose.en</code></td>
+<td>String</td>
+<td>English purpose statement.</td>
+</tr>
+<tr>
+<td><code>metadata.tags</code></td>
+<td>Array of strings</td>
+<td>Keywords used for discovery, filtering, grouping, and search.</td>
+</tr>
+<tr>
+<td><code>metadata.status</code></td>
+<td>String</td>
+<td>Current status of the graph. Recommended values include <code>draft</code>, <code>active</code>, <code>deprecated</code>, and <code>archived</code>.</td>
+</tr>
+<tr>
+<td><code>metadata.visibility</code></td>
+<td>String</td>
+<td>Intended visibility of the graph. Recommended values include <code>public</code>, <code>internal</code>, <code>restricted</code>, and <code>private</code>.</td>
+</tr>
+<tr>
+<td><code>metadata.owner</code></td>
+<td>Object</td>
+<td>Party responsible for the graph.</td>
+</tr>
+<tr>
+<td><code>metadata.owner.name</code></td>
+<td>String</td>
+<td>Name of the owning person, team, or organization.</td>
+</tr>
+<tr>
+<td><code>metadata.owner.email</code></td>
+<td>String</td>
+<td>Contact email for the owning party.</td>
 </tr>
 </tbody></table>
 <h1 id='graph-catalog'>Graph Catalog</h1>
@@ -804,119 +904,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
       <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
       <span class="na">type</span><span class="pi">:</span> <span class="s">alignWith</span>
       <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-</code></pre></div><h2 id='optional-attributes-and-options'>Optional attributes and options</h2>
-<blockquote>
-<p>Example of catalog metadata usage:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">metadata</span><span class="pi">:</span>
-  <span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
-  <span class="na">name</span><span class="pi">:</span>
-    <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
-  <span class="na">description</span><span class="pi">:</span>
-    <span class="na">en</span><span class="pi">:</span> <span class="s">Graph describing how aviation data products, use cases, policies, agents, opportunities, and business objectives are connected.</span>
-  <span class="na">domain</span><span class="pi">:</span>
-    <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation</span>
-  <span class="na">purpose</span><span class="pi">:</span>
-    <span class="na">en</span><span class="pi">:</span> <span class="s">Support portfolio analysis, value mapping, governance review, and AI-assisted reasoning.</span>
-  <span class="na">tags</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">aviation</span>
-    <span class="pi">-</span> <span class="s">predictive-maintenance</span>
-    <span class="pi">-</span> <span class="s">fleet-availability</span>
-  <span class="na">status</span><span class="pi">:</span> <span class="s">draft</span>
-  <span class="na">visibility</span><span class="pi">:</span> <span class="s">public</span>
-  <span class="na">owner</span><span class="pi">:</span>
-    <span class="na">name</span><span class="pi">:</span> <span class="s">Aviation Data Product Team</span>
-    <span class="na">email</span><span class="pi">:</span> <span class="s">aviation-data-products@example.com</span>
-</code></pre></div>
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>metadata</code></td>
-<td>Object</td>
-<td>Optional metadata block for describing the graph, its purpose, ownership, visibility, and discovery information.</td>
-</tr>
-<tr>
-<td><code>metadata.id</code></td>
-<td>Object</td>
-<td>Unique identifier of the graph.</td>
-</tr>
-<tr>
-<td><code>metadata.name</code></td>
-<td>Object</td>
-<td>Human-readable name of the graph. Supports language-specific values.</td>
-</tr>
-<tr>
-<td><code>metadata.name.en</code></td>
-<td>String</td>
-<td>English name of the graph.</td>
-</tr>
-<tr>
-<td><code>metadata.description</code></td>
-<td>Object</td>
-<td>Human-readable description of what the graph represents. Supports language-specific values.</td>
-</tr>
-<tr>
-<td><code>metadata.description.en</code></td>
-<td>String</td>
-<td>English description of the graph.</td>
-</tr>
-<tr>
-<td><code>metadata.domain</code></td>
-<td>Object</td>
-<td>Business, industry, or subject domain covered by the graph. Supports language-specific values.</td>
-</tr>
-<tr>
-<td><code>metadata.domain.en</code></td>
-<td>String</td>
-<td>English domain name.</td>
-</tr>
-<tr>
-<td><code>metadata.purpose</code></td>
-<td>Object</td>
-<td>Explanation of why the graph exists and how it should be used. Supports language-specific values.</td>
-</tr>
-<tr>
-<td><code>metadata.purpose.en</code></td>
-<td>String</td>
-<td>English purpose statement.</td>
-</tr>
-<tr>
-<td><code>metadata.tags</code></td>
-<td>Array of strings</td>
-<td>Keywords used for discovery, filtering, grouping, and search.</td>
-</tr>
-<tr>
-<td><code>metadata.status</code></td>
-<td>String</td>
-<td>Current status of the graph. Recommended values include <code>draft</code>, <code>active</code>, <code>deprecated</code>, and <code>archived</code>.</td>
-</tr>
-<tr>
-<td><code>metadata.visibility</code></td>
-<td>String</td>
-<td>Intended visibility of the graph. Recommended values include <code>public</code>, <code>internal</code>, <code>restricted</code>, and <code>private</code>.</td>
-</tr>
-<tr>
-<td><code>metadata.owner</code></td>
-<td>Object</td>
-<td>Party responsible for the graph.</td>
-</tr>
-<tr>
-<td><code>metadata.owner.name</code></td>
-<td>String</td>
-<td>Name of the owning person, team, or organization.</td>
-</tr>
-<tr>
-<td><code>metadata.owner.email</code></td>
-<td>String</td>
-<td>Contact email for the owning party.</td>
-</tr>
-</tbody></table>
-<h2 id='graph-explorer-example'>Graph Explorer Example</h2>
+</code></pre></div><h2 id='graph-explorer-example'>Graph Explorer Example</h2>
 <p>The following YAML example can also be used as the input for a lightweight Graph Explorer generator capable of transforming an ODPG document into an interactive HTML-based visualization. This allows organizations to convert machine-readable graph specifications into human-readable graph catalogs that can be explored visually through a browser without requiring a dedicated graph database or enterprise catalog platform.</p>
 
 <p>The Graph Explorer concept is intended to demonstrate how ODPG files can serve as portable relationship intelligence structures that support governance review, strategic planning, semantic exploration, AI-agent traversal, and operational dependency analysis through standard graph visualization techniques.</p>
@@ -1057,12 +1045,6 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 <h1 id='nodes'>Nodes</h1>
-<p>The nodes section defines the entities included within the graph, where each node represents a resource, capability, objective, policy, product, workflow, dataset, or system participating in the ecosystem being modeled.</p>
-
-<p>A node may represent an internal resource defined directly within the organization or an external specification referenced through another machine-readable file.</p>
-
-<p>Instead of embedding full resource definitions directly into the graph, ODPG encourages interoperability through references using the ref property, thereby enabling organizations to connect graph structures with ODPS documents, ODPV vocabularies, governance artifacts, APIs, workflows, use cases, or external specifications.</p>
-
 <blockquote>
 <p>Example of nodes object format:</p>
 </blockquote>
@@ -1078,7 +1060,13 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
   <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
     <span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
-</code></pre></div><h2 id='node-properties'>Node Properties</h2>
+</code></pre></div>
+<p>The nodes section defines the entities included within the graph, where each node represents a resource, capability, objective, policy, product, workflow, dataset, or system participating in the ecosystem being modeled.</p>
+
+<p>A node may represent an internal resource defined directly within the organization or an external specification referenced through another machine-readable file.</p>
+
+<p>Instead of embedding full resource definitions directly into the graph, ODPG encourages interoperability through references using the ref property, thereby enabling organizations to connect graph structures with ODPS documents, ODPV vocabularies, governance artifacts, APIs, workflows, use cases, or external specifications.</p>
+<h2 id='node-properties'>Node Properties</h2>
 <p>Each node within an ODPG document represents a distinct entity participating in the graph ecosystem, where the node itself serves as the graph reference point that enables relationships, dependencies, semantic mappings, governance propagation, strategic alignment, and interoperability across connected specifications and platforms.</p>
 
 <p>The following properties are defined for graph nodes.</p>
@@ -1344,6 +1332,11 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 <h1 id='confidence'>Confidence</h1>
+<blockquote>
+<p>Example of YAML formated:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+</code></pre></div>
 <p>The confidence property represents the certainty level associated with a graph relationship and allows organizations to distinguish between relationships that are explicitly declared, relationships that are inferred through analysis, and relationships that require additional validation or human review.</p>
 
 <p>Recommended confidence values are defined below.</p>
@@ -1367,12 +1360,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>Relationship is inferred and requires additional validation</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>Example of YAML formated:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-</code></pre></div><!-- AI_AGENT_GUIDANCE:
+<!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
 Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
@@ -1382,21 +1370,6 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 <h1 id='strategic-intelligence'>Strategic Intelligence</h1>
-<p>ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.</p>
-
-<p>Through graph relationships, organizations can identify:</p>
-
-<p>unlinked high-priority use cases
-unsupported strategic objectives
-duplicated operational initiatives
-overlapping capabilities
-orphan KPIs
-governance gaps
-reusable product ecosystems
-strategic opportunities emerging across multiple connected entities</p>
-
-<p>Strategic opportunities may emerge when several use cases, KPIs, domains, or data products collectively indicate an unmet organizational need or a common optimization target.</p>
-
 <blockquote>
 <p>Example of Strategic opportunities type:</p>
 </blockquote>
@@ -1416,6 +1389,21 @@ strategic opportunities emerging across multiple connected entities</p>
     <span class="na">type</span><span class="pi">:</span> <span class="s">alignsWith</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
 </code></pre></div>
+<p>ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.</p>
+
+<p>Through graph relationships, organizations can identify:</p>
+
+<p>unlinked high-priority use cases
+unsupported strategic objectives
+duplicated operational initiatives
+overlapping capabilities
+orphan KPIs
+governance gaps
+reusable product ecosystems
+strategic opportunities emerging across multiple connected entities</p>
+
+<p>Strategic opportunities may emerge when several use cases, KPIs, domains, or data products collectively indicate an unmet organizational need or a common optimization target.</p>
+
 <p>Through this structure, ODPG enables organizations to move from isolated metadata management toward interconnected strategic intelligence ecosystems.</p>
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
@@ -1426,11 +1414,7 @@ Use ODPV when stable vocabulary terms, semantic mappings, or relationship names 
 Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
-<h1 id='governance-and-trust'>Governance and Trust</h1>
-<p>ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.</p>
-
-<p>This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.</p>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
+<h1 id='governance-and-trust'>Governance and Trust</h1><div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
     <span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
@@ -1445,6 +1429,10 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
     <span class="na">type</span><span class="pi">:</span> <span class="s">governedBy</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
 </code></pre></div>
+<p>ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.</p>
+
+<p>This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.</p>
+
 <p>This governance structure supports:</p>
 
 <ul>
@@ -1639,23 +1627,6 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <li>capability alignment analysis</li>
 </ul>
 <h3 id='ai-agent-toolkit'>AI Agent Toolkit</h3>
-<p>The AI Agent Toolkit enables AI agents and automation systems to interact with ODPG ecosystems through graph-native semantic interfaces and governance-aware traversal mechanisms.</p>
-
-<p>The toolkit may support:</p>
-
-<ul>
-<li>graph retrieval APIs</li>
-<li>semantic context injection</li>
-<li>governance-aware graph traversal</li>
-<li>trusted relationship discovery</li>
-<li>explainable reasoning paths</li>
-<li>graph-based memory systems</li>
-<li>objective-aware planning</li>
-<li>policy-aware execution</li>
-<li>dependency reasoning</li>
-<li>graph-native orchestration</li>
-</ul>
-
 <blockquote>
 <p>Example of AI agent graph interaction:</p>
 </blockquote>
@@ -1682,7 +1653,24 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
     <span class="na">to</span><span class="pi">:</span> <span class="s">API-001</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-</code></pre></div><h3 id='federation-toolkit'>Federation Toolkit</h3>
+</code></pre></div>
+<p>The AI Agent Toolkit enables AI agents and automation systems to interact with ODPG ecosystems through graph-native semantic interfaces and governance-aware traversal mechanisms.</p>
+
+<p>The toolkit may support:</p>
+
+<ul>
+<li>graph retrieval APIs</li>
+<li>semantic context injection</li>
+<li>governance-aware graph traversal</li>
+<li>trusted relationship discovery</li>
+<li>explainable reasoning paths</li>
+<li>graph-based memory systems</li>
+<li>objective-aware planning</li>
+<li>policy-aware execution</li>
+<li>dependency reasoning</li>
+<li>graph-native orchestration</li>
+</ul>
+<h3 id='federation-toolkit'>Federation Toolkit</h3>
 <p>The Federation Toolkit enables organizations to connect multiple ODPG ecosystems into federated graph environments capable of supporting cross-domain interoperability, distributed governance, and enterprise-scale graph reasoning.</p>
 
 <p>Capabilities may include:</p>
@@ -1705,35 +1693,25 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 <h1 id='specification-extensions'>Specification extensions</h1>
-<p>While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.</p>
-
-<p>Extension properties are implemented as patterned fields that are always prefixed with <code>x-</code>. These fields may appear in ODPG objects such as the graph root, <code>metadata</code>, <code>metadata.owner</code>, <code>nodes</code>, and <code>edges</code>.</p>
-
-<p>Extensions are not part of the official ODPG object model unless they are later adopted into the specification. Tooling may ignore extension fields unless explicit support has been added.</p>
-
-<p>Extensions should not be used to redefine core ODPG semantics. They should be used only for additional metadata that does not fit the standard attributes.</p>
-
-<p>Useful and widely adopted extensions may become candidates for future versions of the standard. To propose useful extensions, raise an issue in GitHub:</p>
-
-<p><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues">Open Data Product Initiative GitHub issues</a></p>
-
 <blockquote>
 <p>Example of extension usage:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
 <span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">DataProductGraph</span>
-<span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
-<span class="na">name</span><span class="pi">:</span>
-  <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
+<span class="na">graph</span><span class="pi">:</span>
+  <span class="na">metadata</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
+    <span class="na">name</span><span class="pi">:</span>
+      <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
+    <span class="na">description</span><span class="pi">:</span>
+      <span class="na">en</span><span class="pi">:</span> <span class="s">Graph describing how aviation data products, use cases, policies, agents, opportunities, and business objectives are connected.</span>
+    <span class="na">owner</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">Aviation Data Product Team</span>
+      <span class="na">email</span><span class="pi">:</span> <span class="s">aviation-data-products@example.com</span>
+      <span class="na">x-team-id</span><span class="pi">:</span> <span class="s">TEAM-042</span>
 <span class="na">x-internal-id</span><span class="pi">:</span> <span class="s">foobar123</span>
 <span class="na">x-source-system</span><span class="pi">:</span> <span class="s">internal-graph-platform</span>
-
-<span class="na">metadata</span><span class="pi">:</span>
-  <span class="na">owner</span><span class="pi">:</span>
-    <span class="na">name</span><span class="pi">:</span> <span class="s">Aviation Data Product Team</span>
-    <span class="na">email</span><span class="pi">:</span> <span class="s">aviation-data-products@example.com</span>
-    <span class="na">x-team-id</span><span class="pi">:</span> <span class="s">TEAM-042</span>
 
 <span class="na">nodes</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
@@ -1748,6 +1726,18 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
     <span class="na">x-evidence-url</span><span class="pi">:</span> <span class="s">https://example.com/evidence/graph-aviation-001</span>
 </code></pre></div>
+<p>While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.</p>
+
+<p>Extension properties are implemented as patterned fields that are always prefixed with <code>x-</code>. These fields may appear in ODPG objects such as the graph root, <code>metadata</code>, <code>metadata.owner</code>, <code>nodes</code>, and <code>edges</code>.</p>
+
+<p>Extensions are not part of the official ODPG object model unless they are later adopted into the specification. Tooling may ignore extension fields unless explicit support has been added.</p>
+
+<p>Extensions should not be used to redefine core ODPG semantics. They should be used only for additional metadata that does not fit the standard attributes.</p>
+
+<p>Useful and widely adopted extensions may become candidates for future versions of the standard. To propose useful extensions, raise an issue in GitHub:</p>
+
+<p><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues">Open Data Product Initiative GitHub issues</a></p>
+
 <table><thead>
 <tr>
 <th><div style="width:150px">Element name</div></th>
