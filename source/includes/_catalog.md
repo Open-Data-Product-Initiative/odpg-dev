@@ -237,11 +237,10 @@ The Python implementation requires PyYAML for parsing ODPG YAML files.
 
 ```text
 python generate_graph_explorer.py --help
+You should see `-i` / `--input` and `-o` / `--output` with their defaults.
 ```
 
-You should see `-i` / `--input` and `-o` / `--output` with their defaults.
-
-> 2- Run this 
+> 2- Run this line to generate the Graph Explorer
 
 ```
 python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.html"
