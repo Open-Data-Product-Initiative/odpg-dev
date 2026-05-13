@@ -24,6 +24,8 @@ graph:
     id: GRAPH-AVIATION-001
     name:
       en: Aviation Data Product Value Graph
+    description:
+      en: Graph describing how aviation data products, use cases, policies, agents, opportunities, and business objectives are connected.
   nodes: []
   edges: []
 ```
@@ -37,8 +39,11 @@ The following root properties are defined within an ODPG document.
 | --- | --- | --- | --- |
 | **schema** | URL | Yes | URL of the ODPG schema used for validation |
 | **version** | String or number | Yes | Version of the ODPG specification |
-| **kind** | String | Yes | Type of graph specification document. Must be `DataProductGraph` |
-| **graph** | Object | Yes | Unique identifier of the graph |
-| **metadata** | Object | Yes | Human-readable graph name using language-specific values |
+| **kind** | String | Yes | Type of graph specification document. Must be `Graph` |
+| **graph** | Object | Yes | Container for graph metadata, nodes, and edges |
+| **metadata** | Object | Yes | Metadata describing the graph |
+| **metadata.id** | String | Yes | Unique identifier of the graph |
+| **metadata.name** | Object | Yes | Human-readable graph name using language-specific values |
+| **metadata.description** | Object | Yes | Human-readable graph description using language-specific values |
 | **nodes** | Array | Yes | Collection of graph nodes |
 | **edges** | Array | Yes | Collection of graph edges |
