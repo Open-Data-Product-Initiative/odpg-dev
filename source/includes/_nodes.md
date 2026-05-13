@@ -29,11 +29,11 @@ Each node within an ODPG document represents a distinct entity participating in 
 
 The following properties are defined for graph nodes.
 
-| Property	| Description |
-|---|---|
-| id	| Unique identifier of the node |
-| type	| Type of graph entity represented by the node |
-| $ref	| Path or URI to the referenced specification or resource |
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| id | String | Yes | Unique identifier of the node |
+| type | String | Yes | Type of graph entity represented by the node |
+| $ref | String | Yes | Path or URI to the referenced specification or resource |
 
 The **id** property uniquely identifies the node within the graph and allows edges to establish relationships between connected entities.
 

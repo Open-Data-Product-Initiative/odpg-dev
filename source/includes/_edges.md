@@ -30,12 +30,12 @@ Through edges, ODPG enables organizations to construct connected value graphs ca
 
 Each edge within an ODPG graph contains properties that describe the relationship connecting two nodes.
 
-| Property   | Description                          |
-| ---------- | ------------------------------------ |
-| from       | Source node identifier               |
-| to         | Target node identifier               |
-| type       | Relationship type                    |
-| confidence | Confidence level of the relationship |
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| from | String | Yes | Source node identifier |
+| to | String | Yes | Target node identifier |
+| type | String | Yes | Relationship type |
+| confidence | String | Yes | Confidence level of the relationship |
 
 The **from** property identifies the source node from which the relationship originates.
 
@@ -57,8 +57,8 @@ ODPG supports multiple relationship types capable of representing operational, s
 | measures       | A KPI measures an objective or outcome                        |
 | tracks         | A node tracks or provides KPI-related information             |
 | dependsOn      | A node depends on another node                                |
-| produce        | A node produces data, outputs, or services                    |
-| Consumes       | A node consumes data, APIs, or outputs                        |
+| produces      | A node produces data, outputs, or services                    |
+| consumes      | A node consumes data, APIs, or outputs                        |
 | governedBy     | A node is governed by a policy or control                     |
 | ownedBy        | A node is owned by a person, team, or domain                  |
 | alignsWith     | A node aligns strategically or semantically with another node |

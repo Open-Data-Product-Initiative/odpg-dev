@@ -18,16 +18,16 @@ edges: []
 ```
 
 
-## Root Properties
+## Mandatory attributes
 
 The following root properties are defined within an ODPG document.
 
-| Property	| Description|
-|---|---|
-| **schema** |	URL of the ODPG schema used for validation |
-| **version**	| Version of the ODPG specification |
-| **kind**	| Type of graph specification document |
-| **id**	| Unique identifier of the graph |
-| **name**	| Human-readable graph name |
-| **nodes**	| Collection of graph nodes |
-| **edges**	| Collection of graph edges |
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| **schema** | URL | Yes | URL of the ODPG schema used for validation |
+| **version** | String or number | Yes | Version of the ODPG specification |
+| **kind** | String | Yes | Type of graph specification document. Must be `DataProductGraph` |
+| **id** | String | Yes | Unique identifier of the graph |
+| **name** | Object | Yes | Human-readable graph name using language-specific values |
+| **nodes** | Array | Yes | Collection of graph nodes |
+| **edges** | Array | Yes | Collection of graph edges |
