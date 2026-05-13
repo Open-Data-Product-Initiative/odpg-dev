@@ -361,6 +361,9 @@
             <a href="#nodes" class="toc-h1 toc-link" data-title="Nodes">Nodes</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#node-properties" class="toc-h2 toc-link" data-title="Node Properties">Node Properties</a>
+                  </li>
+                  <li>
                     <a href="#supported-node-types" class="toc-h2 toc-link" data-title="Supported Node Types">Supported Node Types</a>
                   </li>
               </ul>
@@ -384,6 +387,9 @@
           </li>
           <li>
             <a href="#strategic-intelligence" class="toc-h1 toc-link" data-title="Strategic Intelligence">Strategic Intelligence</a>
+          </li>
+          <li>
+            <a href="#governance-and-trust" class="toc-h1 toc-link" data-title="Governance and Trust">Governance and Trust</a>
           </li>
           <li>
             <a href="#ai-agent-interoperability" class="toc-h1 toc-link" data-title="AI Agent Interoperability">AI Agent Interoperability</a>
@@ -582,9 +588,7 @@ Development of the specification is under the umbrella of the Linux Foundation.<
   <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
     <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
-</code></pre></div>
-<p>## Node Properties</p>
-
+</code></pre></div><h2 id='node-properties'>Node Properties</h2>
 <p>Each node within an ODPG document represents a distinct entity participating in the graph ecosystem, where the node itself serves as the graph reference point that enables relationships, dependencies, semantic mappings, governance propagation, strategic alignment, and interoperability across connected specifications and platforms.</p>
 
 <p>The following properties are defined for graph nodes.</p>
@@ -604,7 +608,7 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <td>Type of graph entity represented by the node</td>
 </tr>
 <tr>
-<td>ref</td>
+<td>$ref</td>
 <td>Path or URI to the referenced specification or resource</td>
 </tr>
 </tbody></table>
@@ -993,8 +997,7 @@ strategic opportunities emerging across multiple connected entities</p>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
 </code></pre></div>
 <p>Through this structure, ODPG enables organizations to move from isolated metadata management toward interconnected strategic intelligence ecosystems.</p>
-<p># Governance and Trust</p>
-
+<h1 id='governance-and-trust'>Governance and Trust</h1>
 <p>ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.</p>
 
 <p>This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.</p>
