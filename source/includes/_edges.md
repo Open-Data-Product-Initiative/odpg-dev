@@ -10,17 +10,17 @@ An edge always connects a source node to a target node using the from and to pro
 edges:
   - from: UC-AVIATION-001
     to: DP-AVIATION-001
-    type: USES
+    type: uses
     confidence: high
 
   - from: UC-AVIATION-001
     to: OBJ-AVIATION-001
-    type: SUPPORTS
+    type: supports
     confidence: high
 
   - from: DP-AVIATION-001
     to: OBJ-AVIATION-001
-    type: CONTRIBUTES_TO
+    type: contributesTo
     confidence: medium
 ```
 
@@ -53,18 +53,18 @@ ODPG supports multiple relationship types capable of representing operational, s
 | -------------- | ------------------------------------------------------------- |
 | uses           | A node uses another node as part of execution or operation    |
 | supports       | A node supports a business objective                          |
-| contributesTo | A node contributes toward an outcome or objective             |
+| contributesTo  | A node contributes toward an outcome or objective             |
 | measures       | A KPI measures an objective or outcome                        |
 | tracks         | A node tracks or provides KPI-related information             |
-| dependsOn     | A node depends on another node                                |
-| produce       | A node produces data, outputs, or services                    |
+| dependsOn      | A node depends on another node                                |
+| produce        | A node produces data, outputs, or services                    |
 | Consumes       | A node consumes data, APIs, or outputs                        |
-| governedBy    | A node is governed by a policy or control                     |
-| ownedBy       | A node is owned by a person, team, or domain                  |
-| alignsWith    | A node aligns strategically or semantically with another node |
-| relatedTo     | A generic semantic relationship                               |
+| governedBy     | A node is governed by a policy or control                     |
+| ownedBy        | A node is owned by a person, team, or domain                  |
+| alignsWith     | A node aligns strategically or semantically with another node |
+| relatedTo      | A generic semantic relationship                               |
 | impacts        | A node impacts another node                                   |
-| derivedFrom   | A node originates from another node                           |
+| derivedFrom    | A node originates from another node                           |
 | exposes        | A node exposes an API or interface                            |
 | monitors       | A node monitors another node                                  |
 | identifies     | A node identifies an opportunity or condition                 |

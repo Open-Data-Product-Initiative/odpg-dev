@@ -16,6 +16,9 @@ includes:
   - edges
   - confidence
   - catalog
+  - strategy
+  - governance
+  - interoperability
   - contributors
 
 search: true

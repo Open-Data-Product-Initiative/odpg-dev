@@ -3,6 +3,7 @@
 The confidence property represents the certainty level associated with a graph relationship and allows organizations to distinguish between relationships that are explicitly declared, relationships that are inferred through analysis, and relationships that require additional validation or human review.
 
 Recommended confidence values are defined below.
+
 | Value  | Description                                                             |
 | ------ | ----------------------------------------------------------------------- |
 | high   | Relationship is explicitly declared or confirmed                        |
