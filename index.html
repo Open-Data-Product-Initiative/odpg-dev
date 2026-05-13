@@ -398,9 +398,6 @@
                     <a href="#required-dependencies-amp-execution" class="toc-h2 toc-link" data-title="Required Dependencies &amp; Execution">Required Dependencies &amp; Execution</a>
                   </li>
                   <li>
-                    <a href="#quick-reference" class="toc-h2 toc-link" data-title="Quick reference">Quick reference</a>
-                  </li>
-                  <li>
                     <a href="#graph-explorer-capabilities" class="toc-h2 toc-link" data-title="Graph Explorer Capabilities">Graph Explorer Capabilities</a>
                   </li>
               </ul>
@@ -1190,123 +1187,7 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 </ul>
 
 <p>The script should use the standard ODPG structure exactly as defined in this specification.</p>
-
-<p><img src="images/graph_example-86e039c3.png" alt="Aviation Data Product Graph Explorer" /></p>
-
-<blockquote>
-<p>Example graph input:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schemas/graph.yaml</span>
-<span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
-<span class="na">kind</span><span class="pi">:</span> <span class="s">DataProductGraph</span>
-<span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
-<span class="na">name</span><span class="pi">:</span>
-  <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
-
-<span class="na">nodes</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">UseCase</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../usecases/predictive-maintenance-aircraft.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">BusinessObjective</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../objectives/increase-fleet-availability.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">KPI</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../kpis/fleet-availability-rate.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-sensor-events.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">API</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../apis/maintenance-risk-score-api.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">Policy</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../policies/aviation-data-quality-policy.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">Agent</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../agents/maintenance-recommendation-agent.yaml</span>
-
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">StrategicOpportunity</span>
-    <span class="na">ref</span><span class="pi">:</span> <span class="s">../opportunities/reduce-unscheduled-maintenance.yaml</span>
-
-<span class="na">edges</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">supports</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">measures</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">tracks</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">exposes</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">governedBy</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">identifies</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">alignsWith</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-
-</code></pre></div><h2 id='required-dependencies-amp-execution'>Required Dependencies &amp; Execution</h2>
+<h2 id='required-dependencies-amp-execution'>Required Dependencies &amp; Execution</h2>
 <p>The Python implementation requires PyYAML for parsing ODPG YAML files.</p>
 
 <p>1- See all options (built-in help)</p>
@@ -1332,7 +1213,7 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 </tbody></table>
 
 <p>The script read the <strong>graph.yaml</strong> file and generates <strong>graph-explorer.html</strong> file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.</p>
-<h2 id='quick-reference'>Quick reference</h2>
+<h3 id='quick-reference'>Quick reference</h3>
 <table><thead>
 <tr>
 <th>Flag</th>
@@ -1372,6 +1253,8 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 </ul>
 
 <p>The Graph Explorer demonstrates how ODPG specifications can become both machine-readable and human-navigable while preserving interoperability with the broader Open Data Products ecosystem.</p>
+
+<p><img src="images/graph_example-86e039c3.png" alt="Aviation Data Product Graph Explorer" /></p>
 <h1 id='strategic-intelligence'>Strategic Intelligence</h1>
 <p>ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.</p>
 
