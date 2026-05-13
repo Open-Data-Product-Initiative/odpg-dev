@@ -203,6 +203,13 @@ as graph nodes, while relationships such as:
 
 can be rendered as directional graph edges.
 
+## Purpose of the Graph Explorer
+
+The purpose of the Graph Explorer is to provide a simple and portable way to inspect ODPG files visually. While ODPG is designed as a machine-readable specification, humans also need a practical way to understand how use cases, data products, objectives, policies, APIs, agents, and strategic opportunities are connected.
+
+The Graph Explorer supports this need by converting the ODPG YAML structure into an interactive HTML page where users can inspect graph relationships, understand dependency paths, review contribution chains, and validate whether the graph communicates the intended business and governance context.
+
+
 ## Python Graph Explorer Generator
 
 A lightweight Python utility can be used to transform an ODPG YAML document into a standalone HTML Graph Explorer.
@@ -226,7 +233,7 @@ The script should use the standard ODPG structure exactly as defined in this spe
 The Python implementation requires PyYAML for parsing ODPG YAML files.
 
 
-1- See all options (built-in help)
+> 1- See all options (built-in help)
 
 ```text
 python generate_graph_explorer.py --help
@@ -234,7 +241,7 @@ python generate_graph_explorer.py --help
 
 You should see `-i` / `--input` and `-o` / `--output` with their defaults.
 
-2- Run this 
+> 2- Run this 
 
 ```
 python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.html"

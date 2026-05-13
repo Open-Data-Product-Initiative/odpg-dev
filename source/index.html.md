@@ -18,6 +18,7 @@ includes:
   - strategy
   - governance
   - interoperability
+  - toolkit
   - extensions
   - contributors
 
