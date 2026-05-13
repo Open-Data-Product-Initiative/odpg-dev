@@ -6,7 +6,7 @@ The following example demonstrates a complete ODPG document connecting use cases
 
 > Example of the catalog object usage:
 
-```yml
+```yml 
 schema: https://opendataproducts.org/odpg-v1.0/schema/graph.yaml
 version: 1.0
 kind: DataProductGraph
@@ -220,122 +220,6 @@ The script should:
 
 The script should use the standard ODPG structure exactly as defined in this specification.
 
-![Aviation Data Product Graph Explorer](/images/graph_example.png)
-
-> Example graph input:
-
-```yml 
-schema: https://opendataproducts.org/odpg-v1.0/schemas/graph.yaml
-version: 1.0
-kind: DataProductGraph
-id: GRAPH-AVIATION-001
-name:
-  en: Aviation Data Product Value Graph
-
-nodes:
-  - id: UC-AVIATION-001
-    type: UseCase
-    ref: ../usecases/predictive-maintenance-aircraft.yaml
-
-  - id: OBJ-AVIATION-001
-    type: BusinessObjective
-    ref: ../objectives/increase-fleet-availability.yaml
-
-  - id: KPI-AVIATION-001
-    type: KPI
-    ref: ../kpis/fleet-availability-rate.yaml
-
-  - id: DP-AVIATION-001
-    type: DataProduct
-    ref: ../products/aircraft-maintenance-history.yaml
-
-  - id: DP-AVIATION-002
-    type: DataProduct
-    ref: ../products/aircraft-sensor-events.yaml
-
-  - id: API-AVIATION-001
-    type: API
-    ref: ../apis/maintenance-risk-score-api.yaml
-
-  - id: POL-AVIATION-001
-    type: Policy
-    ref: ../policies/aviation-data-quality-policy.yaml
-
-  - id: AGENT-AVIATION-001
-    type: Agent
-    ref: ../agents/maintenance-recommendation-agent.yaml
-
-  - id: OPP-AVIATION-001
-    type: StrategicOpportunity
-    ref: ../opportunities/reduce-unscheduled-maintenance.yaml
-
-edges:
-  - from: UC-AVIATION-001
-    to: DP-AVIATION-001
-    type: uses
-    confidence: high
-
-  - from: UC-AVIATION-001
-    to: DP-AVIATION-002
-    type: uses
-    confidence: high
-
-  - from: UC-AVIATION-001
-    to: OBJ-AVIATION-001
-    type: supports
-    confidence: high
-
-  - from: DP-AVIATION-001
-    to: OBJ-AVIATION-001
-    type: contributesTo
-    confidence: medium
-
-  - from: DP-AVIATION-002
-    to: OBJ-AVIATION-001
-    type: contributesTo
-    confidence: medium
-
-  - from: KPI-AVIATION-001
-    to: OBJ-AVIATION-001
-    type: measures
-    confidence: high
-
-  - from: DP-AVIATION-001
-    to: KPI-AVIATION-001
-    type: tracks
-    confidence: medium
-
-  - from: DP-AVIATION-001
-    to: API-AVIATION-001
-    type: exposes
-    confidence: high
-
-  - from: DP-AVIATION-001
-    to: POL-AVIATION-001
-    type: governedBy
-    confidence: high
-
-  - from: AGENT-AVIATION-001
-    to: DP-AVIATION-001
-    type: uses
-    confidence: high
-
-  - from: AGENT-AVIATION-001
-    to: API-AVIATION-001
-    type: uses
-    confidence: high
-
-  - from: UC-AVIATION-001
-    to: OPP-AVIATION-001
-    type: identifies
-    confidence: medium
-
-  - from: OPP-AVIATION-001
-    to: OBJ-AVIATION-001
-    type: alignsWith
-    confidence: medium
-
-```
 
 ## Required Dependencies & Execution
 
@@ -363,7 +247,7 @@ python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.
 
 The script read the **graph.yaml** file and generates **graph-explorer.html** file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.
 
-## Quick reference
+### Quick reference
 
 | Flag | Meaning |
 |------|--------|
@@ -390,3 +274,5 @@ A generated Graph Explorer implementation may support:
 * clickable specification references
 
 The Graph Explorer demonstrates how ODPG specifications can become both machine-readable and human-navigable while preserving interoperability with the broader Open Data Products ecosystem.
+
+![Aviation Data Product Graph Explorer](/images/graph_example.png)
