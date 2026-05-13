@@ -20,6 +20,7 @@ includes:
   - interoperability
   - toolkit
   - extensions
+  - terms
   - contributors
 
 search: true
