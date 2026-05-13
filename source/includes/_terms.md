@@ -1,19 +1,72 @@
 # Terms used
 
-Here's list of terms used and what we mean with them. The meaning of terms is mostly taken from existing knowledge eg articles and other trusted sources. The source is always linked to the term. In some rare cases term is defined for the specification purposes only. 
+This project works with **[Open Data Product Graphs (ODPG) 1.0](https://opendataproducts.org/odpg-v1.0/)** documents and a small HTML generator for exploration. ODPG uses the **[Open Data Product Vocabulary (ODPV)](https://opendataproducts.org/odpv-v1.0/)** as the shared vocabulary across the OpenDataProducts.org standards family: stable identifiers, labels, definitions, aliases, and **relationship names** should stay aligned with ODPV so graphs stay interoperable with ODPS, ODPC, and other tools.
 
-| <div style="width:150px">Term</div>   | Description |  
-|---|---|
-| In-Spec Referencing  | A mechanism in ODPS 4.0 that enables reusable metadata blocks (such as `SLA`, `dataQuality`, or `paymentGateways`) to be referenced **within the same specification file** using $ref. It promotes reuse, consistency, and modularity without relying on external files.|
-| In-Spec reuse  | The ability to define once and reuse across the same ODPS file. It reduces duplication and ensures updates to shared profiles cascade automatically wherever referenced.|
-| External Referencing  | External referencing in ODPS 4.0 refers to the practice of pointing to reusable metadata blocks that are defined outside the current data product specification file, using the $ref syntax. These external components—such as SLAs, data quality profiles, access configurations, or payment gateways—are typically stored in shared YAML files or profile directories that can be maintained centrally. <br/><br/> External referencing enables cross-product reuse, central governance, and scalability by allowing multiple data products to reference the same standard definitions without duplication. Use cases: 1) Referencing a common `SLA/gold.yaml` profile across dozens of premium data products. 2) Sharing access policies via a centralized accessProfiles.yaml 3) Aligning monetization rules with a platform-wide paymentGateways.yaml. External referencing complements in-spec referencing. While in-spec referencing uses internal paths (e.g., #/SLA/default), external referencing uses file-based or URL-based pointers. |
-| Data point  | A data point refers to a single, individual unit of data. It can be a number, a word, a measurement, or any other piece of information that is recorded and used for analysis. Some mix the data point with a dataset. In a dataset, each data point represents one observation or measurement. For example, in a dataset of temperatures recorded every day, each daily temperature is a data point.  |
-| Component Profiles  | Named reusable variants of common metadata blocks (e.g., `default`, `gold`, `partner-grade`) defined inside the spec and referenced across products or pricing plans. Profiles encapsulate predefined service levels, data quality guarantees, or access methods.| 
-| Data point  | A data point refers to a single, individual unit of data. It can be a number, a word, a measurement, or any other piece of information that is recorded and used for analysis. Some mix the data point with a dataset. In a dataset, each data point represents one observation or measurement. For example, in a dataset of temperatures recorded every day, each daily temperature is a data point.  |
-| Data product  | As a strategic resource for companies, data is considered an asset that, like any other material good, has a financial value and whose management generates costs. Data created, collected or used in individual business processes can be sold to other organisations as raw or processed data, so that it no longer serves as an enabler of products, but is the product itself. This leads to the paradigm that data assets can be monetised by exchanging and trading data between organisations as data products and services. <br/><br/> There are multiple definitions for data product. In an [article authored by Jian Pei (2020)](https://arxiv.org/abs/2009.04462), data products "*refer to data sets as products and information services derived from data sets.*" Simon O'Regan's defines data product as *a product whose primary objective is to use data to facilitate an end goal*. From the academic literature we have found several subtypes of data products: raw data, derived data, data sets, reports, analytic views, 3D visualisations, algorithms, decision support (dashboards) and automated decision-making (Netflix product recommendations or Spotify’s Discover Weekly would be common examples). <br/><br/>Typically raw data, derived data and algorithms have technical users. Most often they tend to be internal products in an organisation. <br/><br/> If we dive in the data mesh world, this quote from [Zhamak Dehghani’s book](https://www.oreilly.com/library/view/data-mesh/9781492092384/) is key to understand the definition of data as a product: “*Domain data teams must apply product thinking […] to the datasets that they provide; considering their data assets as their products and the rest of the organization’s data scientists, ML and data engineers as their customers.*”<br/><br/>While many of the standard Product Development Rules apply — solve a customer need, learn from feedback, prioritise relentlessly, etc. — data has different characteristics compared to tangible products that prevent the direct transfer of established processes and rules of trading goods, especially in terms of pricing mechanisms. <br/> <br/>In trading data, there is less willingness to pay. For example, data buyers often do not recognise the potential value of data items because it cannot be fully disclosed prior to purchase (known as the ‘Arrow paradox’). <br/><br/>In addition, there is often a lack of notion that the creation, processing, storage and distribution of high-quality data is a major cost factor for the data provider. Another obstacle is the lack of trust and security causing potential data providers to fear that competitors could benefit from disclosure of in-house data. <br/><br/>One of the aims of this specification is to tackle above mentioned issues which hinder the growth of data ecosystem and market volatility.  |
-| Data as a service  | [In computing, data as a service, or DaaS](https://en.wikipedia.org/wiki/Data_as_a_service), is a term used to describe cloud-based software tools used for working with data, such as managing data in a data warehouse or analyzing data with business intelligence. It is enabled by software as a service (SaaS). DaaS like all "as a service" (aaS) technology, builds on the concept that its data product can be provided to the user on demand, regardless of geographic or organizational separation between provider and consumer. <br/><br/> [According to Daniel Newman from Forbes (2017)](https://www.forbes.com/sites/danielnewman/2017/02/07/data-as-a-service-the-big-opportunity-for-business/) DaaS is essentially a data stream that subscribers can access on demand.  <br/><br/> Some people use the term data product in a meaning which contains also data commodities which have more service alike attributes than product attributes. In those cases we prefer to use the term *data as a service* and call the creation process as *data servitization*. The term *productizement* is reserved for the process which creates data products as end result. |
-| Data as a service business model |  Data as a service as a business model is a concept when two or more organizations buy, sell, or trade machine-readable data in exchange for something of value. Data as a service is a general term that encompasses data-related services. Now DaaS service providers are replacing traditional data analytics services or happily clustering with existing services to offer more value-addition to customers. The DaaS providers are curating, aggregating, analyzing multi-source data in order to provide additional more valuable analytical data or information. <br/><br/> Typically, DaaS business is based on subscriptions and customers pay for a package of services or definite services. |
-| Data pipeline  | According to [Aiswarya et al.](https://research.chalmers.se/publication/523476/file/523476_Fulltext.pdf) the complex chain of interconnected activities or processes from data gen- eration through data reception constitutes a data pipeline. In other words, data pipelines are the connected chain of processes where the output of one or more processes becomes an input for another. It is a piece of software that removes many manual steps from the workflow and permits a streamlined, automated flow of data from one node to another. Moreover, it automates the operations involved in the selection, extraction, transformation, aggregation, validation, and loading of data for further analysis and visualization. It offers end to end speed by removing errors and resisting bottlenecks or delay. Data pipelines can process multiple streams of data simultaneously. |
-| Infrastructure as Code | Infrastructure as Code (IaC) transforms infrastructure management by using code instead of manual processes. Configuration files capture infrastructure specifications, ensuring consistent environment provisioning. The "as code" paradigm extends beyond infrastructure to encompass quality control and data product processes. This approach, applied to the entire data pipeline, enhances repeatability, traceability, and scalability, fostering collaboration and systematic data management. |
-| DataOps | In DataOps, the focus lies in creating automated processes for releasing and updating data products throughout their lifecycle, from development to production. This automation spans the entire journey from development to transitioning into production. The objective is to enhance operational efficiency through automation, reduce errors, and enable faster release cycles for data products. |
+For machine-readable lookup of vocabulary entries, use the ODPV term records at **[ODPV terms.jsonl](https://opendataproducts.org/odpv-v1.0/vocab/terms.jsonl)** (when available from the publication host).
 
+The tables below list **ODPV-aligned terms this repo actually uses** in the sample graph, the generator, and the explorer UI—plus short notes where ODPG gives them a concrete graph shape.
+
+---
+
+## Shared terms from ODPV (graph document and nodes)
+
+| Term (human) | ODPV-style term | Usage in this project |
+| --- | --- | --- |
+| Data product graph | `DataProductGraph` | Root `kind` of the YAML graph; validated in `generate_graph_explorer.py` as `DataProductGraph`. |
+| Graph identifier | `Identifier` (concept) | Root `id` and each node `id`—unique keys used by edges (`from` / `to`). |
+| Reference | `Reference` (concept) | Each node’s **`ref`** property points to the underlying file or URI for that entity (ODPG describes this pattern as a lightweight link to ODPS, policies, use cases, etc.). |
+| Data product | `DataProduct` | Node `type` value (e.g. sample `DP-*` nodes). |
+| Use case | `UseCase` | Node `type` value (e.g. sample `UC-*`). |
+| Business objective | `BusinessObjective` | Node `type` value (e.g. sample `OBJ-*`). |
+| KPI | `KPI` | Node `type` value (e.g. sample `KPI-*`). |
+| Policy | `Policy` | Node `type` value (e.g. sample `POL-*`); governance relationships attach here. |
+| API | `API` | Node `type` value (e.g. sample `API-*`). |
+| Agent | `Agent` | Node `type` value (e.g. sample `AGENT-*`). |
+| Strategic opportunity | `StrategicOpportunity` | Node `type` value (e.g. sample `OPP-*`). |
+
+ODPG defines **additional** supported node types (e.g. `Domain`, `Dataset`, `Workflow`, `Capability`) that are valid in the standard but **do not appear** in the current sample `graph.yaml` or in the explorer’s fixed legend palette; you can still use them in your own graphs if your schema and tooling allow.
+
+---
+
+## Shared relationship terms from ODPV (edges)
+
+Edge **`type`** values in YAML are spelled **exactly** as in ODPG (camelCase where applicable). The generator’s core list and tooltips mirror the ODPG relationship model, including:
+
+| Edge `type` (ODPG / ODPV-aligned) | Role in graphs here |
+| --- | --- |
+| `uses` | Operational usage between nodes. |
+| `supports` | Support for a business objective. |
+| `contributesTo` | Contribution toward an outcome or objective. |
+| `measures` | KPI measures an objective or outcome. |
+| `tracks` | Tracking or KPI-related information flow. |
+| `dependsOn` | Dependency between nodes. |
+| `produce` / `Consumes` | Produce / consume data or interfaces (as allowed by your YAML schema; literals match ODPG examples and tooling in this repo). |
+| `governedBy` | Governance or policy attachment. |
+| `ownedBy` | Ownership or stewardship. |
+| `alignsWith` | Strategic or semantic alignment. |
+| `relatedTo` | Generic semantic link. |
+| `impacts` | Impact relationship. |
+| `derivedFrom` | Derivation or origin. |
+| `exposes` | API or interface exposure. |
+| `monitors` | Monitoring relationship. |
+| `identifies` | Identification of an opportunity or condition. |
+
+Domain-specific **`type`** strings are allowed by ODPG for extension; the explorer will still render them, with legend coloring falling back to a neutral default when no explicit color is defined.
+
+---
+
+## ODPG- and project-specific usage notes
+
+| Term | Description |
+| --- | --- |
+| `schema` | URL of the ODPG YAML schema used for validation (see [ODPG YAML schema](https://opendataproducts.org/odpg-v1.0/schema/graph.yaml)). |
+| `version` | ODPG document version field carried in the graph root. |
+| `name` | Localized graph title (`name.en`, etc.) shown in the explorer header. |
+| `nodes` | Array of `{ id, type, ref }` entities; the explorer maps `type` to colors and groups. |
+| `edges` | Array of `{ from, to, type, confidence }`; `confidence` is **`high`**, **`medium`**, or **`low`** per ODPG guidance. |
+| `generate_graph_explorer.py` | Offline generator: reads graph YAML, validates core fields, emits `graph-explorer.html` for browser viewing. |
+| `graph-explorer.html` | Static visualization; relationship descriptions in the UI are aligned with the ODPG edge definitions baked into the generator. |
+
+**Reference field name:** Published ODPG examples sometimes show **`$ref`** on nodes; this repository’s sample graph uses **`ref`**, which matches the generator’s validator. Align field naming with whichever ODPG JSON/YAML schema you validate against.
+
+**Relationship vocabulary:** Prefer ODPV-defined relationship identifiers for `edges[].type` so the same edge semantics can be shared with ODPC (`Catalog.meta.graph`), other ODPG tools, and downstream AI or governance pipelines—as described in the [ODPG 1.0](https://opendataproducts.org/odpg-v1.0/) specification and the ODPC–ODPG integration patterns in the Open Data Products family.

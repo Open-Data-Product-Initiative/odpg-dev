@@ -114,25 +114,25 @@ The toolkit may support:
 nodes:
   - id: AGENT-001
     type: Agent
-    ref: ../agents/enterprise-analytics-agent.yaml
+    $ref: ../agents/enterprise-analytics-agent.yaml
 
   - id: DP-001
     type: DataProduct
-    ref: ../products/customer-360.yaml
+    $ref: ../products/customer-360.yaml
 
   - id: API-001
     type: API
-    ref: ../apis/customer-insights-api.yaml
+    $ref: ../apis/customer-insights-api.yaml
 
 edges:
   - from: AGENT-001
     to: DP-001
-    type: USES
+    type: uses
     confidence: high
 
   - from: AGENT-001
     to: API-001
-    type: USES
+    type: uses
     confidence: high
 ```
 
