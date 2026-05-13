@@ -398,6 +398,9 @@
                     <a href="#required-dependencies-amp-execution" class="toc-h2 toc-link" data-title="Required Dependencies &amp; Execution">Required Dependencies &amp; Execution</a>
                   </li>
                   <li>
+                    <a href="#quick-reference" class="toc-h2 toc-link" data-title="Quick reference">Quick reference</a>
+                  </li>
+                  <li>
                     <a href="#graph-explorer-capabilities" class="toc-h2 toc-link" data-title="Graph Explorer Capabilities">Graph Explorer Capabilities</a>
                   </li>
               </ul>
@@ -415,6 +418,9 @@
                     <a href="#interoperability" class="toc-h2 toc-link" data-title="Interoperability">Interoperability</a>
                   </li>
               </ul>
+          </li>
+          <li>
+            <a href="#specification-extensions" class="toc-h1 toc-link" data-title="Specification extensions">Specification extensions</a>
           </li>
           <li>
             <a href="#editors-and-contributors" class="toc-h1 toc-link" data-title="Editors and contributors">Editors and contributors</a>
@@ -449,12 +455,12 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 </tr>
 <tr>
 <td>ODPG YAML schema</td>
-<td><a href="https://opendataproducts.org/odpg-v1.0/schema/graph.yaml">YAML Schema</a></td>
+<td><a href="https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml">YAML Schema</a></td>
 <td>Machine-readable schema definition in YAML format</td>
 </tr>
 <tr>
 <td>ODPG JSON schema</td>
-<td><a href="https://opendataproducts.org/odpg-v1.0/schema/graph.json">JSON Schema</a></td>
+<td><a href="https://opendataproducts.org/odpg-v1.0/schema/odpg.json">JSON Schema</a></td>
 <td>Machine-readable schema definition in JSON format</td>
 </tr>
 <tr>
@@ -1185,10 +1191,12 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 
 <p>The script should use the standard ODPG structure exactly as defined in this specification.</p>
 
+<p><img src="images/graph_example-86e039c3.png" alt="Aviation Data Product Graph Explorer" /></p>
+
 <blockquote>
 <p>Example graph input:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schemas/graph.yaml</span>
 <span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">DataProductGraph</span>
 <span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
@@ -1198,19 +1206,118 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 <span class="na">nodes</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">UseCase</span>
-    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../usecases/predictive-maintenance-aircraft.yaml</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../usecases/predictive-maintenance-aircraft.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">BusinessObjective</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../objectives/increase-fleet-availability.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">KPI</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../kpis/fleet-availability-rate.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../products/aircraft-sensor-events.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">API</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../apis/maintenance-risk-score-api.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Policy</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../policies/aviation-data-quality-policy.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Agent</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../agents/maintenance-recommendation-agent.yaml</span>
+
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">StrategicOpportunity</span>
+    <span class="na">ref</span><span class="pi">:</span> <span class="s">../opportunities/reduce-unscheduled-maintenance.yaml</span>
 
 <span class="na">edges</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
     <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
     <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">supports</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-002</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">measures</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">KPI-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">tracks</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">exposes</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">POL-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">governedBy</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">API-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">uses</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">UC-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">identifies</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">alignsWith</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+
 </code></pre></div><h2 id='required-dependencies-amp-execution'>Required Dependencies &amp; Execution</h2>
 <p>The Python implementation requires PyYAML for parsing ODPG YAML files.</p>
-<div class="highlight"><pre class="highlight plaintext"><code># Run these 2 lines 
 
-pip install pyyaml
-generate_graph_explorer.py
+<p>1- See all options (built-in help)</p>
+<div class="highlight"><pre class="highlight plaintext"><code>python generate_graph_explorer.py --help
+</code></pre></div>
+<p>You should see <code>-i</code> / <code>--input</code> and <code>-o</code> / <code>--output</code> with their defaults.</p>
+
+<hr>
+
+<p>2- Run this </p>
+<div class="highlight"><pre class="highlight plaintext"><code>python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.html"
 </code></pre></div>
 <table><thead>
 <tr>
@@ -1225,6 +1332,28 @@ generate_graph_explorer.py
 </tbody></table>
 
 <p>The script read the <strong>graph.yaml</strong> file and generates <strong>graph-explorer.html</strong> file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.</p>
+<h2 id='quick-reference'>Quick reference</h2>
+<table><thead>
+<tr>
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>-i PATH</code> or <code>--input PATH</code></td>
+<td>ODPG graph YAML file to read</td>
+</tr>
+<tr>
+<td><code>-o PATH</code> or <code>--output PATH</code></td>
+<td>HTML file to write</td>
+</tr>
+<tr>
+<td><code>-h</code> or <code>--help</code></td>
+<td>Show help and defaults</td>
+</tr>
+</tbody></table>
+
+<p><strong>Defaults:</strong> if you omit <code>-i</code>, the script uses <code>graph.yaml</code> <strong>in the same directory as</strong> <code>generate_graph_explorer.py</code>. If you omit <code>-o</code>, it writes <strong><code>graph-explorer.html</code></strong> in the <strong>current working directory</strong>.</p>
 <h2 id='graph-explorer-capabilities'>Graph Explorer Capabilities</h2>
 <p>A generated Graph Explorer implementation may support:</p>
 
@@ -1356,6 +1485,65 @@ strategic opportunities emerging across multiple connected entities</p>
 <div class="highlight"><pre class="highlight yaml"><code><span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
 </code></pre></div>
 <p>Through this interoperability model, ODPG enables organizations to federate graph ecosystems across teams, domains, platforms, and organizations while maintaining semantic consistency and reusable relationship intelligence.</p>
+<h1 id='specification-extensions'>Specification extensions</h1>
+<p>While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.</p>
+
+<p>Extension properties are implemented as patterned fields that are always prefixed with <code>x-</code>. These fields may appear in ODPG objects such as the graph root, <code>metadata</code>, <code>metadata.owner</code>, <code>nodes</code>, and <code>edges</code>.</p>
+
+<p>Extensions are not part of the official ODPG object model unless they are later adopted into the specification. Tooling may ignore extension fields unless explicit support has been added.</p>
+
+<p>Extensions should not be used to redefine core ODPG semantics. They should be used only for additional metadata that does not fit the standard attributes.</p>
+
+<p>Useful and widely adopted extensions may become candidates for future versions of the standard. To propose useful extensions, raise an issue in GitHub:</p>
+
+<p><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues">Open Data Product Initiative GitHub issues</a></p>
+
+<blockquote>
+<p>Example of extension usage:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">DataProductGraph</span>
+<span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
+<span class="na">name</span><span class="pi">:</span>
+  <span class="na">en</span><span class="pi">:</span> <span class="s">Aviation Data Product Value Graph</span>
+<span class="na">x-internal-id</span><span class="pi">:</span> <span class="s">foobar123</span>
+<span class="na">x-source-system</span><span class="pi">:</span> <span class="s">internal-graph-platform</span>
+
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">owner</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Aviation Data Product Team</span>
+    <span class="na">email</span><span class="pi">:</span> <span class="s">aviation-data-products@example.com</span>
+    <span class="na">x-team-id</span><span class="pi">:</span> <span class="s">TEAM-042</span>
+
+<span class="na">nodes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+    <span class="na">x-lineage-system-id</span><span class="pi">:</span> <span class="s">lin-987</span>
+
+<span class="na">edges</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
+    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+    <span class="na">x-evidence-url</span><span class="pi">:</span> <span class="s">https://example.com/evidence/graph-aviation-001</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th><div style="width:150px">Element name</div></th>
+<th>Type</th>
+<th>Options</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>^x-</strong></td>
+<td>any</td>
+<td></td>
+<td>Allows extensions to the Open Data Product Graphs Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be null, a primitive, an array, or an object.</td>
+</tr>
+</tbody></table>
 <h1 id='editors-and-contributors'>Editors and contributors</h1>
 <p>This specification is openly developed and a lot of the work comes from community. We list all community contributors as a sign of appreciation. Maintainers process the feedback and draft new candidate releases, which may become the versions of the specification. </p>
 
