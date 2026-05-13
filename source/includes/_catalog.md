@@ -1,9 +1,5 @@
 # Graph Catalog
 
-The following example demonstrates a complete ODPG document connecting use cases, business objectives, KPIs, data products, governance policies, APIs, AI agents, and strategic opportunities into a unified value graph.
-
-![Aviation Data Product Value Graph](/images/dpvg_aviation.jpeg)
-
 > Example of the catalog object usage:
 
 ```yml 
@@ -134,6 +130,9 @@ graph:
       type: alignWith
       confidence: medium
 ```
+The following example demonstrates a complete ODPG document connecting use cases, business objectives, KPIs, data products, governance policies, APIs, AI agents, and strategic opportunities into a unified value graph.
+
+![Aviation Data Product Value Graph](/images/dpvg_aviation.jpeg)
 
 ## Graph Explorer Example
 
