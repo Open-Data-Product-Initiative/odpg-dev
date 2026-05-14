@@ -35,15 +35,15 @@ $defs:
       metadata:
         type: object
         description: "Metadata describing the graph, its purpose, ownership, visibility, and discovery information."
-        $ref: "#/$defs/metadata"
+        $ref: "#/$defs/graphMetadata"
       nodes:
         type: array
-        description: "Array of node objects."
+        description: "Collection of graph nodes."
         items:
           $ref: "#/$defs/node"
       edges:
         type: array
-        description: "Array of edge objects."
+        description: "Collection of directional graph edges."
         items:
           $ref: "#/$defs/edge"
     required:
@@ -54,7 +54,7 @@ $defs:
     patternProperties:
       "^x-": {}
 
-  metadata:
+  graphMetadata:
     type: object
     description: "Metadata describing the graph."
     properties:
@@ -127,7 +127,7 @@ $defs:
     patternProperties:
       "^x-": {}
 
-  nodes:
+  node:
     type: object
     description: "A distinct entity participating in the graph ecosystem."
     properties:
@@ -161,7 +161,7 @@ $defs:
     patternProperties:
       "^x-": {}
 
-  edges:
+  edge:
     type: object
     description: "A directional relationship connecting two graph nodes."
     properties:
