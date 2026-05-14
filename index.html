@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="icon" href="https://opendataproducts.org/odpg-v1.0/images/logo-dps-2024-f87840fa.png"/>
+    <link rel="icon" href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/source/images/odpg-white.png?raw=true"/>
     <meta charset="utf-8">
     <meta property="og:title" content="Open Data Product Graphs - Version 1.0" />
     <meta property="og:url" content="https://opendataproducts.org/odpg-v1.0" />
@@ -641,7 +641,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <blockquote>
 <p>Example of details object usage:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml</span>
 <span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">Graph</span>
 <span class="na">graph</span><span class="pi">:</span>
@@ -730,22 +730,22 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </tr>
 <tr>
 <td><code>nodes</code></td>
-<td>Array</td>
+<td>Array of node objects</td>
 <td>Yes</td>
-<td>Collection of graph nodes</td>
+<td>Collection of graph node objects</td>
 </tr>
 <tr>
 <td><code>edges</code></td>
-<td>Array</td>
+<td>Array of edge objects</td>
 <td>Yes</td>
-<td>Collection of graph edges</td>
+<td>Collection of graph edge objects</td>
 </tr>
 </tbody></table>
 <h2 id='optional-attributes-and-options'>Optional attributes and options</h2>
 <blockquote>
 <p>Example of catalog metadata usage:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml</span>
 <span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">Graph</span>
 <span class="na">graph</span><span class="pi">:</span>
@@ -833,7 +833,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <blockquote>
 <p>Example of the catalog object usage:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml</span>
 <span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">Graph</span>
 <span class="na">graph</span><span class="pi">:</span>
@@ -1757,9 +1757,11 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <blockquote>
 <p>Example of extension usage:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/graph.yaml</span>
+<div class="highlight"><pre class="highlight yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml</span>
 <span class="na">version</span><span class="pi">:</span> <span class="m">1.0</span>
-<span class="na">kind</span><span class="pi">:</span> <span class="s">DataProductGraph</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Graph</span>
+<span class="na">x-internal-id</span><span class="pi">:</span> <span class="s">foobar123</span>
+<span class="na">x-source-system</span><span class="pi">:</span> <span class="s">internal-graph-platform</span>
 <span class="na">graph</span><span class="pi">:</span>
   <span class="na">metadata</span><span class="pi">:</span>
     <span class="na">id</span><span class="pi">:</span> <span class="s">GRAPH-AVIATION-001</span>
@@ -1771,21 +1773,19 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
       <span class="na">name</span><span class="pi">:</span> <span class="s">Aviation Data Product Team</span>
       <span class="na">email</span><span class="pi">:</span> <span class="s">aviation-data-products@example.com</span>
       <span class="na">x-team-id</span><span class="pi">:</span> <span class="s">TEAM-042</span>
-<span class="na">x-internal-id</span><span class="pi">:</span> <span class="s">foobar123</span>
-<span class="na">x-source-system</span><span class="pi">:</span> <span class="s">internal-graph-platform</span>
 
-<span class="na">nodes</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
-    <span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
-    <span class="na">x-lineage-system-id</span><span class="pi">:</span> <span class="s">lin-987</span>
+  <span class="na">nodes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">DataProduct</span>
+      <span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
+      <span class="na">x-lineage-system-id</span><span class="pi">:</span> <span class="s">lin-987</span>
 
-<span class="na">edges</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
-    <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-    <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
-    <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
-    <span class="na">x-evidence-url</span><span class="pi">:</span> <span class="s">https://example.com/evidence/graph-aviation-001</span>
+  <span class="na">edges</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
+      <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">contributesTo</span>
+      <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
+      <span class="na">x-evidence-url</span><span class="pi">:</span> <span class="s">https://example.com/evidence/graph-aviation-001</span>
 </code></pre></div>
 <p>While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.</p>
 
@@ -1824,11 +1824,11 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 <h1 id='terms-used'>Terms used</h1>
-<p>This project works with <strong><a href="https://opendataproducts.org/odpg-v1.0/">Open Data Product Graphs (ODPG) 1.0</a></strong> documents and a small HTML generator for exploration. ODPG uses the <strong><a href="https://opendataproducts.org/odpv-v1.0/">Open Data Product Vocabulary (ODPV)</a></strong> as the shared vocabulary across the OpenDataProducts.org standards family: stable identifiers, labels, definitions, aliases, and <strong>relationship names</strong> should stay aligned with ODPV so graphs stay interoperable with ODPS, ODPC, and other tools.</p>
+<p>This project works with <strong><a href="https://opendataproducts.org/odpg-v1.0/">Open Data Product Graphs (ODPG) 1.0</a></strong> documents and a small HTML generator for exploration. ODPG uses the <strong><a href="https://opendataproducts.org/odpv-v1.0/">Open Data Product Vocabulary (ODPV)</a></strong> as the shared vocabulary across the OpenDataProducts.org standards family: stable identifiers, labels, definitions, aliases, and relationship names should stay aligned with ODPV so graphs stay interoperable with ODPS, ODPC, and other tools.</p>
 
-<p>For machine-readable lookup of vocabulary entries, use the ODPV term records at <strong><a href="https://opendataproducts.org/odpv-v1.0/vocab/terms.jsonl">ODPV terms.jsonl</a></strong> (when available from the publication host).</p>
+<p>For machine-readable lookup of vocabulary entries, use the ODPV term records at <strong><a href="https://opendataproducts.org/odpv-v1.0/vocab/terms.jsonl">ODPV terms.jsonl</a></strong> when available from the publication host.</p>
 
-<p>The tables below list <strong>ODPV-aligned terms this repo actually uses</strong> in the sample graph, the generator, and the explorer UI—plus short notes where ODPG gives them a concrete graph shape.</p>
+<p>The tables below list ODPV-aligned terms this repo uses in examples, the generator, and the explorer UI, plus short notes where ODPG gives them a concrete graph shape.</p>
 <h2 id='shared-terms-from-odpv-graph-document-and-nodes'>Shared terms from ODPV (graph document and nodes)</h2>
 <table><thead>
 <tr>
@@ -1839,64 +1839,64 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </thead><tbody>
 <tr>
 <td>Data product graph</td>
-<td><code>DataProductGraph</code></td>
-<td>Root <code>kind</code> of the YAML graph; validated in <code>generate_graph_explorer.py</code> as <code>DataProductGraph</code>.</td>
+<td><code>Graph</code></td>
+<td>Root <code>kind</code> of the YAML graph; validated in <code>generate_graph_explorer.py</code> as <code>Graph</code>.</td>
 </tr>
 <tr>
 <td>Graph identifier</td>
 <td><code>Identifier</code> (concept)</td>
-<td>Root <code>id</code> and each node <code>id</code>—unique keys used by edges (<code>from</code> / <code>to</code>).</td>
+<td><code>graph.metadata.id</code> and each node <code>id</code> are unique keys used by edges (<code>from</code> / <code>to</code>).</td>
 </tr>
 <tr>
 <td>Reference</td>
 <td><code>Reference</code> (concept)</td>
-<td>Each node’s <strong><code>ref</code></strong> property points to the underlying file or URI for that entity (ODPG describes this pattern as a lightweight link to ODPS, policies, use cases, etc.).</td>
+<td>Each node&#39;s <strong><code>$ref</code></strong> property points to the underlying file or URI for that entity.</td>
 </tr>
 <tr>
 <td>Data product</td>
 <td><code>DataProduct</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>DP-*</code> nodes).</td>
+<td>Node <code>type</code> value, such as sample <code>DP-*</code> nodes.</td>
 </tr>
 <tr>
 <td>Use case</td>
 <td><code>UseCase</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>UC-*</code>).</td>
+<td>Node <code>type</code> value, such as sample <code>UC-*</code> nodes.</td>
 </tr>
 <tr>
 <td>Business objective</td>
 <td><code>BusinessObjective</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>OBJ-*</code>).</td>
+<td>Node <code>type</code> value, such as sample <code>OBJ-*</code> nodes.</td>
 </tr>
 <tr>
 <td>KPI</td>
 <td><code>KPI</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>KPI-*</code>).</td>
+<td>Node <code>type</code> value, such as sample <code>KPI-*</code> nodes.</td>
 </tr>
 <tr>
 <td>Policy</td>
 <td><code>Policy</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>POL-*</code>); governance relationships attach here.</td>
+<td>Node <code>type</code> value, such as sample <code>POL-*</code> nodes; governance relationships attach here.</td>
 </tr>
 <tr>
 <td>API</td>
 <td><code>API</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>API-*</code>).</td>
+<td>Node <code>type</code> value, such as sample <code>API-*</code> nodes.</td>
 </tr>
 <tr>
 <td>Agent</td>
 <td><code>Agent</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>AGENT-*</code>).</td>
+<td>Node <code>type</code> value, such as sample <code>AGENT-*</code> nodes.</td>
 </tr>
 <tr>
 <td>Strategic opportunity</td>
 <td><code>StrategicOpportunity</code></td>
-<td>Node <code>type</code> value (e.g. sample <code>OPP-*</code>).</td>
+<td>Node <code>type</code> value, such as sample <code>OPP-*</code> nodes.</td>
 </tr>
 </tbody></table>
 
-<p>ODPG defines <strong>additional</strong> supported node types (e.g. <code>Domain</code>, <code>Dataset</code>, <code>Workflow</code>, <code>Capability</code>) that are valid in the standard but <strong>do not appear</strong> in the current sample <code>graph.yaml</code> or in the explorer’s fixed legend palette; you can still use them in your own graphs if your schema and tooling allow.</p>
+<p>ODPG defines additional supported node types, such as <code>Domain</code>, <code>Dataset</code>, <code>Workflow</code>, and <code>Capability</code>, that are valid in the standard even when they do not appear in every sample graph.</p>
 <h2 id='shared-relationship-terms-from-odpv-edges'>Shared relationship terms from ODPV (edges)</h2>
-<p>Edge <strong><code>type</code></strong> values in YAML are spelled <strong>exactly</strong> as in ODPG (camelCase where applicable). The generator’s core list and tooltips mirror the ODPG relationship model, including:</p>
+<p>Edge <code>type</code> values in YAML are spelled exactly as in ODPG. The generator&#39;s core list and tooltips mirror the ODPG relationship model, including:</p>
 
 <table><thead>
 <tr>
@@ -1929,8 +1929,8 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>Dependency between nodes.</td>
 </tr>
 <tr>
-<td><code>produce</code> / <code>Consumes</code></td>
-<td>Produce / consume data or interfaces (as allowed by your YAML schema; literals match ODPG examples and tooling in this repo).</td>
+<td><code>produces</code> / <code>consumes</code></td>
+<td>Production or consumption of data, outputs, services, or interfaces.</td>
 </tr>
 <tr>
 <td><code>governedBy</code></td>
@@ -1941,7 +1941,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>Ownership or stewardship.</td>
 </tr>
 <tr>
-<td><code>alignsWith</code></td>
+<td><code>alignsWith</code> / <code>alignWith</code></td>
 <td>Strategic or semantic alignment.</td>
 </tr>
 <tr>
@@ -1970,7 +1970,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </tr>
 </tbody></table>
 
-<p>Domain-specific <strong><code>type</code></strong> strings are allowed by ODPG for extension; the explorer will still render them, with legend coloring falling back to a neutral default when no explicit color is defined.</p>
+<p>Domain-specific <code>type</code> strings are allowed by ODPG for extension; the explorer will still render them, with legend coloring falling back to a neutral default when no explicit color is defined.</p>
 <h2 id='odpg-and-project-specific-usage-notes'>ODPG- and project-specific usage notes</h2>
 <table><thead>
 <tr>
@@ -1980,23 +1980,27 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </thead><tbody>
 <tr>
 <td><code>schema</code></td>
-<td>URL of the ODPG YAML schema used for validation (see <a href="https://opendataproducts.org/odpg-v1.0/schema/graph.yaml">ODPG YAML schema</a>).</td>
+<td>URL of the ODPG YAML schema used for validation, such as <a href="https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml">ODPG YAML schema</a>.</td>
 </tr>
 <tr>
 <td><code>version</code></td>
 <td>ODPG document version field carried in the graph root.</td>
 </tr>
 <tr>
-<td><code>name</code></td>
-<td>Localized graph title (<code>name.en</code>, etc.) shown in the explorer header.</td>
+<td><code>kind</code></td>
+<td>Root document type. Use <code>Graph</code>.</td>
 </tr>
 <tr>
-<td><code>nodes</code></td>
-<td>Array of <code>{ id, type, ref }</code> entities; the explorer maps <code>type</code> to colors and groups.</td>
+<td><code>graph.metadata.name</code></td>
+<td>Localized graph title, such as <code>graph.metadata.name.en</code>, shown in the explorer header.</td>
 </tr>
 <tr>
-<td><code>edges</code></td>
-<td>Array of <code>{ from, to, type, confidence }</code>; <code>confidence</code> is <strong><code>high</code></strong>, <strong><code>medium</code></strong>, or <strong><code>low</code></strong> per ODPG guidance.</td>
+<td><code>graph.nodes</code></td>
+<td>Array of node objects shaped as <code>{ id, type, $ref }</code>; the explorer maps <code>type</code> to colors and groups.</td>
+</tr>
+<tr>
+<td><code>graph.edges</code></td>
+<td>Array of edge objects shaped as <code>{ from, to, type, confidence }</code>; <code>confidence</code> is <code>high</code>, <code>medium</code>, or <code>low</code> per ODPG guidance.</td>
 </tr>
 <tr>
 <td><code>generate_graph_explorer.py</code></td>
@@ -2008,9 +2012,9 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </tr>
 </tbody></table>
 
-<p><strong>Reference field name:</strong> Published ODPG examples sometimes show <strong><code>$ref</code></strong> on nodes; this repository’s sample graph uses <strong><code>ref</code></strong>, which matches the generator’s validator. Align field naming with whichever ODPG JSON/YAML schema you validate against.</p>
+<p><strong>Reference field name:</strong> Use <strong><code>$ref</code></strong> on nodes when validating against the ODPG JSON/YAML schema. The generator accepts legacy <code>ref</code> values during transition, but <code>$ref</code> is the schema-aligned field.</p>
 
-<p><strong>Relationship vocabulary:</strong> Prefer ODPV-defined relationship identifiers for <code>edges[].type</code> so the same edge semantics can be shared with ODPC (<code>Catalog.meta.graph</code>), other ODPG tools, and downstream AI or governance pipelines—as described in the <a href="https://opendataproducts.org/odpg-v1.0/">ODPG 1.0</a> specification and the ODPC–ODPG integration patterns in the Open Data Products family.</p>
+<p><strong>Relationship vocabulary:</strong> Prefer ODPV-defined relationship identifiers for <code>graph.edges[].type</code> so the same edge semantics can be shared with ODPC, other ODPG tools, and downstream AI or governance pipelines.</p>
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
