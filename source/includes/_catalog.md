@@ -250,4 +250,6 @@ A generated Graph Explorer implementation may support:
 
 The Graph Explorer demonstrates how ODPG specifications can become both machine-readable and human-navigable while preserving interoperability with the broader Open Data Products ecosystem.
 
-![Aviation Data Product Graph Explorer](/images/graph_example.png)
+[![Aviation Data Product Graph Explorer](/images/graph_example.png)](/graph/examples/graph-explorer.html)
+
+[Open the Graph Explorer example](/graph/examples/graph-explorer.html)
