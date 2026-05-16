@@ -2,7 +2,7 @@
 
 > Example of the catalog object usage:
 
-```yml 
+```yml
 schema: https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml
 version: 1.0
 kind: Graph
@@ -218,9 +218,14 @@ python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.
 
 | Script | Purpose |
 |---|---|
+| [`odpg_validate.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_validate.py) | Validate graph structure, node integrity, edge integrity, confidence values, and core ODPG semantics |
+| [`odpg_summary.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_summary.py) | Summarize graph metadata, node counts, edge counts, node types, edge types, and confidence values |
+| [`odpg_traverse.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_traverse.py) | Discover relationship paths from a node |
+| [`odpg_analyze.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_analyze.py) | Run strategic and governance checks |
+| [`odpg_agent_context.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_agent_context.py) | Extract trusted graph context for AI-agent use |
 | [`generate_graph_explorer.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/generate_graph_explorer.py) | Transform the graph yaml file into HTML file |
 
-The script read the **graph.yaml** file and generates **graph-explorer.html** file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.
+The toolkit scripts support command-line checks and graph reasoning tasks, while the explorer script reads the **graph.yaml** file and generates **graph-explorer.html** file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.
 
 ### Quick reference
 

@@ -63,6 +63,8 @@ ODPG MAY provide an agent-friendly JSONL resource at `/graph/objects.jsonl`. Thi
 | AI Agent Toolkit | ODPG graph and agent task context | Trusted graph context and reasoning paths |
 | Federation Toolkit | Multiple ODPG graphs | Federated graph view or cross-domain mappings |
 
+ODPG provides focused Python command-line scripts for the most important toolkit capabilities: `odpg_validate.py`, `odpg_summary.py`, `odpg_traverse.py`, `odpg_analyze.py`, and `odpg_agent_context.py`. The scripts share common graph logic through `odpg_toolkit_core.py` so validation, traversal, governance analysis, and AI-agent context extraction remain consistent.
+
 ### Graph Validation Toolkit
 
 The Graph Validation Toolkit validates ODPG documents against the official schema and verifies structural consistency, node integrity, edge validity, confidence values, and interoperability requirements.

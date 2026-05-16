@@ -69,6 +69,12 @@ Domain-specific `type` strings are allowed by ODPG for extension; the explorer w
 | `graph.nodes` | Array of node objects shaped as `{ id, type, $ref }`; the explorer maps `type` to colors and groups. |
 | `graph.edges` | Array of edge objects shaped as `{ from, to, type, confidence }`; `confidence` is `high`, `medium`, or `low` per ODPG guidance. |
 | `generate_graph_explorer.py` | Offline generator: reads graph YAML, validates core fields, emits `graph-explorer.html` for browser viewing. |
+| `odpg_toolkit_core.py` | Shared Python module used by the ODPG toolkit scripts for loading, validating, summarizing, traversing, analyzing, and extracting graph context. |
+| `odpg_validate.py` | Python validation script for graph files. |
+| `odpg_summary.py` | Python summary script for graph structure and relationship counts. |
+| `odpg_traverse.py` | Python traversal script for relationship paths. |
+| `odpg_analyze.py` | Python analysis script for strategic and governance checks. |
+| `odpg_agent_context.py` | Python context script for AI-agent graph retrieval. |
 | `graph-explorer.html` | Static visualization; relationship descriptions in the UI are aligned with the ODPG edge definitions baked into the generator. |
 
 **Reference field name:** Use **`$ref`** on nodes when validating against the ODPG JSON/YAML schema. The generator accepts legacy `ref` values during transition, but `$ref` is the schema-aligned field.
