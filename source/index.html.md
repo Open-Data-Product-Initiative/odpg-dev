@@ -1,5 +1,5 @@
 ---
-title: Open Data Product Graphs Release Version 1.0 | Linux Foundation
+title: Open Data Product Graphs Release Version DEVELOPMENT | Linux Foundation
 
 language_tabs: # must be one of https://git.io/vQNgJ
 - yaml
@@ -30,7 +30,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Open Data Product Graphs Release Version 1.0 is a vendor-neutral, machine-readable graph model for managing data products, use cases, business objectives, KPIs, and their relationships. It defines the nodes, edges, attributes, and structures needed to connect data product lifecycle management with measurable business value.
+    content: Open Data Product Graphs Release Version DEVELOPMENT is a vendor-neutral, machine-readable graph model for managing data products, use cases, business objectives, KPIs, and their relationships. It defines the nodes, edges, attributes, and structures needed to connect data product lifecycle management with measurable business value.
 
 ---
 
@@ -47,8 +47,8 @@ Development of the specification is under the umbrella of the Linux Foundation.
 
 | Topic            | Link                                                                                                | Description                                                   |
 | ---------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Version source   | [Open Data Product Graphs 1.0 on GitHub](https://github.com/Open-Data-Product-Initiative/odpg-v1.0) | Official source repository for the ODPG 1.0 specification     |
-| Contribute       | [Raise an issue in GitHub](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues)        | Submit issues or suggestions to the specification maintainers |
+| Version source   | [Open Data Product Graphs 1.0 on GitHub](https://github.com/Open-Data-Product-Initiative/odpg-dev) | Official source repository for the ODPG DEV specification     |
+| Contribute       | [Raise an issue in GitHub](https://github.com/Open-Data-Product-Initiative/odpg-dev/issues)        | Submit issues or suggestions to the specification maintainers |
 
 
 ## Introduction
