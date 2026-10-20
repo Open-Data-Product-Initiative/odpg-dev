@@ -27,6 +27,13 @@ to every use of the term agent in PROV.
 
 Install the toolkit dependencies and create a YAML document:
 
+Run from the repository root using Python 3.11, the version used by CI. Keep
+`source/scripts/odpg_toolkit_core.py` and `source/scripts/odpg_profiles.py` beside
+the CLI scripts, with `source/schema/` at its repository location. The shared
+toolkit needs both PyYAML and `jsonschema[format]`; the manifest below also
+installs pytest and pytest-cov for conformance tests. Required Dependencies &
+Execution contains the full runtime layout and a runtime-only installation command.
+
 ```bash
 python -m pip install -r requirements-dev.txt
 ```
@@ -105,6 +112,12 @@ from support counts. Legacy edges remain declared topology. The separate
 claims. Agent context includes `reviewedPaths` and a trust notice; review status
 is self-reported metadata, not authenticated permission or production readiness.
 
+`forwardPaths` and `reversePaths` preserve all traversed edge metadata, including
+unaccepted claims. `reviewedPaths` filters edge assertions for acceptance,
+evidence pointers and the current validity window. `governanceSignals` reports
+policy links in the unfiltered forward paths; it is not a list of enforced or
+approved controls. `analysisBasis` explains the topology/review distinction.
+
 ## Value Evidence profile 0.1 (draft)
 
 Declare the optional profile inside metadata; document-level extensions are
@@ -136,7 +149,11 @@ to the core type list.
 Reference fields contain node IDs; `measurements` and `evidence` contain arrays
 of IDs. Each listed type must be present in a conformant profile graph.
 Metric, unit, period ordering, hypothesis identity and typed-reference checks
-are performed by the Python profile validator in addition to JSON Schema.
+are performed by [`odpg_profiles.py`](/scripts/odpg_profiles.py) in addition to
+JSON Schema. Invoke it through `odpg_validate.py`; the module has no standalone CLI.
+Measurement, baseline and target values must be finite numbers. Required chain
+edges may be legacy declared links or current, accepted assertions; explicitly
+pending, rejected, deferred or out-of-window claims do not satisfy those chains.
 
 The following directed edges must accompany the reference fields:
 
@@ -172,6 +189,12 @@ python source/scripts/odpg_analyze.py -i source/examples/value-evidence/aviation
 python -m pytest tests
 ```
 
+Run `python -m pytest tests/test_odpg_adoption.py` for the focused profile and
+publication-consistency checks. It verifies that the published section and
+resource inventories, dependencies, vocabularies, output fields and examples
+agree with the current schemas and toolkit. Graph Toolkit provides the JSON
+output field reference; Required Dependencies & Execution lists setup commands.
+
 The validator returns JSON with `valid`, `errors`, and `warnings`; declared
 profiles also receive a `profiles` map. Exit status is zero only for a valid
 document and supported profiles. Unknown profiles fail explicitly. JSON Schema
@@ -187,9 +210,9 @@ will be independently versioned; no four-level maturity ladder is required.
 | --- | --- |
 | Core graph and local structural validation | Implemented |
 | Shared assertion contract 0.1 | Draft, schema and validator implemented |
-| Value Evidence 0.1 | Draft, schema, semantic validator and fixture implemented |
-| Governed Agent 0.1 | Proposal only; not accepted by the validator |
-| Observed Lineage 0.1 | Proposal only; not accepted by the validator |
+| Value Evidence (`odpg-value-evidence-0.1`) | Draft, schema, semantic validator and fixture implemented |
+| Governed Agent (`odpg-governed-agent-0.1`) | Proposal only; not accepted by the validator |
+| Observed Lineage (`odpg-observed-lineage-0.1`) | Proposal only; not accepted by the validator |
 | RDF/SHACL, DCAT, PROV, OpenLineage, MCP and OpenTelemetry adapters | Future work; not implemented here |
 
 The Governed Agent proposal should distinguish `Agent` from `AgentRun`,

@@ -6,7 +6,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 # Strategic Intelligence
 
@@ -39,16 +39,23 @@ edges:
 
 ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.
 
-Through graph relationships, organizations can identify:
+The reference analyzer implements orphan KPI, unsupported objective, ungoverned
+asset, low-confidence and use-case contribution checks, plus separate reviewed
+support reporting. Its findings describe the supplied graph. Duplicated
+initiatives, thematic clustering and opportunity inference below describe
+possible analyses by other implementations; they are not current analyzer
+features. See Graph Toolkit for the JSON output field reference.
 
-unlinked high-priority use cases
-unsupported strategic objectives
-duplicated operational initiatives
-overlapping capabilities
-orphan KPIs
-governance gaps
-reusable product ecosystems
-strategic opportunities emerging across multiple connected entities
+Graph relationships provide context for investigating:
+
+* unlinked high-priority use cases
+* unsupported strategic objectives
+* duplicated operational initiatives
+* overlapping capabilities
+* orphan KPIs
+* governance gaps
+* reusable product ecosystems
+* strategic opportunities emerging across multiple connected entities
 
 Strategic opportunities may emerge when several use cases, KPIs, domains, or data products collectively indicate an unmet organizational need or a common optimization target.
 

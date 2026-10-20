@@ -42,6 +42,12 @@ meta:
 
 ## Release Version DEVELOPMENT
 
+This development publication targets the ODPG v1.0 core. Optional assertion and
+Value Evidence contracts are drafts; Governed Agent and Observed Lineage are
+unimplemented proposals. Adoption and Evidence Profiles defines their status,
+and Graph Toolkit plus Required Dependencies & Execution lists current resources
+and commands.
+
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 ([RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) and [RFC 8174](https://datatracker.ietf.org/doc/html/rfc8174)) when, and only when, they appear in all capitals, as shown here.
 
 The specification is shared under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license.
@@ -69,7 +75,7 @@ Through ODPG, organizations can represent questions such as:
 - Which business objectives are supported by this use case?
 - Which KPIs are measured through these data products?
 - Which data products contribute to the same strategic objective?
-- Which AI agents are consuming these APIs?
+- Which agent definitions declare API usage, and where is execution evidence referenced?
 - Which policies govern this workflow or domain?
 - Which business areas contain unsupported strategic objectives?
 - Which strategic opportunities emerge from multiple related use cases?
@@ -106,7 +112,10 @@ and clearly distinguishes implemented validation from future proposals.
 
 The purpose of ODPG is to provide organizations with a standardized machine-readable graph specification that enables them to model relationships between data products, business objectives, operational use cases, governance structures, APIs, workflows, AI systems, and strategic capabilities in a consistent and interoperable manner.
 
-Through this graph model, organizations can establish visibility into how data products contribute to business outcomes, how governance policies propagate across interconnected assets, how AI agents interact with enterprise systems, how KPIs align with strategic goals, and how operational dependencies affect downstream capabilities.
+Through this graph model, organisations can inspect declared contribution paths,
+documented policy relationships, agent definitions, KPI alignment and operational
+dependencies. Observed execution and business-value conclusions require linked
+evidence and accountable review; the graph does not enforce policies.
 
 ODPG therefore enables organizations to:
 

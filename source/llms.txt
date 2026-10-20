@@ -22,6 +22,23 @@ Agent definitions and agent runs are different concepts. Enforce all access
 and authorization outside the graph at the MCP/API boundary.
 Use `/examples/value-evidence/aviation.yaml` only as a synthetic fixture.
 Core `version` must be a string, and resource references use `$ref`, not `ref`.
+The development repository targets the v1.0 core; profile contracts remain drafts.
+
+## Profile vocabulary and implementation status
+
+`odpg-value-evidence-0.1` is the implemented draft. Its additional node types are
+`ValueHypothesis`, `Outcome`, `MetricDefinition`, `Baseline`, `Target`,
+`Measurement`, `Evidence` and `ReviewDecision`. Its additional edge types are
+`tests`, `expects`, `measuredBy`, `hasBaseline`, `hasTarget`, `supportedBy` and
+`reviews`; it also reuses core relationships. See Adoption and Evidence Profiles
+for directed chains; these terms are not new required core fields or core types.
+`odpg-governed-agent-0.1` and `odpg-observed-lineage-0.1` are unimplemented
+proposals and are rejected if declared for conformance.
+`graph.metadata.status` is graph lifecycle, not assertion review status.
+`governanceSignals` preserves policy links from unfiltered context paths;
+only `reviewedPaths` applies the edge-review filter. Evidence content and reviewer
+authority are not authenticated. New graphs should use canonical `alignsWith`;
+the shared toolkit retains `alignWith` only as a legacy spelling.
 
 Use this file as AI-agent guidance for reading, generating, validating, repairing, and reasoning over Open Data Product Graphs documents.
 
@@ -30,8 +47,25 @@ Use this file as AI-agent guidance for reading, generating, validating, repairin
 - Specification: https://opendataproducts.org/odpg-v1.0/
 - YAML schema: https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml
 - JSON schema: https://opendataproducts.org/odpg-v1.0/schema/odpg.json
+- Shared module: /scripts/odpg_toolkit_core.py
+- Schema/profile module: /scripts/odpg_profiles.py
+- Assertion schema: /schema/profiles/assertion-0.1.json
+- Value Evidence overlay: /schema/profiles/value-evidence-0.1.json
+- Synthetic profile example and references: /examples/value-evidence/aviation.yaml and /examples/value-evidence/resources.yaml
 - Agent objects JSONL: https://opendataproducts.org/odpg-v1.0/graph/objects.jsonl
-- GitHub issues: https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues
+- GitHub issues: https://github.com/Open-Data-Product-Initiative/odpg-dev/issues
+
+## Execution dependencies
+
+Use Python 3.11, as tested in CI. From the repository root, install
+`requirements-dev.txt` (PyYAML, jsonschema with format validation, pytest and
+pytest-cov). Runtime use needs only PyYAML and `jsonschema[format]`. Keep both
+support modules beside the CLI scripts, with the bundled `schema/` directory
+alongside `scripts/`; downloading a CLI file alone is insufficient.
+`odpg_profiles.py` is invoked through shared toolkit operations, not executed
+directly. Validate graphs with `odpg_validate.py` before visualising them:
+the independent explorer generator performs basic checks, not profile
+conformance. The summary command reports counts and does not establish validity.
 
 ## AI Agent Guidance
 
@@ -42,7 +76,7 @@ Use this file as AI-agent guidance for reading, generating, validating, repairin
 - Use ODPS for full data product metadata; in ODPG, reference data products as `DataProduct` nodes instead of copying full ODPS content.
 - Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 - Use `confidence` values `high`, `medium`, or `low` for edges.
-- Use `x-` prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+- Use `x-` prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 - Use `graph.nodes` as an array of node objects and `graph.edges` as an array of edge objects.
 - Use `$ref` to point to referenced specifications, resources, or artifacts.
 - Keep ODPG graph documents lightweight; avoid embedding full external specifications inside graph nodes.
@@ -105,7 +139,7 @@ The `kind` value should be `Graph`.
 - Use the Graph Traversal Toolkit for path discovery, dependency traversal, governance propagation, impact analysis, semantic navigation, and strategic alignment analysis.
 - Use the Strategic Intelligence Toolkit for orphan KPI detection, strategic gap analysis, thematic clustering, opportunity inference, duplicate use case detection, and capability alignment analysis.
 - Use the AI Agent Toolkit for graph retrieval APIs, semantic context injection, governance-aware traversal, relationship discovery with evidence metadata, explainable reasoning paths, graph-based memory, objective-aware planning, policy-aware execution, dependency reasoning, and graph-native orchestration.
-- Use the Federation Toolkit for federated graph discovery, cross-domain traversal, graph synchronization, semantic mapping, distributed governance, and multi-organization graph interoperability.
+- Federation is an architectural proposal, not an available reference service; do not claim the current scripts implement cross-domain discovery, synchronization or distributed enforcement.
 
 ## Generation Rules
 
@@ -115,4 +149,4 @@ The `kind` value should be `Graph`.
 - Do not copy ODPS data product metadata into ODPG graph nodes; use references.
 - Do not use ODPC catalog objects for relationship traversal; use ODPG nodes and edges.
 - Preserve existing IDs when repairing a graph unless a duplicate or invalid ID must be fixed.
-- Add `x-` fields only when local implementation metadata is needed.
+- Add `x-` fields for local metadata or published optional profiles; keep their contract and declaration explicit.

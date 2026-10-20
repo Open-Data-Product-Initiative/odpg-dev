@@ -6,7 +6,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 # AI Agent Interoperability
 
@@ -43,7 +43,7 @@ Through graph traversal, AI agents can identify:
 * which data products are relevant to a task
 * which APIs are available
 * which objectives are being supported
-* which policies apply
+* which policies are associated with graph entities
 * which governance boundaries exist
 * which dependencies affect execution
 * which relationships carry explicit origin, evidence and review metadata
@@ -59,10 +59,16 @@ separately; it does not authenticate evidence or enforce policies.
 
 ODPG is designed to operate as an interoperable relationship layer across the broader Open Data Products ecosystem, where graph nodes may reference ODPS data products, ODPV vocabulary definitions, ODPC catalog entries, governance specifications, APIs, workflows, use cases, KPI definitions, or external organizational assets.
 
-The ref property enables ODPG to link graph entities to external specifications while maintaining lightweight graph portability and reusable interoperability structures.
+The `$ref` property enables ODPG to link graph entities to external specifications while maintaining lightweight graph portability and reusable interoperability structures.
 
 ```yml
 $ref: ../products/aircraft-maintenance-history.yaml
 ```
 
-Through this interoperability model, ODPG enables organizations to federate graph ecosystems across teams, domains, platforms, and organizations while maintaining semantic consistency and reusable relationship intelligence.
+References provide a basis for linking graphs across teams and domains; the
+reference toolkit does not implement a federation service. The proposed
+`odpg-observed-lineage-0.1` profile would link PROV and OpenLineage records, while
+`odpg-governed-agent-0.1` would distinguish definitions from observed runs and
+approval/evaluation evidence. Both remain unimplemented proposals. The current
+implemented draft is `odpg-value-evidence-0.1`, with a shared assertion contract;
+see Adoption and Evidence Profiles for schemas, mappings and conformance scope.

@@ -6,7 +6,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 # Governance and Trust
 
@@ -28,11 +28,15 @@ edges:
 ```
 
 
-ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.
+ODPG documents governance relationships by connecting policies, controls,
+ownership structures, quality requirements, stewardship responsibilities and
+compliance expectations to graph entities.
 
 This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.
 
-This governance structure supports:
+These relationships provide context for the following activities; the reference
+toolkit does not implement trust scoring, lifecycle enforcement or compliance
+certification:
 
 * policy traceability
 * governance impact analysis
@@ -49,3 +53,9 @@ Authentication, authorization and policy enforcement remain in MCP/API
 infrastructure and other authoritative systems. Trust scores and compliance
 conclusions require separately defined evidence, methods and accountable review.
 See Adoption and Evidence Profiles for the draft assertion and value contracts.
+
+Attach source, origin, evidence, review and validity through the optional
+`x-odpg-assertion` contract. `objectivesWithoutReviewedSupport` separates reviewed
+support from declared topology. In context output, `governanceSignals` records
+policy relationships from unfiltered paths; `reviewedPaths` separately identifies
+current, accepted, evidenced edge claims. Neither is an authorization decision.

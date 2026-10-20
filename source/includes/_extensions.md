@@ -6,7 +6,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 # Specification extensions
 
@@ -49,7 +49,7 @@ graph:
 
 While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.
 
-Extension properties are implemented as patterned fields that are always prefixed with `x-`. These fields may appear in ODPG objects such as the graph root, `metadata`, `metadata.owner`, `nodes`, and `edges`.
+Extension properties are implemented as patterned fields that are always prefixed with `x-`. These fields may appear in ODPG objects such as `graph`, `graph.metadata`, `graph.metadata.owner`, individual nodes and individual edges.
 
 Extensions are not part of the official ODPG object model unless they are later adopted into the specification. Tooling may ignore extension fields unless explicit support has been added.
 
@@ -63,7 +63,7 @@ Extensions should not be used to redefine core ODPG semantics. They should be us
 
 Useful and widely adopted extensions may become candidates for future versions of the standard. To propose useful extensions, raise an issue in GitHub:
 
-[Open Data Product Initiative GitHub issues](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues)
+[Open Data Product Initiative GitHub issues](https://github.com/Open-Data-Product-Initiative/odpg-dev/issues)
 
 | <div style="width:150px">Element name</div> | Type | Options | Description |
 | --- | --- | --- | --- |

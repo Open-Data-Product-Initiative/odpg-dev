@@ -6,7 +6,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 # Edges
 
@@ -47,6 +47,7 @@ Each edge within an ODPG graph contains properties that describe the relationshi
 | to | String | Yes | Target node identifier |
 | type | String | Yes | Relationship type |
 | confidence | String | Yes | Confidence level of the relationship |
+| x-odpg-assertion | Object | No | Optional draft claim contract; separate origin, evidence, review status and validity from confidence. |
 
 The **from** property identifies the source node from which the relationship originates.
 
@@ -84,3 +85,18 @@ ODPG supports multiple relationship types capable of representing operational, s
 | identifies     | A node identifies an opportunity or condition                 |
 
 The relationship model is designed to remain extensible so that organizations can introduce domain-specific relationship types while maintaining compatibility with the core ODPG graph structure.
+
+## Optional Value Evidence Relationships
+
+The draft Value Evidence profile adds `tests`, `expects`, `measuredBy`,
+`hasBaseline`, `hasTarget`, `supportedBy` and `reviews`, and reuses core
+relationships such as `uses`, `supports` and `measures`. The Adoption and
+Evidence Profiles section defines their source/target types and required
+chains; they are not new core relationship types. The shared validator
+recognises the profile vocabulary when `odpg-value-evidence-0.1` is declared.
+
+Nodes and edges may also carry `x-odpg-assertion`, validated against the
+[shared assertion contract](/schema/profiles/assertion-0.1.json), independently
+of Value Evidence profile adoption. Traversal preserves these fields. Analysis
+distinguishes legacy declared links from current, accepted claims with evidence
+pointers; `confidence` alone does not establish reviewed support.

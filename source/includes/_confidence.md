@@ -6,7 +6,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 # Confidence
 
@@ -23,7 +23,7 @@ authorization, or measured business value. The separate draft assertion
 contract records origin and review status; legacy documents remain valid
 without it, but their claims have no explicit evidence or review status.
 
-Recommended confidence values are defined below.
+The schema allows only the following confidence values.
 
 | Value  | Description                                                             |
 | ------ | ----------------------------------------------------------------------- |

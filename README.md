@@ -1,6 +1,9 @@
 <!-- Authorship: Zaher Abou Shakra -->
 # Open Data Product Graphs
 
+This development repository targets the ODPG v1.0 core. The assertion contract
+and Value Evidence profile are drafts; agent and lineage profiles remain proposals.
+
 <p align="center">
   <img src="source/images/odpg.jpeg" alt="Open Data Product Graphs overview" width="720">
 </p>
@@ -55,8 +58,9 @@ Existing documents using `version: 1.0` as a number must quote it as `"1.0"`,
 as required by the published schema. Earlier toolkit checks did not enforce this.
 Place extensions under `graph`, metadata, owner, nodes or edges; document-level
 extensions are not permitted. Unknown converter types remain explicit as
-`Resource` with a diagnostic; provide source type mappings rather than guessing
-a core type. The converter imports topology and does not preserve assertion history.
+`Resource`; the validator reports a diagnostic for that non-core type. Provide
+source type mappings rather than guessing a core type. The converter imports
+topology and does not preserve assertion history.
 
 ODPG helps answer questions such as:
 
@@ -88,10 +92,15 @@ Modern data ecosystems are distributed across catalogs, platforms, teams, polici
 | `source/includes/` | Specification sections rendered into the docs site |
 | `source/schema/odpg.yaml` | YAML schema for ODPG graph validation |
 | `source/schema/odpg.json` | JSON schema for ODPG graph validation |
+| `source/schema/profiles/` | Draft assertion contract and Value Evidence node overlay schemas |
 | `source/graph/objects.jsonl` | Agent-friendly graph resource for retrieval and reasoning |
 | `source/examples/` | Example ODPG graphs and related assets |
+| `source/examples/value-evidence/` | Synthetic aviation profile graph and its locally referenced resources |
 | `source/scripts/` | Python toolkit for validation, conversion, traversal, analysis, and visualization |
-| `tests/` | Pytest coverage for the shared toolkit logic |
+| `source/scripts/odpg_toolkit_core.py` | Shared graph operations and CLI handlers |
+| `source/scripts/odpg_profiles.py` | Imported schema loader, assertion validator and Value Evidence semantic checks |
+| `requirements-dev.txt` | Runtime packages plus pytest and coverage dependencies |
+| `tests/` | Toolkit, adoption-conformance and publication-consistency regression checks |
 | `build/` | Generated static documentation output |
 
 ## Quick Start
@@ -99,8 +108,8 @@ Modern data ecosystems are distributed across catalogs, platforms, teams, polici
 Clone the repository and install the documentation dependencies:
 
 ```bash
-git clone https://github.com/Open-Data-Product-Initiative/odpg-v1.0.git
-cd odpg-v1.0
+git clone https://github.com/Open-Data-Product-Initiative/odpg-dev.git
+cd odpg-dev
 bundle install
 ```
 
@@ -123,6 +132,12 @@ bundle exec middleman build
 ```
 
 ## Python Toolkit
+
+Use Python 3.11, matching CI. Runtime dependencies are PyYAML and
+`jsonschema[format]`. The manifest below additionally installs pytest and
+pytest-cov. Keep `odpg_toolkit_core.py` and `odpg_profiles.py` beside the CLI
+scripts and preserve the relative `source/schema/` directory, including the
+profile schemas. The two modules are imported support code, not CLI tools.
 
 Install development dependencies:
 
@@ -224,6 +239,16 @@ python -m pytest tests --cov=odpg_toolkit_core --cov=odpg_profiles --cov-report=
 ```
 
 The tests cover validation, invalid edge handling, graph summaries, relationship traversal, strategic and governance analysis, AI-agent context extraction, and JSON output writing.
+
+Run the focused adoption and publication-consistency suite with:
+
+```bash
+python -m pytest tests/test_odpg_adoption.py
+```
+
+It additionally checks published section/resource inventories, local links,
+dependency versions, schema vocabularies, profile status, documented output
+fields and complete examples against the implementation.
 
 Adoption tests also cover converter conformance, assertion origin/review separation,
 validity windows, profile reference integrity, metric units, evidence chains and

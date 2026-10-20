@@ -6,7 +6,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 # ODPG Toolkit
 
@@ -69,14 +69,29 @@ ODPG MAY provide an agent-friendly JSONL resource at `/graph/objects.jsonl`. Thi
 | Graph Validation Toolkit | ODPG YAML or JSON | Validation report |
 | Graph Traversal Toolkit | ODPG graph and traversal query | Paths, dependencies, impacted nodes |
 | Strategic Intelligence Toolkit | ODPG graph and objectives | Gaps, overlaps, opportunities |
-| AI Agent Toolkit | ODPG graph and agent task context | Trusted graph context and reasoning paths |
+| AI Agent Toolkit | ODPG graph and agent task context | Graph context, assertion metadata and separately identified reviewed paths |
 | Federation Toolkit | Multiple ODPG graphs | Federated graph view or cross-domain mappings |
 
-ODPG provides focused Python command-line scripts for the most important toolkit capabilities: `odpg_validate.py`, `odpg_summary.py`, `odpg_traverse.py`, `odpg_analyze.py`, and `odpg_agent_context.py`. The scripts share common graph logic through `odpg_toolkit_core.py` so validation, traversal, governance analysis, and AI-agent context extraction remain consistent.
+ODPG provides focused Python command-line scripts for validation, conversion,
+summaries, traversal, analysis and context extraction. The shared operations in
+[`odpg_toolkit_core.py`](/scripts/odpg_toolkit_core.py) import
+[`odpg_profiles.py`](/scripts/odpg_profiles.py) for bundled schema validation,
+assertion validity and draft Value Evidence semantic checks. Both are supporting
+modules, not CLI entry points. The converter and explorer have independent
+implementations; run `odpg_validate.py` on their graph inputs or outputs to
+establish conformance. Required Dependencies & Execution lists the packages,
+module/schema layout and commands.
 
 ### Graph Validation Toolkit
 
 The Graph Validation Toolkit validates ODPG documents against the official schema and verifies structural consistency, node integrity, edge validity, confidence values, and interoperability requirements.
+
+The current implementation also checks the draft shared assertion contract and
+the declared `odpg-value-evidence-0.1` profile, using the published profile
+schemas plus typed-reference, unit, period and evidence-chain checks. Its JSON
+report identifies declared profile conformance; unsupported profiles fail
+explicitly. This does not certify referenced evidence or external interoperability
+adapters. Governed Agent and Observed Lineage remain proposals.
 
 Capabilities may include:
 
@@ -88,6 +103,11 @@ Capabilities may include:
 * confidence validation
 
 ### Graph Traversal Toolkit
+
+The reference scripts implement depth-limited forward/reverse traversal,
+relationship filtering and full edge-metadata preservation. The broader
+capabilities below are architectural possibilities; there is no executable
+policy-propagation engine in this repository.
 
 The Graph Traversal Toolkit enables traversal across interconnected graph entities using semantic, strategic, operational, and governance relationships.
 
@@ -102,6 +122,10 @@ Capabilities may include:
 
 ### Strategic Intelligence Toolkit
 
+The reference analyzer implements topology-gap checks and separate reviewed
+support reporting. Thematic clustering, opportunity inference, duplicate use-case
+detection and capability-alignment engines remain architectural possibilities.
+
 The Strategic Intelligence Toolkit analyzes graph relationships to identify organizational gaps, overlapping initiatives, unsupported objectives, and emerging strategic opportunities.
 
 Capabilities may include:
@@ -114,6 +138,10 @@ Capabilities may include:
 * capability alignment analysis
 
 ### AI Agent Toolkit
+
+The reference script extracts graph context and recorded review metadata.
+The broader capabilities below require external implementations; this repository
+does not provide an agent runtime, tool execution or policy enforcement.
 
 > Example of AI agent graph interaction:
 
@@ -159,6 +187,9 @@ The toolkit may support:
 * graph-native orchestration
 
 ### Federation Toolkit
+
+This is an architectural proposal. No federation service, synchronisation
+runtime or cross-organisation authorization adapter is implemented here.
 
 The Federation Toolkit enables organizations to connect multiple ODPG ecosystems into federated graph environments capable of supporting cross-domain interoperability, distributed governance, and enterprise-scale graph reasoning.
 

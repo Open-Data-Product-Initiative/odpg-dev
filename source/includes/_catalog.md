@@ -128,7 +128,7 @@ graph:
 
     - from: OPP-AVIATION-001
       to: OBJ-AVIATION-001
-      type: alignWith
+      type: alignsWith
       confidence: medium
 ```
 The following example demonstrates a complete ODPG document connecting use cases, business objectives, KPIs, data products, governance policies, APIs, AI agents, and strategic opportunities into a unified value graph.
@@ -144,7 +144,7 @@ The Graph Explorer concept is intended to demonstrate how ODPG files can serve a
 A Graph Explorer implementation typically performs the following sequence of operations:
 
 Reads the ODPG YAML file.
-Validates the graph structure against the ODPG schema.
+Validates the graph with `odpg_validate.py` before generating the visualisation.
 Extracts graph nodes and graph edges.
 Converts the graph into a visualization-friendly structure.
 Generates an interactive HTML page capable of displaying graph relationships.
@@ -166,8 +166,8 @@ as graph nodes, while relationships such as:
 
 * uses
 * supports
-* contributes_to
-* governed_by
+* contributesTo
+* governedBy
 * tracks
 * exposes
 * identifies
@@ -201,35 +201,113 @@ The script should use the standard ODPG structure exactly as defined in this spe
 
 ## Required Dependencies & Execution
 
-The Python implementation requires PyYAML for parsing ODPG YAML files.
+Use Python 3.11, matching the version exercised by this repository's Python CI
+job. Run the commands below from the repository root.
 
+| Dependency | Required for |
+| --- | --- |
+| `PyYAML>=6.0` | Reading YAML in the toolkit, converter and explorer generator |
+| `jsonschema[format]>=4.18,<5` | Bundled core JSON Schema and draft profile validation, including URI and timestamp formats |
+| `pytest>=8.0` | Running the test suite; not required to execute the toolkit |
+| `pytest-cov>=5.0` | Measuring test coverage and enforcing the CI coverage threshold |
 
-> 1- See all options (built-in help)
+Install the runtime and test dependencies from the repository's
+`requirements-dev.txt`:
+
+```bash
+python -m pip install -r requirements-dev.txt
+```
+
+For runtime use without test tools, install only:
+
+```bash
+python -m pip install "PyYAML>=6.0" "jsonschema[format]>=4.18,<5"
+```
+
+The shared toolkit imports both modules below, even for core-only graphs.
+They are supporting modules, not separate command-line entry points:
+
+| Module | Responsibility |
+| --- | --- |
+| [`odpg_toolkit_core.py`](/scripts/odpg_toolkit_core.py) | Shared graph loading, core validation, summaries, traversal, analysis and context extraction |
+| [`odpg_profiles.py`](/scripts/odpg_profiles.py) | Loads local schemas; validates the assertion contract and declared Value Evidence profile; checks claim validity and reviewed status |
+
+Keep the repository layout when running the toolkit. Downloading a single CLI
+script is insufficient: the shared modules and the schemas they load must be
+available at their relative locations.
 
 ```text
-python generate_graph_explorer.py --help
-You should see `-i` / `--input` and `-o` / `--output` with their defaults.
+source/
+  scripts/
+    odpg_validate.py
+    odpg_toolkit_core.py
+    odpg_profiles.py
+    ... other toolkit scripts
+  schema/
+    odpg.json
+    odpg.yaml
+    profiles/
+      assertion-0.1.json
+      value-evidence-0.1.json
+  examples/value-evidence/
+    aviation.yaml
+    resources.yaml
 ```
 
-> 2- Run this line to generate the Graph Explorer
+`odpg.json` is the core schema executed by the Python validator; `odpg.yaml`
+publishes the equivalent core constraints in YAML. The assertion schema is
+checked whenever `x-odpg-assertion` is present. The Value Evidence node overlay
+and semantic checks apply when `odpg-value-evidence-0.1` is declared under
+`graph.metadata.x-odpg-profiles`. The aviation graph and its referenced resources
+are synthetic examples, not runtime dependencies.
 
+Validate a graph before generating an explorer:
+
+```bash
+python source/scripts/odpg_validate.py -i source/examples/value-evidence/aviation.yaml
+python source/scripts/generate_graph_explorer.py --help
+python source/scripts/generate_graph_explorer.py -i source/examples/value-evidence/aviation.yaml -o graph-explorer.html
 ```
-python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.html"
-```
+
+The validator returns JSON and exits with status 1 on failed conformance. The
+explorer generator performs its own basic graph checks; it does not execute the
+shared core/profile validator or authenticate evidence. A rendered graph is not
+a conformance report. Its generated HTML loads vis-network from jsDelivr, so
+that external resource must be reachable to view the graph.
 
 | Script | Purpose |
 |---|---|
-| [`odpg_validate.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_validate.py) | Validate graph structure, node integrity, edge integrity, confidence values, and core ODPG semantics |
-| [`odpg_convert.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_convert.py) | Convert external graph formats such as JSON-LD, GraphML, GraphSON, RDF, OpenCypher, GQL, and Gremlin into ODPG YAML |
-| [`odpg_summary.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_summary.py) | Summarize graph metadata, node counts, edge counts, node types, edge types, and confidence values |
-| [`odpg_traverse.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_traverse.py) | Discover relationship paths from a node |
-| [`odpg_analyze.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_analyze.py) | Run strategic and governance checks |
-| [`odpg_agent_context.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_agent_context.py) | Extract graph context with assertion metadata for AI-agent use |
-| [`generate_graph_explorer.py`](https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/generate_graph_explorer.py) | Transform the graph yaml file into HTML file |
+| [`odpg_validate.py`](/scripts/odpg_validate.py) | Validate the bundled core schema, graph integrity, assertions and supported declared profiles; emit JSON conformance results |
+| [`odpg_convert.py`](/scripts/odpg_convert.py) | Convert JSON-LD, GraphML, GraphSON, RDF, OpenCypher, GQL and Gremlin topology into ODPG YAML |
+| [`odpg_summary.py`](/scripts/odpg_summary.py) | Summarize graph metadata and node, edge, type and confidence counts |
+| [`odpg_traverse.py`](/scripts/odpg_traverse.py) | Discover relationship paths while preserving assertion and extension fields |
+| [`odpg_analyze.py`](/scripts/odpg_analyze.py) | Report topology gaps and objectives without reviewed support separately |
+| [`odpg_agent_context.py`](/scripts/odpg_agent_context.py) | Extract graph context with assertion metadata, `reviewedPaths` and a `trustNotice` |
+| [`generate_graph_explorer.py`](/scripts/generate_graph_explorer.py) | Generate an HTML explorer after basic graph checks |
 
-The toolkit scripts support command-line checks and graph reasoning tasks, while the explorer script reads the **graph.yaml** file and generates **graph-explorer.html** file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.
+The resulting HTML file can be opened in a browser.
+
+### Conformance tests and coverage
+
+`tests/test_odpg_toolkit.py` covers the shared toolkit operations.
+`tests/test_odpg_adoption.py` adds converter conformance, assertion validity,
+profile chains, local resource references, CLI reports and complete documentation
+graph snippets. Python CI runs both and requires at least 80% combined coverage
+for `odpg_toolkit_core` and `odpg_profiles`:
+
+```bash
+python -m pytest tests --cov=odpg_toolkit_core --cov=odpg_profiles --cov-report=term-missing --cov-fail-under=80
+```
+
+For the focused adoption and publication-consistency audit, run
+`python -m pytest tests/test_odpg_adoption.py`. This checks the published
+inventories, dependency table, vocabulary, profile status, output field reference
+and example conformance. See Graph Toolkit for the JSON output field reference.
 
 ### Quick reference
+
+These flags refer to `generate_graph_explorer.py`; other CLI scripts expose
+their own `--help`.
 
 | Flag | Meaning |
 |------|--------|
