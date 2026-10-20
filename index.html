@@ -420,6 +420,9 @@
                   <li>
                     <a href="#supported-node-types" class="toc-h2 toc-link" data-title="Supported Node Types">Supported Node Types</a>
                   </li>
+                  <li>
+                    <a href="#optional-value-evidence-node-types" class="toc-h2 toc-link" data-title="Optional Value Evidence Node Types">Optional Value Evidence Node Types</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -430,6 +433,9 @@
                   </li>
                   <li>
                     <a href="#supported-edge-types" class="toc-h2 toc-link" data-title="Supported Edge Types">Supported Edge Types</a>
+                  </li>
+                  <li>
+                    <a href="#optional-value-evidence-relationships" class="toc-h2 toc-link" data-title="Optional Value Evidence Relationships">Optional Value Evidence Relationships</a>
                   </li>
               </ul>
           </li>
@@ -477,6 +483,9 @@
                     <a href="#shared-relationship-terms-from-odpv-edges" class="toc-h2 toc-link" data-title="Shared relationship terms from ODPV (edges)">Shared relationship terms from ODPV (edges)</a>
                   </li>
                   <li>
+                    <a href="#draft-value-evidence-terms" class="toc-h2 toc-link" data-title="Draft Value Evidence terms">Draft Value Evidence terms</a>
+                  </li>
+                  <li>
                     <a href="#odpg-and-project-specific-usage-notes" class="toc-h2 toc-link" data-title="ODPG- and project-specific usage notes">ODPG- and project-specific usage notes</a>
                   </li>
               </ul>
@@ -497,6 +506,12 @@
         <h1 id='open-data-product-graphs-the-linux-foundation'>OPEN DATA PRODUCT GRAPHS - The Linux Foundation</h1>
 <!-- Authorship: Zaher Abou Shakra -->
 <h2 id='release-version-development'>Release Version DEVELOPMENT</h2>
+<p>This development publication targets the ODPG v1.0 core. Optional assertion and
+Value Evidence contracts are drafts; Governed Agent and Observed Lineage are
+unimplemented proposals. Adoption and Evidence Profiles defines their status,
+and Graph Toolkit plus Required Dependencies &amp; Execution lists current resources
+and commands.</p>
+
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 (<a href="https://datatracker.ietf.org/doc/html/rfc2119">RFC 2119</a> and <a href="https://datatracker.ietf.org/doc/html/rfc8174">RFC 8174</a>) when, and only when, they appear in all capitals, as shown here.</p>
 
 <p>The specification is shared under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.
@@ -534,7 +549,7 @@ Development of the specification is under the umbrella of the Linux Foundation.<
 <li>Which business objectives are supported by this use case?</li>
 <li>Which KPIs are measured through these data products?</li>
 <li>Which data products contribute to the same strategic objective?</li>
-<li>Which AI agents are consuming these APIs?</li>
+<li>Which agent definitions declare API usage, and where is execution evidence referenced?</li>
 <li>Which policies govern this workflow or domain?</li>
 <li>Which business areas contain unsupported strategic objectives?</li>
 <li>Which strategic opportunities emerge from multiple related use cases?</li>
@@ -585,7 +600,10 @@ and clearly distinguishes implemented validation from future proposals.</p>
 
 <p>The purpose of ODPG is to provide organizations with a standardized machine-readable graph specification that enables them to model relationships between data products, business objectives, operational use cases, governance structures, APIs, workflows, AI systems, and strategic capabilities in a consistent and interoperable manner.</p>
 
-<p>Through this graph model, organizations can establish visibility into how data products contribute to business outcomes, how governance policies propagate across interconnected assets, how AI agents interact with enterprise systems, how KPIs align with strategic goals, and how operational dependencies affect downstream capabilities.</p>
+<p>Through this graph model, organisations can inspect declared contribution paths,
+documented policy relationships, agent definitions, KPI alignment and operational
+dependencies. Observed execution and business-value conclusions require linked
+evidence and accountable review; the graph does not enforce policies.</p>
 
 <p>ODPG therefore enables organizations to:</p>
 
@@ -654,6 +672,13 @@ entities, activities and agents. An ODPG <code>Agent</code> is not automatically
 to every use of the term agent in PROV.</p>
 <h2 id='fifteen-minute-quick-start'>Fifteen-minute quick start</h2>
 <p>Install the toolkit dependencies and create a YAML document:</p>
+
+<p>Run from the repository root using Python 3.11, the version used by CI. Keep
+<code>source/scripts/odpg_toolkit_core.py</code> and <code>source/scripts/odpg_profiles.py</code> beside
+the CLI scripts, with <code>source/schema/</code> at its repository location. The shared
+toolkit needs both PyYAML and <code>jsonschema[format]</code>; the manifest below also
+installs pytest and pytest-cov for conformance tests. Required Dependencies &amp;
+Execution contains the full runtime layout and a runtime-only installation command.</p>
 <div class="highlight"><pre class="highlight shell"><code>python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements-dev.txt
 </code></pre></div><div class="highlight"><pre class="highlight yaml tab-yaml"><code><span class="na">schema</span><span class="pi">:</span> <span class="s">https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml</span>
 <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0"</span>
@@ -747,6 +772,12 @@ from support counts. Legacy edges remain declared topology. The separate
 <code>objectivesWithoutReviewedSupport</code> result requires accepted, current, evidenced
 claims. Agent context includes <code>reviewedPaths</code> and a trust notice; review status
 is self-reported metadata, not authenticated permission or production readiness.</p>
+
+<p><code>forwardPaths</code> and <code>reversePaths</code> preserve all traversed edge metadata, including
+unaccepted claims. <code>reviewedPaths</code> filters edge assertions for acceptance,
+evidence pointers and the current validity window. <code>governanceSignals</code> reports
+policy links in the unfiltered forward paths; it is not a list of enforced or
+approved controls. <code>analysisBasis</code> explains the topology/review distinction.</p>
 <h2 id='value-evidence-profile-0-1-draft'>Value Evidence profile 0.1 (draft)</h2>
 <p>Declare the optional profile inside metadata; document-level extensions are
 not permitted by the unchanged core schema:</p>
@@ -800,7 +831,11 @@ to the core type list.</p>
 <p>Reference fields contain node IDs; <code>measurements</code> and <code>evidence</code> contain arrays
 of IDs. Each listed type must be present in a conformant profile graph.
 Metric, unit, period ordering, hypothesis identity and typed-reference checks
-are performed by the Python profile validator in addition to JSON Schema.</p>
+are performed by <a href="scripts/odpg_profiles.py"><code>odpg_profiles.py</code></a> in addition to
+JSON Schema. Invoke it through <code>odpg_validate.py</code>; the module has no standalone CLI.
+Measurement, baseline and target values must be finite numbers. Required chain
+edges may be legacy declared links or current, accepted assertions; explicitly
+pending, rejected, deferred or out-of-window claims do not satisfy those chains.</p>
 
 <p>The following directed edges must accompany the reference fields:</p>
 
@@ -877,6 +912,12 @@ attribution remains uncertain. They are not observed customer outcomes.</p>
 python <span class="nb">source</span>/scripts/odpg_analyze.py <span class="nt">-i</span> <span class="nb">source</span>/examples/value-evidence/aviation.yaml
 python <span class="nt">-m</span> pytest tests
 </code></pre></div>
+<p>Run <code>python -m pytest tests/test_odpg_adoption.py</code> for the focused profile and
+publication-consistency checks. It verifies that the published section and
+resource inventories, dependencies, vocabularies, output fields and examples
+agree with the current schemas and toolkit. Graph Toolkit provides the JSON
+output field reference; Required Dependencies &amp; Execution lists setup commands.</p>
+
 <p>The validator returns JSON with <code>valid</code>, <code>errors</code>, and <code>warnings</code>; declared
 profiles also receive a <code>profiles</code> map. Exit status is zero only for a valid
 document and supported profiles. Unknown profiles fail explicitly. JSON Schema
@@ -901,15 +942,15 @@ will be independently versioned; no four-level maturity ladder is required.</p>
 <td>Draft, schema and validator implemented</td>
 </tr>
 <tr>
-<td>Value Evidence 0.1</td>
+<td>Value Evidence (<code>odpg-value-evidence-0.1</code>)</td>
 <td>Draft, schema, semantic validator and fixture implemented</td>
 </tr>
 <tr>
-<td>Governed Agent 0.1</td>
+<td>Governed Agent (<code>odpg-governed-agent-0.1</code>)</td>
 <td>Proposal only; not accepted by the validator</td>
 </tr>
 <tr>
-<td>Observed Lineage 0.1</td>
+<td>Observed Lineage (<code>odpg-observed-lineage-0.1</code>)</td>
 <td>Proposal only; not accepted by the validator</td>
 </tr>
 <tr>
@@ -945,6 +986,7 @@ Use /scripts/odpg_summary.py for graph summaries.
 Use /scripts/odpg_traverse.py for graph traversal.
 Use /scripts/odpg_analyze.py for governance and strategic analysis.
 Use /scripts/odpg_agent_context.py for AI-agent context extraction.
+Keep /scripts/odpg_toolkit_core.py and /scripts/odpg_profiles.py beside the CLI scripts, with the schema directory alongside scripts.
 Use /scripts/generate_graph_explorer.py to generate a standalone HTML graph explorer from ODPG YAML.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
 Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs unless relationships or traversal are required.
@@ -1001,14 +1043,44 @@ Use ODPV when stable vocabulary terms, semantic mappings, or relationship names 
 <td>JSON representation of the ODPG validation schema</td>
 </tr>
 <tr>
+<td><a href="schema/profiles/assertion-0.1.json"><code>assertion-0.1.json</code></a></td>
+<td>JSON Schema</td>
+<td>Draft shared assertion contract: origin, evidence, review and validity</td>
+</tr>
+<tr>
+<td><a href="schema/profiles/value-evidence-0.1.json"><code>value-evidence-0.1.json</code></a></td>
+<td>JSON Schema overlay</td>
+<td>Draft Value Evidence node fields; used with core and semantic validation</td>
+</tr>
+<tr>
 <td><a href="graph/objects.jsonl"><code>objects.jsonl</code></a></td>
 <td>JSONL</td>
 <td>Agent-friendly one-object-per-line file for retrieval, relationship classification, traversal planning, graph reasoning, and lightweight tools</td>
 </tr>
 <tr>
+<td><a href="scripts/odpg_toolkit_core.py"><code>odpg_toolkit_core.py</code></a></td>
+<td>Python module</td>
+<td>Shared toolkit graph operations and CLI handlers; imported support module</td>
+</tr>
+<tr>
+<td><a href="scripts/odpg_profiles.py"><code>odpg_profiles.py</code></a></td>
+<td>Python module</td>
+<td>Local schema loading, assertion validation and Value Evidence semantic checks; imported support module</td>
+</tr>
+<tr>
+<td><a href="examples/value-evidence/aviation.yaml"><code>aviation.yaml</code></a></td>
+<td>YAML</td>
+<td>Synthetic Value Evidence graph with continue and defer decisions</td>
+</tr>
+<tr>
+<td><a href="examples/value-evidence/resources.yaml"><code>resources.yaml</code></a></td>
+<td>YAML</td>
+<td>Local resources referenced by the synthetic aviation graph</td>
+</tr>
+<tr>
 <td><a href="scripts/odpg_validate.py"><code>odpg_validate.py</code></a></td>
 <td>Python</td>
-<td>Validates graph structure, node integrity, edge integrity, confidence values, and core ODPG semantics</td>
+<td>Executes the bundled core schema, graph integrity, assertion and supported profile checks</td>
 </tr>
 <tr>
 <td><a href="scripts/odpg_convert.py"><code>odpg_convert.py</code></a></td>
@@ -1044,7 +1116,12 @@ Use ODPV when stable vocabulary terms, semantic mappings, or relationship names 
 
 <p>The Markdown tables in this specification are intended for human readers. The schema, JSONL, and graph tooling files are intended for programmable use, automation, validation, AI retrieval, traversal, reasoning, strategic analysis, AI-agent interaction, and graph visualization.</p>
 <h2 id='python-toolkit-scripts'>Python Toolkit Scripts</h2>
-<p>The ODPG Python toolkit separates the most important command-line operations into focused scripts while sharing the same internal graph rules through <code>odpg_toolkit_core.py</code>:</p>
+<p>The ODPG Python toolkit separates command-line operations into focused scripts.
+<code>odpg_toolkit_core.py</code> supplies the shared graph operations and imports
+<code>odpg_profiles.py</code> for local schema and profile checks. These two modules have no
+standalone CLI. Keep the module and schema directory layout described in
+Required Dependencies &amp; Execution; install PyYAML and <code>jsonschema[format]</code> before
+running the shared toolkit.</p>
 
 <table><thead>
 <tr>
@@ -1056,7 +1133,7 @@ Use ODPV when stable vocabulary terms, semantic mappings, or relationship names 
 <tr>
 <td><code>odpg_validate.py</code></td>
 <td>Graph Validation Toolkit</td>
-<td>Validate graph structure, required fields, node integrity, edge integrity, confidence values, and core ODPG semantics</td>
+<td>Execute bundled core schema, graph integrity, assertion and supported declared profile validation</td>
 </tr>
 <tr>
 <td><code>odpg_convert.py</code></td>
@@ -1071,17 +1148,17 @@ Use ODPV when stable vocabulary terms, semantic mappings, or relationship names 
 <tr>
 <td><code>odpg_traverse.py</code></td>
 <td>Graph Traversal Toolkit</td>
-<td>Discover relationship paths from a node, optionally filtering by relationship type or traversing incoming relationships</td>
+<td>Discover paths with complete assertion/extension metadata, relationship filters and reverse traversal</td>
 </tr>
 <tr>
 <td><code>odpg_analyze.py</code></td>
 <td>Strategic Intelligence Toolkit / Governance analysis</td>
-<td>Detect orphan KPIs, unsupported objectives, ungoverned assets, low-confidence relationships, and use cases without strategic contribution</td>
+<td>Report topology gaps and <code>objectivesWithoutReviewedSupport</code>; exclude explicitly unaccepted or inactive claims from support counts</td>
 </tr>
 <tr>
 <td><code>odpg_agent_context.py</code></td>
 <td>AI Agent Toolkit</td>
-<td>Extract graph context with assertion metadata around a focus node, including forward paths, reverse paths, related nodes, and governance signals</td>
+<td>Extract forward/reverse paths, nodes and governance signals; separate <code>reviewedPaths</code> and explain the authority boundary in <code>trustNotice</code></td>
 </tr>
 </tbody></table>
 
@@ -1092,10 +1169,114 @@ python source/scripts/odpg_summary.py -i "/path/to/graph.yml"
 python source/scripts/odpg_traverse.py -i "/path/to/graph.yml" --start "DP-001" --depth 2
 python source/scripts/odpg_analyze.py -i "/path/to/graph.yml"
 python source/scripts/odpg_agent_context.py -i "/path/to/graph.yml" --node "AGENT-001" --depth 2
-</code></pre></div><h3 id='testing-the-python-toolkit'>Testing the Python Toolkit</h3>
-<p>The repository includes pytest coverage for the shared toolkit logic used by the validation and reasoning scripts. The tests verify graph validation, invalid edge handling, graph summaries, traversal paths, strategic and governance analysis, agent-context extraction, and JSON output writing.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>python -m pip install -r requirements-dev.txt
-python -m pytest tests
+</code></pre></div>
+<p>For an executable profile example, run:</p>
+<div class="highlight"><pre class="highlight shell"><code>python <span class="nb">source</span>/scripts/odpg_validate.py <span class="nt">-i</span> <span class="nb">source</span>/examples/value-evidence/aviation.yaml
+python <span class="nb">source</span>/scripts/odpg_agent_context.py <span class="nt">-i</span> <span class="nb">source</span>/examples/value-evidence/aviation.yaml <span class="nt">--node</span> HYP-1 <span class="nt">--depth</span> 2
+</code></pre></div>
+<p>Validation JSON contains <code>valid</code>, <code>errors</code> and <code>warnings</code>, plus a <code>profiles</code> map
+when profiles are declared. Reviewed paths reflect recorded review metadata;
+they do not authenticate evidence or grant access. The summary command reports
+counts only and does not establish conformance. Validate before summarising or
+generating an explorer.</p>
+<h3 id='json-output-reference'>JSON output reference</h3>
+<p><code>odpg_validate.py</code> emits <code>valid</code>, <code>errors</code> and <code>warnings</code>, plus <code>profiles</code> for
+declared profiles. Exit status is zero for conformance and one for validation
+failure. The profile map reports overall document/profile conformance; it is
+not an independent evidence-authentication result.</p>
+
+<p><code>odpg_analyze.py</code> wraps its result in <code>analysis</code>, alongside schema/type warnings:</p>
+
+<table><thead>
+<tr>
+<th>Analysis field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>orphanKpis</code></td>
+<td>KPI nodes without an active outgoing <code>measures</code> link.</td>
+</tr>
+<tr>
+<td><code>unsupportedBusinessObjectives</code></td>
+<td>Objectives without active incoming <code>supports</code>, <code>contributesTo</code> or alignment links; legacy declared links count.</td>
+</tr>
+<tr>
+<td><code>ungovernedAssets</code></td>
+<td>Data products, APIs, datasets, workflows and agents without an active outgoing <code>governedBy</code> link.</td>
+</tr>
+<tr>
+<td><code>lowConfidenceRelationships</code></td>
+<td>All relationships marked <code>low</code>, including unaccepted claims retained for inspection.</td>
+</tr>
+<tr>
+<td><code>useCasesWithoutStrategicContribution</code></td>
+<td>Use cases with active <code>uses</code> links but no active outgoing <code>supports</code> or <code>contributesTo</code> link.</td>
+</tr>
+<tr>
+<td><code>objectivesWithoutReviewedSupport</code></td>
+<td>Objectives without incoming support/alignment claims that are current, accepted and evidenced.</td>
+</tr>
+<tr>
+<td><code>analysisBasis</code></td>
+<td>Notice distinguishing declared topology from reviewed support and authority.</td>
+</tr>
+</tbody></table>
+
+<p>For support checks, a legacy edge is treated as a declaration; an explicit
+assertion must be accepted and within its validity window. These are checks of
+the supplied graph, not proof that real-world governance or business support
+is present or absent.</p>
+
+<p><code>odpg_agent_context.py</code> emits the following context fields, plus <code>warnings</code>:</p>
+
+<table><thead>
+<tr>
+<th>Context field</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>focusNode</code></td>
+<td>Requested node, or an identifier-only placeholder if absent.</td>
+</tr>
+<tr>
+<td><code>relatedNodes</code></td>
+<td>Nodes reached in the requested forward or reverse traversal.</td>
+</tr>
+<tr>
+<td><code>forwardPaths</code></td>
+<td>Outgoing traversal paths, preserving all edge metadata.</td>
+</tr>
+<tr>
+<td><code>reversePaths</code></td>
+<td>Incoming traversal paths, preserving all edge metadata.</td>
+</tr>
+<tr>
+<td><code>reviewedPaths</code></td>
+<td>Forward/reverse paths where every edge has a current, accepted assertion with evidence pointers.</td>
+</tr>
+<tr>
+<td><code>governanceSignals</code></td>
+<td>Unfiltered forward paths containing <code>governedBy</code>; not enforcement or approval decisions.</td>
+</tr>
+<tr>
+<td><code>trustNotice</code></td>
+<td>Notice that context is not authorization, authenticated evidence, verified business value or readiness.</td>
+</tr>
+</tbody></table>
+<h3 id='testing-the-python-toolkit'>Testing the Python Toolkit</h3>
+<p>The test suite covers shared graph operations plus adoption conformance:
+converter output, assertion schema and validity windows, profile references,
+metric units and periods, evidence/review chains, local resources and JSON CLI
+reports. CI enforces at least 80% combined coverage for the two shared modules.
+<code>test_odpg_adoption.py</code> also checks publication section/resource inventories,
+local links, schema/metadata vocabularies, assertion enums, dependencies, profile
+status, output fields and complete graph/assertion examples against the current
+implementation. Run that file directly for the focused adoption audit:</p>
+<div class="highlight"><pre class="highlight shell"><code>python <span class="nt">-m</span> pytest tests/test_odpg_adoption.py
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>python -m pip install -r requirements-dev.txt
+python -m pytest tests --cov=odpg_toolkit_core --cov=odpg_profiles --cov-report=term-missing --cov-fail-under=80
 </code></pre></div><!-- Authorship: Zaher Abou Shakra -->
 
 <!-- AI_AGENT_GUIDANCE:
@@ -1105,7 +1286,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='specification-structure'>Specification Structure</h1>
 <blockquote>
@@ -1128,7 +1309,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 
 <p>The root structure of an ODPG document is defined as follows:</p>
 <h2 id='mandatory-attributes'>Mandatory attributes</h2>
-<p>The following root properties are defined within an ODPG document.</p>
+<p>The following table uses full paths. <code>schema</code>, <code>version</code>, <code>kind</code> and <code>graph</code> are document-level properties; metadata, nodes and edges belong inside <code>graph</code>.</p>
 
 <table><thead>
 <tr>
@@ -1163,49 +1344,49 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>Container for graph metadata, nodes, and edges</td>
 </tr>
 <tr>
-<td><code>metadata</code></td>
+<td><code>graph.metadata</code></td>
 <td>Object</td>
 <td>Yes</td>
 <td>Metadata describing the graph</td>
 </tr>
 <tr>
-<td><code>metadata.id</code></td>
+<td><code>graph.metadata.id</code></td>
 <td>String</td>
 <td>Yes</td>
 <td>Unique identifier of the graph</td>
 </tr>
 <tr>
-<td><code>metadata.name</code></td>
+<td><code>graph.metadata.name</code></td>
 <td>Object</td>
 <td>Yes</td>
 <td>Human-readable graph name using language-specific values</td>
 </tr>
 <tr>
-<td><code>metadata.name.en</code></td>
+<td><code>graph.metadata.name.en</code></td>
 <td>String</td>
 <td>No</td>
 <td>English name; at least one supported language key is required.</td>
 </tr>
 <tr>
-<td><code>metadata.description</code></td>
+<td><code>graph.metadata.description</code></td>
 <td>Object</td>
 <td>Yes</td>
 <td>Human-readable graph description using language-specific values</td>
 </tr>
 <tr>
-<td><code>metadata.description.en</code></td>
+<td><code>graph.metadata.description.en</code></td>
 <td>String</td>
 <td>No</td>
 <td>English description; at least one supported language key is required.</td>
 </tr>
 <tr>
-<td><code>nodes</code></td>
+<td><code>graph.nodes</code></td>
 <td>Array of node objects</td>
 <td>Yes</td>
 <td>Collection of graph node objects</td>
 </tr>
 <tr>
-<td><code>edges</code></td>
+<td><code>graph.edges</code></td>
 <td>Array of edge objects</td>
 <td>Yes</td>
 <td>Collection of graph edge objects</td>
@@ -1249,56 +1430,67 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </tr>
 </thead><tbody>
 <tr>
-<td><code>metadata.domain</code></td>
+<td><code>graph.metadata.domain</code></td>
 <td>Object</td>
 <td>Business, industry, or subject domain covered by the graph. Supports language-specific values.</td>
 </tr>
 <tr>
-<td><code>metadata.domain.en</code></td>
+<td><code>graph.metadata.domain.en</code></td>
 <td>String</td>
 <td>English domain name.</td>
 </tr>
 <tr>
-<td><code>metadata.purpose</code></td>
+<td><code>graph.metadata.purpose</code></td>
 <td>Object</td>
 <td>Explanation of why the graph exists and how it should be used. Supports language-specific values.</td>
 </tr>
 <tr>
-<td><code>metadata.purpose.en</code></td>
+<td><code>graph.metadata.purpose.en</code></td>
 <td>String</td>
 <td>English purpose statement.</td>
 </tr>
 <tr>
-<td><code>metadata.tags</code></td>
+<td><code>graph.metadata.tags</code></td>
 <td>Array of strings</td>
 <td>Keywords used for discovery, filtering, grouping, and search.</td>
 </tr>
 <tr>
-<td><code>metadata.status</code></td>
+<td><code>graph.metadata.status</code></td>
 <td>String</td>
-<td>Current status of the graph. Recommended values include <code>draft</code>, <code>active</code>, <code>deprecated</code>, and <code>archived</code>.</td>
+<td>Current status of the graph. Allowed values are <code>draft</code>, <code>active</code>, <code>deprecated</code>, and <code>archived</code>.</td>
 </tr>
 <tr>
-<td><code>metadata.visibility</code></td>
+<td><code>graph.metadata.visibility</code></td>
 <td>String</td>
-<td>Intended visibility of the graph. Recommended values include <code>public</code>, <code>internal</code>, <code>restricted</code>, and <code>private</code>.</td>
+<td>Intended visibility of the graph. Allowed values are <code>public</code>, <code>internal</code>, <code>restricted</code>, and <code>private</code>.</td>
 </tr>
 <tr>
-<td><code>metadata.owner</code></td>
+<td><code>graph.metadata.owner</code></td>
 <td>Object</td>
 <td>Party responsible for the graph.</td>
 </tr>
 <tr>
-<td><code>metadata.owner.name</code></td>
+<td><code>graph.metadata.owner.name</code></td>
 <td>String</td>
-<td>Name of the owning person, team, or organization.</td>
+<td>Name of the owning person, team, or organization; required when owner is supplied.</td>
 </tr>
 <tr>
-<td><code>metadata.owner.email</code></td>
+<td><code>graph.metadata.owner.email</code></td>
 <td>String</td>
 <td>Contact email for the owning party.</td>
 </tr>
 </tbody></table>
+
+<p>Graph lifecycle <code>graph.metadata.status</code> is distinct from an assertion&#39;s
+<code>reviewStatus</code>. The schema enforces the listed lifecycle and visibility values;
+neither property grants access.</p>
+
+<p>Optional draft profiles add <code>graph.metadata.x-odpg-profiles</code> (an array of unique
+profile identifiers). This is an extension, not a new required core field.
+The shared validator supports <code>odpg-value-evidence-0.1</code> and rejects unknown
+declared profiles. Node and edge extensions such as <code>x-odpg-assertion</code> and
+<code>x-odpg-value</code> are described in the Nodes, Edges, Specification extensions, and
+Adoption and Evidence Profiles sections. Document-level <code>x-</code> fields are forbidden.</p>
 <!-- Authorship: Zaher Abou Shakra -->
 <h1 id='graph-catalog'>Graph Catalog</h1>
 <blockquote>
@@ -1428,7 +1620,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 
     <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span> <span class="s">OPP-AVIATION-001</span>
       <span class="na">to</span><span class="pi">:</span> <span class="s">OBJ-AVIATION-001</span>
-      <span class="na">type</span><span class="pi">:</span> <span class="s">alignWith</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">alignsWith</span>
       <span class="na">confidence</span><span class="pi">:</span> <span class="s">medium</span>
 </code></pre></div>
 <p>The following example demonstrates a complete ODPG document connecting use cases, business objectives, KPIs, data products, governance policies, APIs, AI agents, and strategic opportunities into a unified value graph.</p>
@@ -1442,7 +1634,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <p>A Graph Explorer implementation typically performs the following sequence of operations:</p>
 
 <p>Reads the ODPG YAML file.
-Validates the graph structure against the ODPG schema.
+Validates the graph with <code>odpg_validate.py</code> before generating the visualisation.
 Extracts graph nodes and graph edges.
 Converts the graph into a visualization-friendly structure.
 Generates an interactive HTML page capable of displaying graph relationships.
@@ -1467,8 +1659,8 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 <ul>
 <li>uses</li>
 <li>supports</li>
-<li>contributes_to</li>
-<li>governed_by</li>
+<li>contributesTo</li>
+<li>governedBy</li>
 <li>tracks</li>
 <li>exposes</li>
 <li>identifies</li>
@@ -1497,19 +1689,96 @@ Enables users to inspect node metadata, edge relationships, confidence levels, a
 
 <p>The script should use the standard ODPG structure exactly as defined in this specification.</p>
 <h2 id='required-dependencies-amp-execution'>Required Dependencies &amp; Execution</h2>
-<p>The Python implementation requires PyYAML for parsing ODPG YAML files.</p>
+<p>Use Python 3.11, matching the version exercised by this repository&#39;s Python CI
+job. Run the commands below from the repository root.</p>
 
-<blockquote>
-<p>1- See all options (built-in help)</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>python generate_graph_explorer.py --help
-You should see `-i` / `--input` and `-o` / `--output` with their defaults.
+<table><thead>
+<tr>
+<th>Dependency</th>
+<th>Required for</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>PyYAML&gt;=6.0</code></td>
+<td>Reading YAML in the toolkit, converter and explorer generator</td>
+</tr>
+<tr>
+<td><code>jsonschema[format]&gt;=4.18,&lt;5</code></td>
+<td>Bundled core JSON Schema and draft profile validation, including URI and timestamp formats</td>
+</tr>
+<tr>
+<td><code>pytest&gt;=8.0</code></td>
+<td>Running the test suite; not required to execute the toolkit</td>
+</tr>
+<tr>
+<td><code>pytest-cov&gt;=5.0</code></td>
+<td>Measuring test coverage and enforcing the CI coverage threshold</td>
+</tr>
+</tbody></table>
+
+<p>Install the runtime and test dependencies from the repository&#39;s
+<code>requirements-dev.txt</code>:</p>
+<div class="highlight"><pre class="highlight shell"><code>python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">-r</span> requirements-dev.txt
 </code></pre></div>
-<blockquote>
-<p>2- Run this line to generate the Graph Explorer</p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>python generate_graph_explorer.py -i "/path/to/graph.yml" -o "/path/to/explorer.html"
+<p>For runtime use without test tools, install only:</p>
+<div class="highlight"><pre class="highlight shell"><code>python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="s2">"PyYAML&gt;=6.0"</span> <span class="s2">"jsonschema[format]&gt;=4.18,&lt;5"</span>
 </code></pre></div>
+<p>The shared toolkit imports both modules below, even for core-only graphs.
+They are supporting modules, not separate command-line entry points:</p>
+
+<table><thead>
+<tr>
+<th>Module</th>
+<th>Responsibility</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="scripts/odpg_toolkit_core.py"><code>odpg_toolkit_core.py</code></a></td>
+<td>Shared graph loading, core validation, summaries, traversal, analysis and context extraction</td>
+</tr>
+<tr>
+<td><a href="scripts/odpg_profiles.py"><code>odpg_profiles.py</code></a></td>
+<td>Loads local schemas; validates the assertion contract and declared Value Evidence profile; checks claim validity and reviewed status</td>
+</tr>
+</tbody></table>
+
+<p>Keep the repository layout when running the toolkit. Downloading a single CLI
+script is insufficient: the shared modules and the schemas they load must be
+available at their relative locations.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>source/
+  scripts/
+    odpg_validate.py
+    odpg_toolkit_core.py
+    odpg_profiles.py
+    ... other toolkit scripts
+  schema/
+    odpg.json
+    odpg.yaml
+    profiles/
+      assertion-0.1.json
+      value-evidence-0.1.json
+  examples/value-evidence/
+    aviation.yaml
+    resources.yaml
+</code></pre></div>
+<p><code>odpg.json</code> is the core schema executed by the Python validator; <code>odpg.yaml</code>
+publishes the equivalent core constraints in YAML. The assertion schema is
+checked whenever <code>x-odpg-assertion</code> is present. The Value Evidence node overlay
+and semantic checks apply when <code>odpg-value-evidence-0.1</code> is declared under
+<code>graph.metadata.x-odpg-profiles</code>. The aviation graph and its referenced resources
+are synthetic examples, not runtime dependencies.</p>
+
+<p>Validate a graph before generating an explorer:</p>
+<div class="highlight"><pre class="highlight shell"><code>python <span class="nb">source</span>/scripts/odpg_validate.py <span class="nt">-i</span> <span class="nb">source</span>/examples/value-evidence/aviation.yaml
+python <span class="nb">source</span>/scripts/generate_graph_explorer.py <span class="nt">--help</span>
+python <span class="nb">source</span>/scripts/generate_graph_explorer.py <span class="nt">-i</span> <span class="nb">source</span>/examples/value-evidence/aviation.yaml <span class="nt">-o</span> graph-explorer.html
+</code></pre></div>
+<p>The validator returns JSON and exits with status 1 on failed conformance. The
+explorer generator performs its own basic graph checks; it does not execute the
+shared core/profile validator or authenticate evidence. A rendered graph is not
+a conformance report. Its generated HTML loads vis-network from jsDelivr, so
+that external resource must be reachable to view the graph.</p>
+
 <table><thead>
 <tr>
 <th>Script</th>
@@ -1517,37 +1786,52 @@ You should see `-i` / `--input` and `-o` / `--output` with their defaults.
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_validate.py"><code>odpg_validate.py</code></a></td>
-<td>Validate graph structure, node integrity, edge integrity, confidence values, and core ODPG semantics</td>
+<td><a href="scripts/odpg_validate.py"><code>odpg_validate.py</code></a></td>
+<td>Validate the bundled core schema, graph integrity, assertions and supported declared profiles; emit JSON conformance results</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_convert.py"><code>odpg_convert.py</code></a></td>
-<td>Convert external graph formats such as JSON-LD, GraphML, GraphSON, RDF, OpenCypher, GQL, and Gremlin into ODPG YAML</td>
+<td><a href="scripts/odpg_convert.py"><code>odpg_convert.py</code></a></td>
+<td>Convert JSON-LD, GraphML, GraphSON, RDF, OpenCypher, GQL and Gremlin topology into ODPG YAML</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_summary.py"><code>odpg_summary.py</code></a></td>
-<td>Summarize graph metadata, node counts, edge counts, node types, edge types, and confidence values</td>
+<td><a href="scripts/odpg_summary.py"><code>odpg_summary.py</code></a></td>
+<td>Summarize graph metadata and node, edge, type and confidence counts</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_traverse.py"><code>odpg_traverse.py</code></a></td>
-<td>Discover relationship paths from a node</td>
+<td><a href="scripts/odpg_traverse.py"><code>odpg_traverse.py</code></a></td>
+<td>Discover relationship paths while preserving assertion and extension fields</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_analyze.py"><code>odpg_analyze.py</code></a></td>
-<td>Run strategic and governance checks</td>
+<td><a href="scripts/odpg_analyze.py"><code>odpg_analyze.py</code></a></td>
+<td>Report topology gaps and objectives without reviewed support separately</td>
 </tr>
 <tr>
-<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/odpg_agent_context.py"><code>odpg_agent_context.py</code></a></td>
-<td>Extract graph context with assertion metadata for AI-agent use</td>
+<td><a href="scripts/odpg_agent_context.py"><code>odpg_agent_context.py</code></a></td>
+<td>Extract graph context with assertion metadata, <code>reviewedPaths</code> and a <code>trustNotice</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/blob/main/scripts/generate_graph_explorer.py"><code>generate_graph_explorer.py</code></a></td>
-<td>Transform the graph yaml file into HTML file</td>
+<td><a href="scripts/generate_graph_explorer.py"><code>generate_graph_explorer.py</code></a></td>
+<td>Generate an HTML explorer after basic graph checks</td>
 </tr>
 </tbody></table>
 
-<p>The toolkit scripts support command-line checks and graph reasoning tasks, while the explorer script reads the <strong>graph.yaml</strong> file and generates <strong>graph-explorer.html</strong> file. The resulting HTML file can then be opened directly in a browser to explore the ODPG graph visually.</p>
+<p>The resulting HTML file can be opened in a browser.</p>
+<h3 id='conformance-tests-and-coverage'>Conformance tests and coverage</h3>
+<p><code>tests/test_odpg_toolkit.py</code> covers the shared toolkit operations.
+<code>tests/test_odpg_adoption.py</code> adds converter conformance, assertion validity,
+profile chains, local resource references, CLI reports and complete documentation
+graph snippets. Python CI runs both and requires at least 80% combined coverage
+for <code>odpg_toolkit_core</code> and <code>odpg_profiles</code>:</p>
+<div class="highlight"><pre class="highlight shell"><code>python <span class="nt">-m</span> pytest tests <span class="nt">--cov</span><span class="o">=</span>odpg_toolkit_core <span class="nt">--cov</span><span class="o">=</span>odpg_profiles <span class="nt">--cov-report</span><span class="o">=</span>term-missing <span class="nt">--cov-fail-under</span><span class="o">=</span>80
+</code></pre></div>
+<p>For the focused adoption and publication-consistency audit, run
+<code>python -m pytest tests/test_odpg_adoption.py</code>. This checks the published
+inventories, dependency table, vocabulary, profile status, output field reference
+and example conformance. See Graph Toolkit for the JSON output field reference.</p>
 <h3 id='quick-reference'>Quick reference</h3>
+<p>These flags refer to <code>generate_graph_explorer.py</code>; other CLI scripts expose
+their own <code>--help</code>.</p>
+
 <table><thead>
 <tr>
 <th>Flag</th>
@@ -1593,6 +1877,8 @@ You should see `-i` / `--input` and `-o` / `--output` with their defaults.
 </a></p>
 
 <p><a href="graph/examples/graph-explorer.html" target="_blank" rel="noopener noreferrer">Open the Graph Explorer example</a></p>
+<!-- Authorship: Zaher Abou Shakra -->
+
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -1600,7 +1886,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='nodes'>Nodes</h1>
 <blockquote>
@@ -1623,7 +1909,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 
 <p>A node may represent an internal resource defined directly within the organization or an external specification referenced through another machine-readable file.</p>
 
-<p>Instead of embedding full resource definitions directly into the graph, ODPG encourages interoperability through references using the ref property, thereby enabling organizations to connect graph structures with ODPS documents, ODPV vocabularies, governance artifacts, APIs, workflows, use cases, or external specifications.</p>
+<p>Instead of embedding full resource definitions directly into the graph, ODPG encourages interoperability through references using the <code>$ref</code> property, thereby enabling organizations to connect graph structures with ODPS documents, ODPV vocabularies, governance artifacts, APIs, workflows, use cases, or external specifications.</p>
 <h2 id='node-properties'>Node Properties</h2>
 <p>Each node within an ODPG document represents a distinct entity participating in the graph ecosystem, where the node itself serves as the graph reference point that enables relationships, dependencies, semantic mappings, governance propagation, strategic alignment, and interoperability across connected specifications and platforms.</p>
 
@@ -1654,6 +1940,18 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>String</td>
 <td>Yes</td>
 <td>Path or URI to the referenced specification or resource</td>
+</tr>
+<tr>
+<td>x-odpg-assertion</td>
+<td>Object</td>
+<td>No</td>
+<td>Optional draft assertion contract for a node claim; source, origin, evidence, review and validity.</td>
+</tr>
+<tr>
+<td>x-odpg-value</td>
+<td>Object</td>
+<td>No</td>
+<td>Draft Value Evidence attributes; required on the profile&#39;s node types when that profile is declared.</td>
 </tr>
 </tbody></table>
 
@@ -1722,6 +2020,20 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </tbody></table>
 
 <p>The node model is intentionally extensible so that organizations can expand graph structures with additional node types while preserving interoperability with the core ODPG structure.</p>
+<h2 id='optional-value-evidence-node-types'>Optional Value Evidence Node Types</h2>
+<p>The draft <code>odpg-value-evidence-0.1</code> profile defines <code>ValueHypothesis</code>, <code>Outcome</code>,
+<code>MetricDefinition</code>, <code>Baseline</code>, <code>Target</code>, <code>Measurement</code>, <code>Evidence</code> and
+<code>ReviewDecision</code>. These are optional profile types, not additions to the core
+type list above. Declare the profile under <code>graph.metadata.x-odpg-profiles</code> and
+place its node attributes under <code>x-odpg-value</code>, while retaining <code>id</code>, <code>type</code>
+and <code>$ref</code>.</p>
+
+<p>The <a href="schema/profiles/value-evidence-0.1.json">Value Evidence overlay</a> defines
+their fields. The Adoption and Evidence Profiles section specifies the required
+reference and relationship chains. <code>odpg_profiles.py</code>, invoked by the shared
+toolkit, validates these semantics and recognises the profile types when the
+profile is declared. A <code>ReviewDecision</code> records an accountable conclusion;
+it does not itself grant access or establish production readiness.</p>
 <!-- Authorship: Zaher Abou Shakra -->
 
 <!-- AI_AGENT_GUIDANCE:
@@ -1731,7 +2043,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='edges'>Edges</h1>
 <blockquote>
@@ -1792,6 +2104,12 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>String</td>
 <td>Yes</td>
 <td>Confidence level of the relationship</td>
+</tr>
+<tr>
+<td>x-odpg-assertion</td>
+<td>Object</td>
+<td>No</td>
+<td>Optional draft claim contract; separate origin, evidence, review status and validity from confidence.</td>
 </tr>
 </tbody></table>
 
@@ -1885,6 +2203,19 @@ does not distinguish observed facts from declarations or inference.</p>
 </tbody></table>
 
 <p>The relationship model is designed to remain extensible so that organizations can introduce domain-specific relationship types while maintaining compatibility with the core ODPG graph structure.</p>
+<h2 id='optional-value-evidence-relationships'>Optional Value Evidence Relationships</h2>
+<p>The draft Value Evidence profile adds <code>tests</code>, <code>expects</code>, <code>measuredBy</code>,
+<code>hasBaseline</code>, <code>hasTarget</code>, <code>supportedBy</code> and <code>reviews</code>, and reuses core
+relationships such as <code>uses</code>, <code>supports</code> and <code>measures</code>. The Adoption and
+Evidence Profiles section defines their source/target types and required
+chains; they are not new core relationship types. The shared validator
+recognises the profile vocabulary when <code>odpg-value-evidence-0.1</code> is declared.</p>
+
+<p>Nodes and edges may also carry <code>x-odpg-assertion</code>, validated against the
+<a href="schema/profiles/assertion-0.1.json">shared assertion contract</a>, independently
+of Value Evidence profile adoption. Traversal preserves these fields. Analysis
+distinguishes legacy declared links from current, accepted claims with evidence
+pointers; <code>confidence</code> alone does not establish reviewed support.</p>
 <!-- Authorship: Zaher Abou Shakra -->
 
 <!-- AI_AGENT_GUIDANCE:
@@ -1894,7 +2225,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='confidence'>Confidence</h1>
 <blockquote>
@@ -1909,7 +2240,7 @@ authorization, or measured business value. The separate draft assertion
 contract records origin and review status; legacy documents remain valid
 without it, but their claims have no explicit evidence or review status.</p>
 
-<p>Recommended confidence values are defined below.</p>
+<p>The schema allows only the following confidence values.</p>
 
 <table><thead>
 <tr>
@@ -1944,7 +2275,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='strategic-intelligence'>Strategic Intelligence</h1>
 <p>Strategic contribution edges are claims, not proof of realised value. Declared
@@ -1976,16 +2307,25 @@ are gaps in the supplied graph, not proof that a real-world capability is absent
 </code></pre></div>
 <p>ODPG introduces a graph-native intelligence layer capable of connecting business objectives, operational use cases, KPIs, governance structures, data products, and AI systems into a unified strategic reasoning model that enables organizations to understand not only what assets exist, but also how those assets contribute to measurable business outcomes and organizational priorities.</p>
 
-<p>Through graph relationships, organizations can identify:</p>
+<p>The reference analyzer implements orphan KPI, unsupported objective, ungoverned
+asset, low-confidence and use-case contribution checks, plus separate reviewed
+support reporting. Its findings describe the supplied graph. Duplicated
+initiatives, thematic clustering and opportunity inference below describe
+possible analyses by other implementations; they are not current analyzer
+features. See Graph Toolkit for the JSON output field reference.</p>
 
-<p>unlinked high-priority use cases
-unsupported strategic objectives
-duplicated operational initiatives
-overlapping capabilities
-orphan KPIs
-governance gaps
-reusable product ecosystems
-strategic opportunities emerging across multiple connected entities</p>
+<p>Graph relationships provide context for investigating:</p>
+
+<ul>
+<li>unlinked high-priority use cases</li>
+<li>unsupported strategic objectives</li>
+<li>duplicated operational initiatives</li>
+<li>overlapping capabilities</li>
+<li>orphan KPIs</li>
+<li>governance gaps</li>
+<li>reusable product ecosystems</li>
+<li>strategic opportunities emerging across multiple connected entities</li>
+</ul>
 
 <p>Strategic opportunities may emerge when several use cases, KPIs, domains, or data products collectively indicate an unmet organizational need or a common optimization target.</p>
 
@@ -1999,7 +2339,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='governance-and-trust'>Governance and Trust</h1><div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">DP-AVIATION-001</span>
@@ -2016,11 +2356,15 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
     <span class="na">type</span><span class="pi">:</span> <span class="s">governedBy</span>
     <span class="na">confidence</span><span class="pi">:</span> <span class="s">high</span>
 </code></pre></div>
-<p>ODPG supports governance propagation by enabling organizations to connect policies, controls, ownership structures, quality requirements, stewardship responsibilities, and compliance expectations directly to graph entities and relationships.</p>
+<p>ODPG documents governance relationships by connecting policies, controls,
+ownership structures, quality requirements, stewardship responsibilities and
+compliance expectations to graph entities.</p>
 
 <p>This graph-native governance model enables organizations to understand how governance requirements propagate across interconnected assets and how changes to policies, ownership, or controls may impact downstream systems, use cases, APIs, workflows, or AI agents.</p>
 
-<p>This governance structure supports:</p>
+<p>These relationships provide context for the following activities; the reference
+toolkit does not implement trust scoring, lifecycle enforcement or compliance
+certification:</p>
 
 <ul>
 <li>policy traceability</li>
@@ -2039,6 +2383,12 @@ Authentication, authorization and policy enforcement remain in MCP/API
 infrastructure and other authoritative systems. Trust scores and compliance
 conclusions require separately defined evidence, methods and accountable review.
 See Adoption and Evidence Profiles for the draft assertion and value contracts.</p>
+
+<p>Attach source, origin, evidence, review and validity through the optional
+<code>x-odpg-assertion</code> contract. <code>objectivesWithoutReviewedSupport</code> separates reviewed
+support from declared topology. In context output, <code>governanceSignals</code> records
+policy relationships from unfiltered paths; <code>reviewedPaths</code> separately identifies
+current, accepted, evidenced edge claims. Neither is an authorization decision.</p>
 <!-- Authorship: Zaher Abou Shakra -->
 
 <!-- AI_AGENT_GUIDANCE:
@@ -2048,7 +2398,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='ai-agent-interoperability'>AI Agent Interoperability</h1><div class="highlight"><pre class="highlight yaml"><code><span class="na">nodes</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">AGENT-AVIATION-001</span>
@@ -2082,7 +2432,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <li>which data products are relevant to a task</li>
 <li>which APIs are available</li>
 <li>which objectives are being supported</li>
-<li>which policies apply</li>
+<li>which policies are associated with graph entities</li>
 <li>which governance boundaries exist</li>
 <li>which dependencies affect execution</li>
 <li>which relationships carry explicit origin, evidence and review metadata</li>
@@ -2097,10 +2447,16 @@ separately; it does not authenticate evidence or enforce policies.</p>
 <h2 id='interoperability'>Interoperability</h2>
 <p>ODPG is designed to operate as an interoperable relationship layer across the broader Open Data Products ecosystem, where graph nodes may reference ODPS data products, ODPV vocabulary definitions, ODPC catalog entries, governance specifications, APIs, workflows, use cases, KPI definitions, or external organizational assets.</p>
 
-<p>The ref property enables ODPG to link graph entities to external specifications while maintaining lightweight graph portability and reusable interoperability structures.</p>
+<p>The <code>$ref</code> property enables ODPG to link graph entities to external specifications while maintaining lightweight graph portability and reusable interoperability structures.</p>
 <div class="highlight"><pre class="highlight yaml"><code><span class="s">$ref</span><span class="pi">:</span> <span class="s">../products/aircraft-maintenance-history.yaml</span>
 </code></pre></div>
-<p>Through this interoperability model, ODPG enables organizations to federate graph ecosystems across teams, domains, platforms, and organizations while maintaining semantic consistency and reusable relationship intelligence.</p>
+<p>References provide a basis for linking graphs across teams and domains; the
+reference toolkit does not implement a federation service. The proposed
+<code>odpg-observed-lineage-0.1</code> profile would link PROV and OpenLineage records, while
+<code>odpg-governed-agent-0.1</code> would distinguish definitions from observed runs and
+approval/evaluation evidence. Both remain unimplemented proposals. The current
+implemented draft is <code>odpg-value-evidence-0.1</code>, with a shared assertion contract;
+see Adoption and Evidence Profiles for schemas, mappings and conformance scope.</p>
 <!-- Authorship: Zaher Abou Shakra -->
 
 <!-- AI_AGENT_GUIDANCE:
@@ -2110,7 +2466,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='odpg-toolkit'>ODPG Toolkit</h1>
 <p>The sections below describe optional architectural capabilities, not a claim
@@ -2190,7 +2546,7 @@ the implemented draft contracts and the boundary between context and authority.<
 <tr>
 <td>AI Agent Toolkit</td>
 <td>ODPG graph and agent task context</td>
-<td>Trusted graph context and reasoning paths</td>
+<td>Graph context, assertion metadata and separately identified reviewed paths</td>
 </tr>
 <tr>
 <td>Federation Toolkit</td>
@@ -2199,9 +2555,24 @@ the implemented draft contracts and the boundary between context and authority.<
 </tr>
 </tbody></table>
 
-<p>ODPG provides focused Python command-line scripts for the most important toolkit capabilities: <code>odpg_validate.py</code>, <code>odpg_summary.py</code>, <code>odpg_traverse.py</code>, <code>odpg_analyze.py</code>, and <code>odpg_agent_context.py</code>. The scripts share common graph logic through <code>odpg_toolkit_core.py</code> so validation, traversal, governance analysis, and AI-agent context extraction remain consistent.</p>
+<p>ODPG provides focused Python command-line scripts for validation, conversion,
+summaries, traversal, analysis and context extraction. The shared operations in
+<a href="scripts/odpg_toolkit_core.py"><code>odpg_toolkit_core.py</code></a> import
+<a href="scripts/odpg_profiles.py"><code>odpg_profiles.py</code></a> for bundled schema validation,
+assertion validity and draft Value Evidence semantic checks. Both are supporting
+modules, not CLI entry points. The converter and explorer have independent
+implementations; run <code>odpg_validate.py</code> on their graph inputs or outputs to
+establish conformance. Required Dependencies &amp; Execution lists the packages,
+module/schema layout and commands.</p>
 <h3 id='graph-validation-toolkit'>Graph Validation Toolkit</h3>
 <p>The Graph Validation Toolkit validates ODPG documents against the official schema and verifies structural consistency, node integrity, edge validity, confidence values, and interoperability requirements.</p>
+
+<p>The current implementation also checks the draft shared assertion contract and
+the declared <code>odpg-value-evidence-0.1</code> profile, using the published profile
+schemas plus typed-reference, unit, period and evidence-chain checks. Its JSON
+report identifies declared profile conformance; unsupported profiles fail
+explicitly. This does not certify referenced evidence or external interoperability
+adapters. Governed Agent and Observed Lineage remain proposals.</p>
 
 <p>Capabilities may include:</p>
 
@@ -2214,6 +2585,11 @@ the implemented draft contracts and the boundary between context and authority.<
 <li>confidence validation</li>
 </ul>
 <h3 id='graph-traversal-toolkit'>Graph Traversal Toolkit</h3>
+<p>The reference scripts implement depth-limited forward/reverse traversal,
+relationship filtering and full edge-metadata preservation. The broader
+capabilities below are architectural possibilities; there is no executable
+policy-propagation engine in this repository.</p>
+
 <p>The Graph Traversal Toolkit enables traversal across interconnected graph entities using semantic, strategic, operational, and governance relationships.</p>
 
 <p>Capabilities may include:</p>
@@ -2227,6 +2603,10 @@ the implemented draft contracts and the boundary between context and authority.<
 <li>strategic alignment analysis</li>
 </ul>
 <h3 id='strategic-intelligence-toolkit'>Strategic Intelligence Toolkit</h3>
+<p>The reference analyzer implements topology-gap checks and separate reviewed
+support reporting. Thematic clustering, opportunity inference, duplicate use-case
+detection and capability-alignment engines remain architectural possibilities.</p>
+
 <p>The Strategic Intelligence Toolkit analyzes graph relationships to identify organizational gaps, overlapping initiatives, unsupported objectives, and emerging strategic opportunities.</p>
 
 <p>Capabilities may include:</p>
@@ -2240,6 +2620,10 @@ the implemented draft contracts and the boundary between context and authority.<
 <li>capability alignment analysis</li>
 </ul>
 <h3 id='ai-agent-toolkit'>AI Agent Toolkit</h3>
+<p>The reference script extracts graph context and recorded review metadata.
+The broader capabilities below require external implementations; this repository
+does not provide an agent runtime, tool execution or policy enforcement.</p>
+
 <blockquote>
 <p>Example of AI agent graph interaction:</p>
 </blockquote>
@@ -2284,6 +2668,9 @@ the implemented draft contracts and the boundary between context and authority.<
 <li>graph-native orchestration</li>
 </ul>
 <h3 id='federation-toolkit'>Federation Toolkit</h3>
+<p>This is an architectural proposal. No federation service, synchronisation
+runtime or cross-organisation authorization adapter is implemented here.</p>
+
 <p>The Federation Toolkit enables organizations to connect multiple ODPG ecosystems into federated graph environments capable of supporting cross-domain interoperability, distributed governance, and enterprise-scale graph reasoning.</p>
 
 <p>Capabilities may include:</p>
@@ -2305,7 +2692,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='specification-extensions'>Specification extensions</h1>
 <blockquote>
@@ -2346,7 +2733,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </code></pre></div>
 <p>While the Open Data Product Graphs Specification defines the core graph objects and attributes, organizations may need to add implementation-specific metadata for local tools, internal workflows, or platform-specific requirements.</p>
 
-<p>Extension properties are implemented as patterned fields that are always prefixed with <code>x-</code>. These fields may appear in ODPG objects such as the graph root, <code>metadata</code>, <code>metadata.owner</code>, <code>nodes</code>, and <code>edges</code>.</p>
+<p>Extension properties are implemented as patterned fields that are always prefixed with <code>x-</code>. These fields may appear in ODPG objects such as <code>graph</code>, <code>graph.metadata</code>, <code>graph.metadata.owner</code>, individual nodes and individual edges.</p>
 
 <p>Extensions are not part of the official ODPG object model unless they are later adopted into the specification. Tooling may ignore extension fields unless explicit support has been added.</p>
 
@@ -2360,7 +2747,7 @@ semantics without changing core required fields.</p>
 
 <p>Useful and widely adopted extensions may become candidates for future versions of the standard. To propose useful extensions, raise an issue in GitHub:</p>
 
-<p><a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues">Open Data Product Initiative GitHub issues</a></p>
+<p><a href="https://github.com/Open-Data-Product-Initiative/odpg-dev/issues">Open Data Product Initiative GitHub issues</a></p>
 
 <table><thead>
 <tr>
@@ -2377,6 +2764,8 @@ semantics without changing core required fields.</p>
 <td>Allows extensions to the Open Data Product Graphs Schema. The field name MUST begin with <code>x-</code>, for example, <code>x-internal-id</code>. The value can be null, a primitive, an array, or an object.</td>
 </tr>
 </tbody></table>
+<!-- Authorship: Zaher Abou Shakra -->
+
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -2384,7 +2773,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='terms-used'>Terms used</h1>
 <p>This project works with <strong><a href="https://opendataproducts.org/odpg-v1.0/">Open Data Product Graphs (ODPG) 1.0</a></strong> documents and a small HTML generator for exploration. ODPG uses the <strong><a href="https://opendataproducts.org/odpv-v1.0/">Open Data Product Vocabulary (ODPV)</a></strong> as the shared vocabulary across the OpenDataProducts.org standards family: stable identifiers, labels, definitions, aliases, and relationship names should stay aligned with ODPV so graphs stay interoperable with ODPS, ODPC, and other tools.</p>
@@ -2459,7 +2848,9 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 
 <p>ODPG defines additional supported node types, such as <code>Domain</code>, <code>Dataset</code>, <code>Workflow</code>, and <code>Capability</code>, that are valid in the standard even when they do not appear in every sample graph.</p>
 <h2 id='shared-relationship-terms-from-odpv-edges'>Shared relationship terms from ODPV (edges)</h2>
-<p>Edge <code>type</code> values in YAML are spelled exactly as in ODPG. The generator&#39;s core list and tooltips mirror the ODPG relationship model, including:</p>
+<p>Edge <code>type</code> values in YAML should use the canonical ODPG spellings below.
+The generator renders literal relationship labels; legacy styling aliases do
+not redefine the core vocabulary.</p>
 
 <table><thead>
 <tr>
@@ -2504,7 +2895,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>Ownership or stewardship.</td>
 </tr>
 <tr>
-<td><code>alignsWith</code> / <code>alignWith</code></td>
+<td><code>alignsWith</code></td>
 <td>Strategic or semantic alignment.</td>
 </tr>
 <tr>
@@ -2534,6 +2925,53 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 </tbody></table>
 
 <p>Domain-specific <code>type</code> strings are allowed by ODPG for extension; the explorer will still render them, with legend coloring falling back to a neutral default when no explicit color is defined.</p>
+
+<p>The shared toolkit also accepts the legacy spelling <code>alignWith</code>; new graphs
+should use <code>alignsWith</code>, matching the core schema examples and node/edge sections.</p>
+<h2 id='draft-value-evidence-terms'>Draft Value Evidence terms</h2>
+<p>These names belong to <code>odpg-value-evidence-0.1</code>, not to the core type vocabulary
+or an asserted ODPV mapping. See Adoption and Evidence Profiles for their
+required fields and directed relationship chains.</p>
+
+<table><thead>
+<tr>
+<th>Profile type</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ValueHypothesis</code></td>
+<td>Falsifiable claim linking an objective, use case and product/capability to a metric and review decision.</td>
+</tr>
+<tr>
+<td><code>Outcome</code></td>
+<td>Intended business or operational result described by a hypothesis.</td>
+</tr>
+<tr>
+<td><code>MetricDefinition</code></td>
+<td>Definition, unit, desired direction and aggregation method of a measure.</td>
+</tr>
+<tr>
+<td><code>Baseline</code></td>
+<td>Starting metric value for a specified measurement period.</td>
+</tr>
+<tr>
+<td><code>Target</code></td>
+<td>Desired metric value for a specified period.</td>
+</tr>
+<tr>
+<td><code>Measurement</code></td>
+<td>Recorded metric value, period, attribution method and evidence references.</td>
+</tr>
+<tr>
+<td><code>Evidence</code></td>
+<td>Pointer to supporting material, its recorded time and optional content digest.</td>
+</tr>
+<tr>
+<td><code>ReviewDecision</code></td>
+<td>Named reviewer&#39;s decision to continue, change, stop or defer, with evidence and rationale.</td>
+</tr>
+</tbody></table>
 <h2 id='odpg-and-project-specific-usage-notes'>ODPG- and project-specific usage notes</h2>
 <table><thead>
 <tr>
@@ -2574,8 +3012,44 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <td>Shared Python module used by the ODPG toolkit scripts for loading, validating, summarizing, traversing, analyzing, and extracting graph context.</td>
 </tr>
 <tr>
+<td><code>odpg_profiles.py</code></td>
+<td>Imported support module for local core/profile schema loading, assertion validation and Value Evidence semantic checks; not a standalone CLI.</td>
+</tr>
+<tr>
 <td><code>odpg_validate.py</code></td>
-<td>Python validation script for graph files.</td>
+<td>CLI for bundled core schema, graph integrity, assertion and supported declared profile validation; returns JSON conformance results.</td>
+</tr>
+<tr>
+<td><code>graph.metadata.x-odpg-profiles</code></td>
+<td>Optional array of versioned profile identifiers; the validator rejects unsupported profiles.</td>
+</tr>
+<tr>
+<td><code>x-odpg-assertion</code></td>
+<td>Draft node/edge claim metadata: identifier, origin, source, timestamps, review status, validity and evidence pointers.</td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td>How a claim arose: <code>declared</code>, <code>observed</code> or <code>inferred</code>; distinct from confidence and review status.</td>
+</tr>
+<tr>
+<td><code>reviewStatus</code></td>
+<td>Recorded claim-review state: <code>pending</code>, <code>accepted</code>, <code>rejected</code> or <code>deferred</code>.</td>
+</tr>
+<tr>
+<td><code>x-odpg-value</code></td>
+<td>Additional node fields defined by the optional draft Value Evidence profile.</td>
+</tr>
+<tr>
+<td><code>reviewedPaths</code></td>
+<td>Context paths whose edges carry current, accepted assertions with evidence pointers; not authenticated evidence or authorization.</td>
+</tr>
+<tr>
+<td><code>objectivesWithoutReviewedSupport</code></td>
+<td>Analysis result distinguishing objectives lacking reviewed incoming support from objectives lacking declared topology links.</td>
+</tr>
+<tr>
+<td><code>trustNotice</code></td>
+<td>Context output explaining that graph assertions do not grant authorization or prove value or readiness.</td>
 </tr>
 <tr>
 <td><code>odpg_summary.py</code></td>
@@ -2602,6 +3076,8 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 <p><strong>Reference field name:</strong> Use <strong><code>$ref</code></strong> on nodes when validating against the ODPG JSON/YAML schema. The generator accepts legacy <code>ref</code> values during transition, but <code>$ref</code> is the schema-aligned field.</p>
 
 <p><strong>Relationship vocabulary:</strong> Prefer ODPV-defined relationship identifiers for <code>graph.edges[].type</code> so the same edge semantics can be shared with ODPC, other ODPG tools, and downstream AI or governance pipelines.</p>
+<!-- Authorship: Zaher Abou Shakra -->
+
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -2609,7 +3085,7 @@ Use ODPC for catalog discovery; do not model discovery catalogs as ODPG graphs u
 Use ODPS for full data product metadata; in ODPG, reference data products as DataProduct nodes instead of copying full ODPS content.
 Use ODPV when stable vocabulary terms, semantic mappings, or relationship names are needed.
 Use confidence values high, medium, or low for edges.
-Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
+Use x- prefixed extension fields for implementation-specific metadata or declared optional profiles; do not redefine core ODPG semantics.
 -->
 <h1 id='editors-and-contributors'>Editors and contributors</h1>
 <p>This specification is openly developed and a lot of the work comes from community. We list all community contributors as a sign of appreciation. Maintainers process the feedback and draft new candidate releases, which may become the versions of the specification. </p>
