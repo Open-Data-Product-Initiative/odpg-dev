@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -8,6 +9,14 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 # ODPG Toolkit
+
+The sections below describe optional architectural capabilities, not a claim
+that all are implemented by the repository's scripts. The current Python
+reference implementation provides local core/profile validation, topology
+conversion, traversal, gap checks, context extraction and visualisation.
+It does not provide a policy enforcement engine, agent runtime, authenticated
+evidence service or federation service. See Adoption and Evidence Profiles for
+the implemented draft contracts and the boundary between context and authority.
 
 The ODPG Toolkit provides a collection of interoperable tooling capabilities that support graph creation, validation, traversal, governance reasoning, semantic interoperability, strategic intelligence analysis, and AI-agent interaction across Open Data Product ecosystems.
 
@@ -26,7 +35,7 @@ The toolkit may include:
 
 ## ODPG Agent Toolkit
 
-The ODPG Agent Toolkit extends the graph ecosystem with agent-compatible interfaces that allow AI systems to navigate, reason over, and interact with interconnected enterprise data ecosystems using trusted graph relationships and governance-aware traversal.
+The ODPG Agent Toolkit extends the graph ecosystem with agent-compatible interfaces that allow AI systems to navigate, reason over, and interact with interconnected enterprise data ecosystems using documented graph relationships and governance-aware traversal.
 
 The Agent Toolkit may support:
 
@@ -39,7 +48,7 @@ The Agent Toolkit may support:
 * strategic opportunity detection
 * graph-based memory
 * explainable AI navigation
-* trusted context grounding
+* context grounding with evidence pointers
 
 This section is strategically important because ODPC focuses on discovery, while ODPG focuses on reasoning. That is the critical distinction.
 
@@ -141,7 +150,7 @@ The toolkit may support:
 * graph retrieval APIs
 * semantic context injection
 * governance-aware graph traversal
-* trusted relationship discovery
+* relationship discovery with evidence metadata
 * explainable reasoning paths
 * graph-based memory systems
 * objective-aware planning

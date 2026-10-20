@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -8,6 +9,14 @@ Use confidence values high, medium, or low for edges.
 Use x- prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 -->
 # Strategic Intelligence
+
+Strategic contribution edges are claims, not proof of realised value. Declared
+and inferred opportunities should retain their origin, source, evidence and
+review status. The draft Value Evidence profile connects hypotheses to metric
+definitions, baselines, targets, measurements and named review decisions.
+Measurements MUST NOT automatically establish business value or production
+readiness. Toolkit gap checks inspect recorded topology; missing relationships
+are gaps in the supplied graph, not proof that a real-world capability is absent.
 > Example of Strategic opportunities type:
 
 ```yml

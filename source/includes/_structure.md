@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -13,7 +14,7 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 
 ```yml
 schema: https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml
-version: 1.0
+version: "1.0"
 kind: Graph
 graph:
   metadata:
@@ -37,15 +38,15 @@ The following root properties are defined within an ODPG document.
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
 | `schema` | URL | Yes | URL of the ODPG schema used for validation |
-| `version` | String or number | Yes | Version of the ODPG specification |
+| `version` | String | Yes | Version of the ODPG specification, for example `"1.0"` |
 | `kind` | String | Yes | Type of graph specification document. Must be `Graph` |
 | `graph` | Object | Yes | Container for graph metadata, nodes, and edges |
 | `metadata` | Object | Yes | Metadata describing the graph |
 | `metadata.id` | String | Yes | Unique identifier of the graph |
 | `metadata.name` | Object | Yes | Human-readable graph name using language-specific values |
-| `metadata.name.en` | String | Yes |  English name of the graph.  |
+| `metadata.name.en` | String | No | English name; at least one supported language key is required. |
 | `metadata.description` | Object | Yes | Human-readable graph description using language-specific values |
-| `metadata.description.en` | String | Yes | English description of the graph. |
+| `metadata.description.en` | String | No | English description; at least one supported language key is required. |
 | `nodes` | Array of node objects | Yes | Collection of graph node objects |
 | `edges` | Array of edge objects | Yes | Collection of graph edge objects |
 
@@ -55,7 +56,7 @@ The following root properties are defined within an ODPG document.
 
 ```yml
 schema: https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml
-version: 1.0
+version: "1.0"
 kind: Graph
 graph:
   metadata:

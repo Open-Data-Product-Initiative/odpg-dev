@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use /graph/objects.jsonl for retrieval, relationship classification, traversal planning, graph reasoning, validation hints, and lightweight AI-agent tool calls.
@@ -53,7 +54,7 @@ ODPG is published in several forms for different users and tools. This specifica
 | [`odpg_summary.py`](/scripts/odpg_summary.py) | Python | Produces graph metadata, node counts, edge counts, node types, edge types, and confidence summaries |
 | [`odpg_traverse.py`](/scripts/odpg_traverse.py) | Python | Discovers relationship paths from a node with optional relationship filters and reverse traversal |
 | [`odpg_analyze.py`](/scripts/odpg_analyze.py) | Python | Runs governance and strategic checks for orphan KPIs, unsupported objectives, ungoverned assets, and low-confidence relationships |
-| [`odpg_agent_context.py`](/scripts/odpg_agent_context.py) | Python | Extracts trusted graph context around a focus node for AI-agent use |
+| [`odpg_agent_context.py`](/scripts/odpg_agent_context.py) | Python | Extracts graph context with assertion metadata around a focus node for AI-agent use |
 | [`generate_graph_explorer.py`](/scripts/generate_graph_explorer.py) | Python | Generates a standalone HTML Graph Explorer from an ODPG YAML graph |
 
 The Markdown tables in this specification are intended for human readers. The schema, JSONL, and graph tooling files are intended for programmable use, automation, validation, AI retrieval, traversal, reasoning, strategic analysis, AI-agent interaction, and graph visualization.
@@ -69,7 +70,7 @@ The ODPG Python toolkit separates the most important command-line operations int
 | `odpg_summary.py` | Graph Validation Toolkit / AI Agent Toolkit | Produce a JSON summary of metadata, node counts, edge counts, node types, edge types, and confidence values |
 | `odpg_traverse.py` | Graph Traversal Toolkit | Discover relationship paths from a node, optionally filtering by relationship type or traversing incoming relationships |
 | `odpg_analyze.py` | Strategic Intelligence Toolkit / Governance analysis | Detect orphan KPIs, unsupported objectives, ungoverned assets, low-confidence relationships, and use cases without strategic contribution |
-| `odpg_agent_context.py` | AI Agent Toolkit | Extract trusted graph context around a focus node, including forward paths, reverse paths, related nodes, and governance signals |
+| `odpg_agent_context.py` | AI Agent Toolkit | Extract graph context with assertion metadata around a focus node, including forward paths, reverse paths, related nodes, and governance signals |
 
 Example usage:
 
@@ -88,5 +89,5 @@ The repository includes pytest coverage for the shared toolkit logic used by the
 
 ```text
 python -m pip install -r requirements-dev.txt
-python -m pytest tests/test_odpg_toolkit.py
+python -m pytest tests
 ```

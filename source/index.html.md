@@ -10,6 +10,7 @@ toc_footers:
   - <br/>Linux Foundation</a>
 
 includes:
+  - adoption
   - graph_toolkit
   - structure
   - catalog
@@ -35,6 +36,8 @@ meta:
 ---
 
 # OPEN DATA PRODUCT GRAPHS - The Linux Foundation
+
+<!-- Authorship: Zaher Abou Shakra -->
 
 
 ## Release Version DEVELOPMENT
@@ -91,6 +94,15 @@ Within this ecosystem, ODPS defines the product structure itself, ODPV defines s
 As a result, ODPG should be understood as the relationship and intelligence layer of the Open Data Products ecosystem because it provides the contextual structure necessary for understanding how different enterprise assets connect to each other operationally, strategically, semantically, and organizationally.
 
 ## Purpose
+
+ODPG is a storage-neutral portfolio and decision-context graph. It links
+strategic relationships to canonical resources, evidence pointers and accountable
+decisions. It complements catalogs, graph databases, provenance and lineage
+systems, agent runtimes, telemetry stores and authorization infrastructure.
+A graph relationship MUST NOT itself grant access or automatically establish
+observed execution, business value, compliance or production readiness.
+The Adoption and Evidence Profiles section defines optional draft contracts
+and clearly distinguishes implemented validation from future proposals.
 
 The purpose of ODPG is to provide organizations with a standardized machine-readable graph specification that enables them to model relationships between data products, business objectives, operational use cases, governance structures, APIs, workflows, AI systems, and strategic capabilities in a consistent and interoperable manner.
 

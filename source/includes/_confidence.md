@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -15,13 +16,23 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 confidence: high
 ```
 
-The confidence property represents the certainty level associated with a graph relationship and allows organizations to distinguish between relationships that are explicitly declared, relationships that are inferred through analysis, and relationships that require additional validation or human review.
+The confidence property records the asserting party's qualitative certainty in
+a relationship. It does not independently encode whether the relationship is
+declared, observed, or inferred, and does not establish evidence, approval,
+authorization, or measured business value. The separate draft assertion
+contract records origin and review status; legacy documents remain valid
+without it, but their claims have no explicit evidence or review status.
 
 Recommended confidence values are defined below.
 
 | Value  | Description                                                             |
 | ------ | ----------------------------------------------------------------------- |
-| high   | Relationship is explicitly declared or confirmed                        |
-| medium | Relationship is partially validated or inferred with moderate certainty |
-| low    | Relationship is inferred and requires additional validation             |
+| high   | Asserting party reports high certainty; evidence and review remain separate |
+| medium | Asserting party reports moderate certainty |
+| low    | Asserting party reports low certainty |
+
+Earlier guidance associated high confidence with declared or confirmed edges,
+and lower confidence with inference. Existing values are preserved; consumers
+MUST NOT infer origin or acceptance from confidence alone. This clarification
+does not retroactively certify legacy claims.
 

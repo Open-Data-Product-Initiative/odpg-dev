@@ -1,0 +1,606 @@
+# Authorship: Zaher Abou Shakra
+schema: https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml
+version: '1.0'
+kind: Graph
+graph:
+  metadata:
+    id: GRAPH-AVIATION-VALUE
+    name:
+      en: Illustrative aviation value evidence
+    description:
+      en: Synthetic examples of supported and inconclusive hypotheses, not actual
+        business results.
+    x-odpg-profiles:
+    - odpg-value-evidence-0.1
+    x-illustrative: true
+  nodes:
+  - id: OBJ-AVAILABILITY
+    type: BusinessObjective
+    $ref: resources.yaml#/OBJ-AVAILABILITY
+  - id: UC-MAINTENANCE
+    type: UseCase
+    $ref: resources.yaml#/UC-MAINTENANCE
+  - id: DP-MAINTENANCE
+    type: DataProduct
+    $ref: resources.yaml#/DP-MAINTENANCE
+  - id: HYP-1
+    type: ValueHypothesis
+    $ref: resources.yaml#/HYP-1
+    x-odpg-value:
+      statement: Maintenance insight reduces unscheduled maintenance events.
+      objective: OBJ-AVAILABILITY
+      useCase: UC-MAINTENANCE
+      product: DP-MAINTENANCE
+      outcome: OUT-1
+      metric: MET-1
+      baseline: BASE-1
+      target: TARGET-1
+      measurements:
+      - MEAS-1
+      reviewDecision: REVIEW-1
+  - id: OUT-1
+    type: Outcome
+    $ref: resources.yaml#/OUT-1
+    x-odpg-value:
+      description: Fewer unscheduled maintenance events for the evaluated fleet cohort.
+  - id: MET-1
+    type: MetricDefinition
+    $ref: resources.yaml#/MET-1
+    x-odpg-value:
+      definition: Unscheduled maintenance events per 1000 flight hours.
+      unit: events/1000-flight-hours
+      direction: decrease
+      aggregation: Count events divided by observed flight hours, multiplied by 1000;
+        fixed cohort.
+  - id: BASE-1
+    type: Baseline
+    $ref: resources.yaml#/BASE-1
+    x-odpg-value:
+      metric: MET-1
+      value: 10
+      unit: events/1000-flight-hours
+      periodStart: '2026-07-01T00:00:00Z'
+      periodEnd: '2026-08-01T00:00:00Z'
+  - id: TARGET-1
+    type: Target
+    $ref: resources.yaml#/TARGET-1
+    x-odpg-value:
+      metric: MET-1
+      value: 8
+      unit: events/1000-flight-hours
+      periodStart: '2026-08-01T00:00:00Z'
+      periodEnd: '2026-09-01T00:00:00Z'
+  - id: MEAS-1
+    type: Measurement
+    $ref: resources.yaml#/MEAS-1
+    x-odpg-value:
+      metric: MET-1
+      value: 7
+      unit: events/1000-flight-hours
+      periodStart: '2026-08-01T00:00:00Z'
+      periodEnd: '2026-09-01T00:00:00Z'
+      hypothesis: HYP-1
+      observedAt: '2026-09-02T00:00:00Z'
+      attributionMethod: Synthetic matched-cohort comparison; seasonal and fleet-composition
+        confounders require human review.
+      evidence:
+      - EVID-1
+  - id: EVID-1
+    type: Evidence
+    $ref: resources.yaml#/EVID-1
+    x-odpg-value:
+      uri: resources.yaml#/EVID-1
+      recordedAt: '2026-09-02T00:00:00Z'
+  - id: REVIEW-1
+    type: ReviewDecision
+    $ref: resources.yaml#/REVIEW-1
+    x-odpg-value:
+      hypothesis: HYP-1
+      decision: continue
+      reviewer: Example fleet review board (fictional)
+      reviewedAt: '2026-09-05T00:00:00Z'
+      evidence:
+      - EVID-1
+      rationale: Illustrative decision to continue controlled evaluation; no production-readiness
+        conclusion.
+  - id: HYP-2
+    type: ValueHypothesis
+    $ref: resources.yaml#/HYP-2
+    x-odpg-value:
+      statement: Maintenance insight reduces unscheduled maintenance events.
+      objective: OBJ-AVAILABILITY
+      useCase: UC-MAINTENANCE
+      product: DP-MAINTENANCE
+      outcome: OUT-2
+      metric: MET-2
+      baseline: BASE-2
+      target: TARGET-2
+      measurements:
+      - MEAS-2
+      reviewDecision: REVIEW-2
+  - id: OUT-2
+    type: Outcome
+    $ref: resources.yaml#/OUT-2
+    x-odpg-value:
+      description: Fewer unscheduled maintenance events for the evaluated fleet cohort.
+  - id: MET-2
+    type: MetricDefinition
+    $ref: resources.yaml#/MET-2
+    x-odpg-value:
+      definition: Unscheduled maintenance events per 1000 flight hours.
+      unit: events/1000-flight-hours
+      direction: decrease
+      aggregation: Count events divided by observed flight hours, multiplied by 1000;
+        fixed cohort.
+  - id: BASE-2
+    type: Baseline
+    $ref: resources.yaml#/BASE-2
+    x-odpg-value:
+      metric: MET-2
+      value: 10
+      unit: events/1000-flight-hours
+      periodStart: '2026-07-01T00:00:00Z'
+      periodEnd: '2026-08-01T00:00:00Z'
+  - id: TARGET-2
+    type: Target
+    $ref: resources.yaml#/TARGET-2
+    x-odpg-value:
+      metric: MET-2
+      value: 8
+      unit: events/1000-flight-hours
+      periodStart: '2026-08-01T00:00:00Z'
+      periodEnd: '2026-09-01T00:00:00Z'
+  - id: MEAS-2
+    type: Measurement
+    $ref: resources.yaml#/MEAS-2
+    x-odpg-value:
+      metric: MET-2
+      value: 9.8
+      unit: events/1000-flight-hours
+      periodStart: '2026-08-01T00:00:00Z'
+      periodEnd: '2026-09-01T00:00:00Z'
+      hypothesis: HYP-2
+      observedAt: '2026-09-02T00:00:00Z'
+      attributionMethod: Synthetic matched-cohort comparison; seasonal and fleet-composition
+        confounders require human review.
+      evidence:
+      - EVID-2
+  - id: EVID-2
+    type: Evidence
+    $ref: resources.yaml#/EVID-2
+    x-odpg-value:
+      uri: resources.yaml#/EVID-2
+      recordedAt: '2026-09-02T00:00:00Z'
+  - id: REVIEW-2
+    type: ReviewDecision
+    $ref: resources.yaml#/REVIEW-2
+    x-odpg-value:
+      hypothesis: HYP-2
+      decision: defer
+      reviewer: Example fleet review board (fictional)
+      reviewedAt: '2026-09-05T00:00:00Z'
+      evidence:
+      - EVID-2
+      rationale: Target not met and attribution uncertain; gather more evidence before
+        deciding.
+  edges:
+  - from: UC-MAINTENANCE
+    to: OBJ-AVAILABILITY
+    type: supports
+    confidence: high
+    x-odpg-assertion:
+      id: claim-1
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/OBJ-AVAILABILITY
+  - from: UC-MAINTENANCE
+    to: DP-MAINTENANCE
+    type: uses
+    confidence: high
+    x-odpg-assertion:
+      id: claim-2
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/DP-MAINTENANCE
+  - from: BASE-1
+    to: MET-1
+    type: measures
+    confidence: high
+    x-odpg-assertion:
+      id: claim-3
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-1
+  - from: TARGET-1
+    to: MET-1
+    type: measures
+    confidence: high
+    x-odpg-assertion:
+      id: claim-4
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-1
+  - from: MEAS-1
+    to: MET-1
+    type: measures
+    confidence: high
+    x-odpg-assertion:
+      id: claim-5
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-1
+  - from: HYP-1
+    to: OBJ-AVAILABILITY
+    type: supports
+    confidence: high
+    x-odpg-assertion:
+      id: claim-6
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/OBJ-AVAILABILITY
+  - from: HYP-1
+    to: DP-MAINTENANCE
+    type: uses
+    confidence: high
+    x-odpg-assertion:
+      id: claim-7
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/DP-MAINTENANCE
+  - from: HYP-1
+    to: OUT-1
+    type: expects
+    confidence: high
+    x-odpg-assertion:
+      id: claim-8
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/OUT-1
+  - from: HYP-1
+    to: MET-1
+    type: measuredBy
+    confidence: high
+    x-odpg-assertion:
+      id: claim-9
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-1
+  - from: HYP-1
+    to: BASE-1
+    type: hasBaseline
+    confidence: high
+    x-odpg-assertion:
+      id: claim-10
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/BASE-1
+  - from: HYP-1
+    to: TARGET-1
+    type: hasTarget
+    confidence: high
+    x-odpg-assertion:
+      id: claim-11
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/TARGET-1
+  - from: UC-MAINTENANCE
+    to: HYP-1
+    type: tests
+    confidence: high
+    x-odpg-assertion:
+      id: claim-12
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/HYP-1
+  - from: MEAS-1
+    to: HYP-1
+    type: tests
+    confidence: high
+    x-odpg-assertion:
+      id: claim-13
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/HYP-1
+  - from: MEAS-1
+    to: EVID-1
+    type: supportedBy
+    confidence: high
+    x-odpg-assertion:
+      id: claim-14
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/EVID-1
+  - from: REVIEW-1
+    to: HYP-1
+    type: reviews
+    confidence: high
+    x-odpg-assertion:
+      id: claim-15
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/HYP-1
+  - from: REVIEW-1
+    to: EVID-1
+    type: supportedBy
+    confidence: high
+    x-odpg-assertion:
+      id: claim-16
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/EVID-1
+  - from: BASE-2
+    to: MET-2
+    type: measures
+    confidence: high
+    x-odpg-assertion:
+      id: claim-17
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-2
+  - from: TARGET-2
+    to: MET-2
+    type: measures
+    confidence: high
+    x-odpg-assertion:
+      id: claim-18
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-2
+  - from: MEAS-2
+    to: MET-2
+    type: measures
+    confidence: high
+    x-odpg-assertion:
+      id: claim-19
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-2
+  - from: HYP-2
+    to: OBJ-AVAILABILITY
+    type: supports
+    confidence: high
+    x-odpg-assertion:
+      id: claim-20
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/OBJ-AVAILABILITY
+  - from: HYP-2
+    to: DP-MAINTENANCE
+    type: uses
+    confidence: high
+    x-odpg-assertion:
+      id: claim-21
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/DP-MAINTENANCE
+  - from: HYP-2
+    to: OUT-2
+    type: expects
+    confidence: high
+    x-odpg-assertion:
+      id: claim-22
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/OUT-2
+  - from: HYP-2
+    to: MET-2
+    type: measuredBy
+    confidence: high
+    x-odpg-assertion:
+      id: claim-23
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/MET-2
+  - from: HYP-2
+    to: BASE-2
+    type: hasBaseline
+    confidence: high
+    x-odpg-assertion:
+      id: claim-24
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/BASE-2
+  - from: HYP-2
+    to: TARGET-2
+    type: hasTarget
+    confidence: high
+    x-odpg-assertion:
+      id: claim-25
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/TARGET-2
+  - from: UC-MAINTENANCE
+    to: HYP-2
+    type: tests
+    confidence: high
+    x-odpg-assertion:
+      id: claim-26
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/HYP-2
+  - from: MEAS-2
+    to: HYP-2
+    type: tests
+    confidence: high
+    x-odpg-assertion:
+      id: claim-27
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/HYP-2
+  - from: MEAS-2
+    to: EVID-2
+    type: supportedBy
+    confidence: high
+    x-odpg-assertion:
+      id: claim-28
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/EVID-2
+  - from: REVIEW-2
+    to: HYP-2
+    type: reviews
+    confidence: high
+    x-odpg-assertion:
+      id: claim-29
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/HYP-2
+  - from: REVIEW-2
+    to: EVID-2
+    type: supportedBy
+    confidence: high
+    x-odpg-assertion:
+      id: claim-30
+      origin: declared
+      source: urn:odpg:fixture:aviation
+      assertedAt: '2026-10-01T00:00:00Z'
+      reviewStatus: accepted
+      reviewer: Example fixture reviewer (fictional)
+      reviewedAt: '2026-10-02T00:00:00Z'
+      evidence:
+      - uri: resources.yaml#/EVID-2

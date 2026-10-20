@@ -1,4 +1,9 @@
 *.gem
+# Authorship: Zaher Abou Shakra
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
 *.rbc
 .bundle
 .config

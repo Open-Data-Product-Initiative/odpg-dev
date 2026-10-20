@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -38,6 +39,13 @@ This governance structure supports:
 * stewardship visibility
 * trust scoring
 * lifecycle governance
-* AI-safe access management
+* visibility of documented access requirements
 * explainable governance reasoning
 * compliance auditing
+
+A `governedBy` relationship documents a policy association. It does not prove
+that a control was applied, propagate executable policy, or grant access.
+Authentication, authorization and policy enforcement remain in MCP/API
+infrastructure and other authoritative systems. Trust scores and compliance
+conclusions require separately defined evidence, methods and accountable review.
+See Adoption and Evidence Profiles for the draft assertion and value contracts.

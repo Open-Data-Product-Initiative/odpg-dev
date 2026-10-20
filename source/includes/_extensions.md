@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -13,11 +14,11 @@ Use x- prefixed extension fields only for implementation-specific metadata that 
 
 ```yml
 schema: https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml
-version: 1.0
+version: "1.0"
 kind: Graph
-x-internal-id: foobar123
-x-source-system: internal-graph-platform
 graph:
+  x-internal-id: foobar123
+  x-source-system: internal-graph-platform
   metadata:
     id: GRAPH-AVIATION-001
     name:
@@ -34,6 +35,9 @@ graph:
       type: DataProduct
       $ref: ../products/aircraft-maintenance-history.yaml
       x-lineage-system-id: lin-987
+    - id: OBJ-AVIATION-001
+      type: BusinessObjective
+      $ref: ../objectives/increase-fleet-availability.yaml
 
   edges:
     - from: DP-AVIATION-001
@@ -48,6 +52,12 @@ While the Open Data Product Graphs Specification defines the core graph objects 
 Extension properties are implemented as patterned fields that are always prefixed with `x-`. These fields may appear in ODPG objects such as the graph root, `metadata`, `metadata.owner`, `nodes`, and `edges`.
 
 Extensions are not part of the official ODPG object model unless they are later adopted into the specification. Tooling may ignore extension fields unless explicit support has been added.
+
+Document-level `x-` fields are not permitted. Optional draft profiles use
+`graph.metadata.x-odpg-profiles`; their shared assertion contract uses
+`x-odpg-assertion` on nodes or edges. See Adoption and Evidence Profiles for
+schemas, validation rules, and implementation status. Profile extensions add
+semantics without changing core required fields.
 
 Extensions should not be used to redefine core ODPG semantics. They should be used only for additional metadata that does not fit the standard attributes.
 

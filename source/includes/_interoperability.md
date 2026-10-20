@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -45,9 +46,14 @@ Through graph traversal, AI agents can identify:
 * which policies apply
 * which governance boundaries exist
 * which dependencies affect execution
-* which relationships are inferred versus confirmed
+* which relationships carry explicit origin, evidence and review metadata
 
-This capability establishes the foundation for graph-native AI ecosystems where agents can navigate enterprise knowledge structures using trusted semantic relationships and governance-aware graph traversal.
+An `Agent` node describes an actor or definition, not a particular execution.
+`Agent → uses → API` describes a relationship and MUST NOT authorize a call.
+Agent runs, approval events, policy decisions and evaluations belong to the
+proposed Governed Agent profile, which is not implemented in this release.
+Context extraction preserves assertion metadata and reports reviewed paths
+separately; it does not authenticate evidence or enforce policies.
 
 ## Interoperability
 

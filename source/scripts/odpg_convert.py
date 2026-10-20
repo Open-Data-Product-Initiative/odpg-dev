@@ -1,3 +1,4 @@
+# Authorship: Zaher Abou Shakra
 import argparse
 import json
 import re
@@ -8,7 +9,7 @@ from typing import Any
 import yaml
 
 
-SCHEMA_URL = "https://opendataproducts.org/odpg-v1.0/schema/graph.yaml"
+SCHEMA_URL = "https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml"
 DEFAULT_NODE_TYPE = "Resource"
 DEFAULT_EDGE_TYPE = "relatedTo"
 DEFAULT_CONFIDENCE = "medium"
@@ -161,7 +162,7 @@ class ODPGBuilder:
     def document(self) -> dict[str, Any]:
         return {
             "schema": SCHEMA_URL,
-            "version": 1.0,
+            "version": "1.0",
             "kind": "Graph",
             "graph": {
                 "metadata": {

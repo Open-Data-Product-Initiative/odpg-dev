@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 # Open Data Product Graphs
 
 <p align="center">
@@ -21,6 +22,42 @@
 
 Open Data Product Graphs (ODPG) is the relationship and intelligence layer of the Open Data Products ecosystem. It gives organizations a standard way to describe how enterprise assets connect across strategy, governance, semantics, operations, and AI-assisted reasoning.
 
+ODPG is a **storage-neutral portfolio and decision-context graph**. It references
+canonical product metadata, provenance, runtime evidence and accountable decisions.
+It complements catalogs, lineage systems, agent runtimes and authorization
+infrastructure. Graph relationships document claims; they do not establish
+business value or grant access.
+
+## Adoption and Evidence
+
+Start with a core graph and add optional profiles independently. The draft
+`odpg-value-evidence-0.1` profile adds hypotheses, metric definitions, baselines,
+targets, measurements, evidence and human review decisions without changing core
+required fields. Its shared assertion contract separates claim origin from review
+status. Governed Agent and Observed Lineage profiles remain proposals.
+
+- [Adoption guide and profile definitions](source/includes/_adoption.md)
+- [Synthetic aviation reference graph](source/examples/value-evidence/aviation.yaml)
+- [Local reference resources](source/examples/value-evidence/resources.yaml)
+- [Shared assertion JSON Schema](source/schema/profiles/assertion-0.1.json)
+- [Value Evidence node overlay](source/schema/profiles/value-evidence-0.1.json)
+
+```bash
+python -m pip install -r requirements-dev.txt
+python source/scripts/odpg_validate.py -i source/examples/value-evidence/aviation.yaml
+```
+
+Validation executes the bundled core schema plus supported profile checks and
+returns JSON suitable for CI. It never fetches graph-provided URLs. Evidence
+pointers, digests and reviewer names are not authenticated by this validator.
+
+Existing documents using `version: 1.0` as a number must quote it as `"1.0"`,
+as required by the published schema. Earlier toolkit checks did not enforce this.
+Place extensions under `graph`, metadata, owner, nodes or edges; document-level
+extensions are not permitted. Unknown converter types remain explicit as
+`Resource` with a diagnostic; provide source type mappings rather than guessing
+a core type. The converter imports topology and does not preserve assertion history.
+
 ODPG helps answer questions such as:
 
 - Which data products support a business objective?
@@ -28,7 +65,7 @@ ODPG helps answer questions such as:
 - Which KPIs measure strategic outcomes?
 - Which policies govern downstream assets?
 - Where are strategic gaps, overlaps, or unsupported objectives?
-- What trusted graph context should an AI agent use before acting?
+- What graph context, evidence pointers and review metadata are available to an AI agent?
 
 ## Why It Matters
 
@@ -39,7 +76,7 @@ Modern data ecosystems are distributed across catalogs, platforms, teams, polici
 | Strategic alignment | Link use cases, data products, KPIs, and objectives |
 | Governance reasoning | Trace policy relationships across connected assets |
 | Impact analysis | Follow dependencies and relationship paths |
-| AI grounding | Provide trusted graph context for agents and automation |
+| AI grounding | Provide graph context with explicit evidence and review metadata |
 | Interoperability | Reference ODPS, ODPV, ODPC, and external graph formats |
 | Visualization | Generate graph explorer views for inspection and review |
 
@@ -96,7 +133,7 @@ python -m pip install -r requirements-dev.txt
 Validate an ODPG graph:
 
 ```bash
-python source/scripts/odpg_validate.py -i source/examples/SLA/sla.yml
+python source/scripts/odpg_validate.py -i source/examples/value-evidence/aviation.yaml
 ```
 
 Convert an external graph format into ODPG YAML:
@@ -123,7 +160,7 @@ Analyze governance and strategic gaps:
 python source/scripts/odpg_analyze.py -i graph.yml
 ```
 
-Extract trusted context around a node for AI-agent use:
+Extract context with assertion metadata and separately identified reviewed paths:
 
 ```bash
 python source/scripts/odpg_agent_context.py -i graph.yml --node AGENT-001 --depth 2
@@ -183,10 +220,15 @@ graph:
 Run the Python toolkit test suite:
 
 ```bash
-python -m pytest tests/test_odpg_toolkit.py
+python -m pytest tests --cov=odpg_toolkit_core --cov=odpg_profiles --cov-report=term-missing --cov-fail-under=80
 ```
 
 The tests cover validation, invalid edge handling, graph summaries, relationship traversal, strategic and governance analysis, AI-agent context extraction, and JSON output writing.
+
+Adoption tests also cover converter conformance, assertion origin/review separation,
+validity windows, profile reference integrity, metric units, evidence chains and
+CLI reports. Reviewed paths describe self-reported review metadata; they do not
+grant authorization or automatically certify business value or production readiness.
 
 ## Docker
 

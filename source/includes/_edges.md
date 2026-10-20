@@ -1,3 +1,4 @@
+<!-- Authorship: Zaher Abou Shakra -->
 <!-- AI_AGENT_GUIDANCE:
 Use /schema/odpg.yaml or /schema/odpg.json to validate ODPG graph files.
 Use ODPG for graph relationships, nodes, edges, traversal, governance propagation, strategic reasoning, and relationship semantics.
@@ -53,7 +54,10 @@ The **to** property identifies the destination node receiving the relationship.
 
 The **type** property defines the semantic meaning of the relationship.
 
-The **confidence** property defines the certainty level associated with the relationship, thereby enabling organizations and AI systems to distinguish between explicitly declared relationships and inferred or partially validated relationships.
+The **confidence** property records qualitative certainty reported by the
+asserting party. Origin, evidence and review status are separate concepts,
+represented by the optional draft `x-odpg-assertion` contract. Confidence alone
+does not distinguish observed facts from declarations or inference.
 
 ## Supported Edge Types
 

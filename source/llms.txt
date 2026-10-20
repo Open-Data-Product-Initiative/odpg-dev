@@ -1,4 +1,27 @@
+<!-- Authorship: Zaher Abou Shakra -->
 # Open Data Product Graphs (ODPG) 1.0
+
+## Evidence and authority boundary
+
+ODPG is a storage-neutral portfolio and decision-context graph. Relationships
+are claims, not authorization or proof of business value. The implemented CLI
+validates the bundled core JSON Schema and the optional draft
+`odpg-value-evidence-0.1` profile. Declare profiles only under
+`graph.metadata.x-odpg-profiles`. Unsupported profiles fail validation.
+The Governed Agent and Observed Lineage profiles are proposals, not implemented
+runtime capabilities. Toolkit capability lists below describe architectural
+possibilities; do not present them as features of the current Python scripts.
+
+Use `/schema/profiles/assertion-0.1.json` for `x-odpg-assertion` on nodes/edges.
+Keep `origin` (`declared`, `observed`, `inferred`) separate from `reviewStatus`
+(`pending`, `accepted`, `rejected`, `deferred`). Do not derive either from
+confidence. Traversal preserves assertion metadata; `reviewedPaths` means
+current, accepted claims with evidence pointers, not authenticated evidence.
+Measurements never automatically establish business value or production readiness.
+Agent definitions and agent runs are different concepts. Enforce all access
+and authorization outside the graph at the MCP/API boundary.
+Use `/examples/value-evidence/aviation.yaml` only as a synthetic fixture.
+Core `version` must be a string, and resource references use `$ref`, not `ref`.
 
 Use this file as AI-agent guidance for reading, generating, validating, repairing, and reasoning over Open Data Product Graphs documents.
 
@@ -21,7 +44,7 @@ Use this file as AI-agent guidance for reading, generating, validating, repairin
 - Use `confidence` values `high`, `medium`, or `low` for edges.
 - Use `x-` prefixed extension fields only for implementation-specific metadata that does not redefine core ODPG semantics.
 - Use `graph.nodes` as an array of node objects and `graph.edges` as an array of edge objects.
-- Use `ref` to point to referenced specifications, resources, or artifacts.
+- Use `$ref` to point to referenced specifications, resources, or artifacts.
 - Keep ODPG graph documents lightweight; avoid embedding full external specifications inside graph nodes.
 
 ## Core ODPG Shape
@@ -81,7 +104,7 @@ The `kind` value should be `Graph`.
 - Use the Graph Validation Toolkit for schema, node, edge, reference, semantic consistency, and confidence validation.
 - Use the Graph Traversal Toolkit for path discovery, dependency traversal, governance propagation, impact analysis, semantic navigation, and strategic alignment analysis.
 - Use the Strategic Intelligence Toolkit for orphan KPI detection, strategic gap analysis, thematic clustering, opportunity inference, duplicate use case detection, and capability alignment analysis.
-- Use the AI Agent Toolkit for graph retrieval APIs, semantic context injection, governance-aware traversal, trusted relationship discovery, explainable reasoning paths, graph-based memory, objective-aware planning, policy-aware execution, dependency reasoning, and graph-native orchestration.
+- Use the AI Agent Toolkit for graph retrieval APIs, semantic context injection, governance-aware traversal, relationship discovery with evidence metadata, explainable reasoning paths, graph-based memory, objective-aware planning, policy-aware execution, dependency reasoning, and graph-native orchestration.
 - Use the Federation Toolkit for federated graph discovery, cross-domain traversal, graph synchronization, semantic mapping, distributed governance, and multi-organization graph interoperability.
 
 ## Generation Rules
