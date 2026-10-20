@@ -1,3 +1,4 @@
+# Authorship: Zaher Abou Shakra
 import argparse
 from pathlib import Path
 
@@ -6,7 +7,7 @@ from odpg_toolkit_core import command_agent_context
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Extract trusted ODPG graph context around a focus node for AI-agent use.",
+        description="Extract ODPG graph context with assertion metadata and separately identified reviewed paths; does not grant authorization.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument("-i", "--input", required=True, type=Path, help="Path to ODPG YAML graph file")

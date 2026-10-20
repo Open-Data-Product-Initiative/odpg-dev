@@ -1,0 +1,459 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ODPG Value Evidence 0.1 node overlay (draft)",
+  "$comment": "Authorship: Zaher Abou Shakra",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "$ref",
+    "x-odpg-value"
+  ],
+  "properties": {
+    "type": {
+      "enum": [
+        "ValueHypothesis",
+        "Outcome",
+        "MetricDefinition",
+        "Baseline",
+        "Target",
+        "Measurement",
+        "Evidence",
+        "ReviewDecision"
+      ]
+    },
+    "x-odpg-value": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ValueHypothesis"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "objective": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "useCase": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "product": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "outcome": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "metric": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "baseline": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "target": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "reviewDecision": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "measurements": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "statement": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "objective",
+              "useCase",
+              "product",
+              "outcome",
+              "metric",
+              "baseline",
+              "target",
+              "reviewDecision",
+              "measurements",
+              "statement"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Outcome"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "MetricDefinition"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "definition": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "direction": {
+                "enum": [
+                  "increase",
+                  "decrease"
+                ]
+              },
+              "aggregation": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "definition",
+              "unit",
+              "direction",
+              "aggregation"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Baseline"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "periodStart": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "periodEnd": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "metric",
+              "value",
+              "unit",
+              "periodStart",
+              "periodEnd"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Target"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "periodStart": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "periodEnd": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "metric",
+              "value",
+              "unit",
+              "periodStart",
+              "periodEnd"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Measurement"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "periodStart": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "periodEnd": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "hypothesis": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "observedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "attributionMethod": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "metric",
+              "value",
+              "unit",
+              "periodStart",
+              "periodEnd",
+              "hypothesis",
+              "observedAt",
+              "attributionMethod",
+              "evidence"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Evidence"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "uri": {
+                "type": "string",
+                "minLength": 1,
+                "format": "uri-reference"
+              },
+              "recordedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "digest": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "uri",
+              "recordedAt"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "ReviewDecision"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "x-odpg-value": {
+            "type": "object",
+            "properties": {
+              "hypothesis": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "decision": {
+                "enum": [
+                  "continue",
+                  "change",
+                  "stop",
+                  "defer"
+                ]
+              },
+              "reviewer": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "reviewedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "hypothesis",
+              "decision",
+              "reviewer",
+              "reviewedAt",
+              "evidence",
+              "rationale"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ]
+}

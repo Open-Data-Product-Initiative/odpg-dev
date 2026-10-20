@@ -1,0 +1,87 @@
+# Authorship: Zaher Abou Shakra
+OBJ-AVAILABILITY:
+  kind: BusinessObjective
+  description: 'Synthetic aviation fixture: OBJ-AVAILABILITY'
+  illustrative: true
+UC-MAINTENANCE:
+  kind: UseCase
+  description: 'Synthetic aviation fixture: UC-MAINTENANCE'
+  illustrative: true
+DP-MAINTENANCE:
+  kind: DataProduct
+  description: 'Synthetic aviation fixture: DP-MAINTENANCE'
+  illustrative: true
+HYP-1:
+  kind: ValueHypothesis
+  description: 'Synthetic aviation fixture: HYP-1'
+  illustrative: true
+OUT-1:
+  kind: Outcome
+  description: 'Synthetic aviation fixture: OUT-1'
+  illustrative: true
+MET-1:
+  kind: MetricDefinition
+  description: 'Synthetic aviation fixture: MET-1'
+  illustrative: true
+BASE-1:
+  kind: Baseline
+  description: 'Synthetic aviation fixture: BASE-1'
+  illustrative: true
+TARGET-1:
+  kind: Target
+  description: 'Synthetic aviation fixture: TARGET-1'
+  illustrative: true
+MEAS-1:
+  kind: Measurement
+  description: 'Synthetic aviation fixture: MEAS-1'
+  illustrative: true
+EVID-1:
+  kind: Evidence
+  description: 'Synthetic aviation fixture: EVID-1'
+  illustrative: true
+  measurement:
+    baseline: 10
+    target: 8
+    observed: 7
+    unit: events/1000-flight-hours
+REVIEW-1:
+  kind: ReviewDecision
+  description: 'Synthetic aviation fixture: REVIEW-1'
+  illustrative: true
+HYP-2:
+  kind: ValueHypothesis
+  description: 'Synthetic aviation fixture: HYP-2'
+  illustrative: true
+OUT-2:
+  kind: Outcome
+  description: 'Synthetic aviation fixture: OUT-2'
+  illustrative: true
+MET-2:
+  kind: MetricDefinition
+  description: 'Synthetic aviation fixture: MET-2'
+  illustrative: true
+BASE-2:
+  kind: Baseline
+  description: 'Synthetic aviation fixture: BASE-2'
+  illustrative: true
+TARGET-2:
+  kind: Target
+  description: 'Synthetic aviation fixture: TARGET-2'
+  illustrative: true
+MEAS-2:
+  kind: Measurement
+  description: 'Synthetic aviation fixture: MEAS-2'
+  illustrative: true
+EVID-2:
+  kind: Evidence
+  description: 'Synthetic aviation fixture: EVID-2'
+  illustrative: true
+  measurement:
+    baseline: 10
+    target: 8
+    observed: 9.8
+    unit: events/1000-flight-hours
+REVIEW-2:
+  kind: ReviewDecision
+  description: 'Synthetic aviation fixture: REVIEW-2'
+  illustrative: true

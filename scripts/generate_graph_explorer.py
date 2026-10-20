@@ -1,3 +1,4 @@
+# Authorship: Zaher Abou Shakra
 import argparse
 import html
 import json
@@ -314,6 +315,7 @@ def build_html(graph: dict) -> str:
 
     return f"""
 <!DOCTYPE html>
+<!-- Authorship: Zaher Abou Shakra -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1149,7 +1151,7 @@ def build_html(graph: dict) -> str:
         <nav class="odpg-footer-resources" aria-label="ODPG 1.0 specification, schemas, and contribution">
           <h3>Specification &amp; schemas</h3>
           <a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0" target="_blank" rel="noopener noreferrer" title="Official source repository for the ODPG 1.0 specification">Open Data Product Graphs 1.0 on GitHub</a>
-          <a href="https://opendataproducts.org/odpg-v1.0/schema/graph.yaml" target="_blank" rel="noopener noreferrer" title="Machine-readable schema definition in YAML format">ODPG YAML Schema</a>
+          <a href="https://opendataproducts.org/odpg-v1.0/schema/odpg.yaml" target="_blank" rel="noopener noreferrer" title="Machine-readable schema definition in YAML format">ODPG YAML Schema</a>
           <a href="https://opendataproducts.org/odpg-v1.0/schema/graph.json" target="_blank" rel="noopener noreferrer" title="Machine-readable schema definition in JSON format">ODPG JSON Schema</a>
           <a href="https://github.com/Open-Data-Product-Initiative/odpg-v1.0/issues" target="_blank" rel="noopener noreferrer" title="Submit issues or suggestions to the specification maintainers">Raise an issue in GitHub</a>
         </nav>

@@ -1,10 +1,16 @@
+# Authorship: Zaher Abou Shakra
 import argparse
 import json
+from copy import deepcopy
 from collections import defaultdict, deque
 from pathlib import Path
 from typing import Any
 
 import yaml
+from odpg_profiles import (
+    PROFILE_ID, PROFILE_NODE_TYPES, PROFILE_EDGE_TYPES, declared_profiles,
+    schema_errors, validate_profiles, assertion_is_reviewed, assertion_is_active,
+)
 
 
 DEFAULT_CONFIDENCE_VALUES = {"high", "medium", "low"}
@@ -75,40 +81,19 @@ def node_ref(node: dict[str, Any]) -> str:
 
 
 def validate_graph(document: dict[str, Any]) -> tuple[list[str], list[str]]:
-    errors: list[str] = []
+    errors = schema_errors(document, "../odpg.json")
     warnings: list[str] = []
+    if errors:
+        return errors, warnings
+    errors.extend(validate_profiles(document))
+    profiles = declared_profiles(document)
+    node_types = CORE_NODE_TYPES | (PROFILE_NODE_TYPES if PROFILE_ID in profiles else set())
+    edge_types = CORE_EDGE_TYPES | (PROFILE_EDGE_TYPES if PROFILE_ID in profiles else set())
 
-    for field in ("schema", "version", "kind"):
-        if field not in document:
-            errors.append(f"Missing required root field: {field}")
-
-    if document.get("kind") != "Graph":
-        errors.append("Invalid root field kind: expected Graph")
-
-    payload = graph_payload(document)
-    metadata = graph_metadata(document)
-    nodes = payload.get("nodes")
-    edges = payload.get("edges")
-
-    if "graph" in document and not isinstance(document.get("graph"), dict):
-        errors.append("Root field graph must be an object")
-
-    if not isinstance(nodes, list):
-        errors.append("Missing or invalid graph.nodes array")
-        nodes = []
-    if not isinstance(edges, list):
-        errors.append("Missing or invalid graph.edges array")
-        edges = []
-
-    for field in ("id", "name", "description"):
-        if field not in metadata:
-            errors.append(f"Missing required metadata field: graph.metadata.{field}")
-
+    nodes = document["graph"]["nodes"]
+    edges = document["graph"]["edges"]
     node_ids: set[str] = set()
     for index, node in enumerate(nodes):
-        if not isinstance(node, dict):
-            errors.append(f"Node at index {index} must be an object")
-            continue
         node_id = node.get("id")
         node_type = node.get("type")
         if not node_id:
@@ -119,19 +104,15 @@ def validate_graph(document: dict[str, Any]) -> tuple[list[str], list[str]]:
             node_ids.add(str(node_id))
         if not node_type:
             errors.append(f"Node {node_id or index} is missing required field: type")
-        elif str(node_type) not in CORE_NODE_TYPES:
+        elif str(node_type) not in node_types:
             warnings.append(f"Node {node_id or index} uses non-core node type: {node_type}")
         if not node_ref(node):
             errors.append(f"Node {node_id or index} is missing required field: $ref")
 
     for index, edge in enumerate(edges):
-        if not isinstance(edge, dict):
-            errors.append(f"Edge at index {index} must be an object")
-            continue
         source = str(edge.get("from") or "")
         target = str(edge.get("to") or "")
         edge_type = str(edge.get("type") or "")
-        confidence = str(edge.get("confidence") or "")
         if not source:
             errors.append(f"Edge at index {index} is missing required field: from")
         elif source not in node_ids:
@@ -142,16 +123,8 @@ def validate_graph(document: dict[str, Any]) -> tuple[list[str], list[str]]:
             errors.append(f"Edge target does not match any node id: {target}")
         if not edge_type:
             errors.append(f"Edge {source}->{target} is missing required field: type")
-        elif edge_type not in CORE_EDGE_TYPES:
+        elif edge_type not in edge_types:
             warnings.append(f"Edge {source}->{target} uses non-core edge type: {edge_type}")
-        if not confidence:
-            errors.append(f"Edge {source}->{target} is missing required field: confidence")
-        elif confidence not in DEFAULT_CONFIDENCE_VALUES:
-            errors.append(
-                f"Edge {source}->{target} has invalid confidence: {confidence}. "
-                "Use high, medium, or low."
-            )
-
     return errors, warnings
 
 
@@ -221,15 +194,7 @@ def traverse_graph(
                     "start": start,
                     "end": next_node,
                     "depth": len(next_path),
-                    "relationships": [
-                        {
-                            "from": item.get("from"),
-                            "to": item.get("to"),
-                            "type": item.get("type"),
-                            "confidence": item.get("confidence"),
-                        }
-                        for item in next_path
-                    ],
+                    "relationships": deepcopy(next_path),
                 }
             )
             state = (next_node, len(next_path))
@@ -249,6 +214,8 @@ def analyze_graph(document: dict[str, Any]) -> dict[str, Any]:
     incoming: dict[str, list[dict[str, Any]]] = defaultdict(list)
     outgoing: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for edge in edges:
+        if not assertion_is_active(edge):
+            continue
         outgoing[str(edge.get("from") or "")].append(edge)
         incoming[str(edge.get("to") or "")].append(edge)
 
@@ -294,6 +261,13 @@ def analyze_graph(document: dict[str, Any]) -> dict[str, Any]:
         "ungovernedAssets": ungoverned_assets,
         "lowConfidenceRelationships": weak_relationships,
         "useCasesWithoutStrategicContribution": potential_opportunities,
+        "analysisBasis": "Declared topology; reviewed support is reported separately. No authorization or business-value conclusion is established.",
+        "objectivesWithoutReviewedSupport": [
+            node_id for node_id, node in node_by_id.items()
+            if node.get("type") == "BusinessObjective"
+            and not any(edge.get("type") in {"supports", "contributesTo", "alignsWith", "alignWith"}
+                        and assertion_is_reviewed(edge) for edge in incoming.get(node_id, []))
+        ],
     }
 
 
@@ -312,6 +286,9 @@ def agent_context(document: dict[str, Any], node_id: str, depth: int) -> dict[st
         "relatedNodes": [node_by_id[node] for node in sorted(related_ids) if node in node_by_id],
         "forwardPaths": forward_paths,
         "reversePaths": reverse_paths,
+        "trustNotice": "Graph assertions are context, not authorization, verified business value, or proof of production readiness. Evidence URIs are not fetched or authenticated.",
+        "reviewedPaths": [path for path in forward_paths + reverse_paths
+                          if all(assertion_is_reviewed(edge) for edge in path["relationships"])],
         "governanceSignals": [
             path
             for path in forward_paths
@@ -329,9 +306,16 @@ def write_output(data: Any, path: Path | None) -> None:
 
 
 def command_validate(args: argparse.Namespace) -> int:
-    document = load_graph(args.input)
-    errors, warnings = validate_graph(document)
+    document = {}
+    try:
+        document = load_graph(args.input)
+        errors, warnings = validate_graph(document)
+    except (OSError, ValueError, yaml.YAMLError) as error:
+        errors, warnings = [str(error)], []
     result = {"valid": not errors, "errors": errors, "warnings": warnings}
+    profiles = declared_profiles(document)
+    if profiles:
+        result["profiles"] = {profile: ("conformant" if not errors else "not-conformant") for profile in profiles}
     write_output(result, args.output)
     return 0 if not errors else 1
 

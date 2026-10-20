@@ -1,0 +1,137 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "origin": {
+      "enum": [
+        "declared",
+        "observed",
+        "inferred"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri"
+    },
+    "assertedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reviewStatus": {
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected",
+        "deferred"
+      ]
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "reviewedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uri": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri-reference"
+          },
+          "digest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "uri"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "id",
+    "origin",
+    "source",
+    "assertedAt",
+    "reviewStatus",
+    "evidence"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "observed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reviewStatus": {
+            "enum": [
+              "accepted",
+              "rejected",
+              "deferred"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reviewer",
+          "reviewedAt"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reviewStatus": {
+            "const": "accepted"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ODPG assertion contract 0.1 (draft)",
+  "$comment": "Authorship: Zaher Abou Shakra"
+}
